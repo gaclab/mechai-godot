@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Mech.AI"
+config/description="turn based game yang dikombinasikan dengan strategi dimana 2 player akan bertarung dengan robot robot mereka, pertarungan dalam sebuah papan dengan 10x10 grid , antara kedua player dapat melakukan banyak aksi dengan memainkan robot mereka secara bergiliran, menghancurkan semua robot lawan akan menjadi pemenang "
+config/version="0.0.0.1"
+run/main_scene="res://Scenes/Root.tscn"
+config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1366
+window/size/viewport_height=768
+window/stretch/mode="viewport"
+window/vsync/vsync_mode=0
+
+[gui]
+
+common/snap_controls_to_pixels=false
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
