@@ -2,8 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://dtxw8qkpdkfca" path="res://Scenes/Menu/_bg_menu.tscn" id="1_8e6ds"]
 [ext_resource type="Script" path="res://Scenes/Menu/mode_selection.gd" id="1_gijhk"]
-[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Scenes/Menu/btn.tres" id="2_8i0ai"]
 [ext_resource type="PackedScene" uid="uid://chupvw1dy2lk1" path="res://Scenes/Menu/control_selection.tscn" id="2_modru"]
+[ext_resource type="PackedScene" uid="uid://bv8oq4py1n2ju" path="res://Scenes/Menu/btn.tscn" id="4_qbf3o"]
 
 [node name="ModeSelection" type="Control"]
 layout_mode = 3
@@ -45,22 +45,20 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -193.0
-offset_top = -34.0
+offset_top = -38.0
 offset_right = 171.0
-offset_bottom = 160.0
+offset_bottom = 203.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 25
 
-[node name="Campaign" type="Button" parent="VBoxContainer"]
+[node name="Campaign" parent="VBoxContainer" instance=ExtResource("4_qbf3o")]
 layout_mode = 2
-theme = ExtResource("2_8i0ai")
 disabled = true
 text = "Campaign"
 
-[node name="Multiplayer" type="Button" parent="VBoxContainer"]
+[node name="Multiplayer" parent="VBoxContainer" instance=ExtResource("4_qbf3o")]
 layout_mode = 2
-theme = ExtResource("2_8i0ai")
 text = "Multiplayer"
 
 [connection signal="pressed" from="VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]

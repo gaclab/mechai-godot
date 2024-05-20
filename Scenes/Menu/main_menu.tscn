@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Menu/main_menu.gd" id="1_hf6ko"]
 [ext_resource type="PackedScene" uid="uid://ctpgb8qm511va" path="res://Scenes/Menu/mode_selection.tscn" id="2_8gqdc"]
 [ext_resource type="PackedScene" uid="uid://dtxw8qkpdkfca" path="res://Scenes/Menu/_bg_menu.tscn" id="2_rwmhd"]
-[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Scenes/Menu/btn.tres" id="3_76ovh"]
+[ext_resource type="PackedScene" uid="uid://bv8oq4py1n2ju" path="res://Scenes/Menu/btn.tscn" id="4_0dna8"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -18,21 +18,20 @@ modeSelection = ExtResource("2_8gqdc")
 [node name="BgMenu" parent="." instance=ExtResource("2_rwmhd")]
 layout_mode = 1
 
-[node name="Play" type="Button" parent="."]
+[node name="Play" parent="." instance=ExtResource("4_0dna8")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -163.0
-offset_top = -22.0
-offset_right = 160.0
-offset_bottom = 103.0
+offset_left = -116.0
+offset_top = -2.0
+offset_right = 125.0
+offset_bottom = 109.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_76ovh")
-text = "PLAY"
+text = "Play"
 
 [node name="MechAi" type="RichTextLabel" parent="."]
 layout_mode = 1
@@ -53,4 +52,4 @@ bbcode_enabled = true
 text = "[wave amp=50 freq=2] Mech Ai[/wave]"
 fit_content = true
 
-[connection signal="pressed" from="Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
