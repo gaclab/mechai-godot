@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctpgb8qm511va"]
+
+[ext_resource type="PackedScene" uid="uid://dtxw8qkpdkfca" path="res://Scenes/Menu/_bg_menu.tscn" id="1_8e6ds"]
+[ext_resource type="Script" path="res://Scenes/Menu/mode_selection.gd" id="1_gijhk"]
+[ext_resource type="PackedScene" uid="uid://chupvw1dy2lk1" path="res://Scenes/Menu/control_selection.tscn" id="2_modru"]
+[ext_resource type="PackedScene" uid="uid://bv8oq4py1n2ju" path="res://Scenes/Menu/btn.tscn" id="4_qbf3o"]
+
+[node name="ModeSelection" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gijhk")
+controlSelection = ExtResource("2_modru")
+
+[node name="BgMenu" parent="." instance=ExtResource("1_8e6ds")]
+layout_mode = 1
+
+[node name="SelectMode" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 463.0
+offset_top = 144.0
+offset_right = -414.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme_override_colors/default_color = Color(0.933333, 0.894118, 0.694118, 1)
+theme_override_font_sizes/normal_font_size = 70
+theme_override_font_sizes/bold_font_size = 70
+theme_override_font_sizes/italics_font_size = 70
+theme_override_font_sizes/bold_italics_font_size = 70
+theme_override_font_sizes/mono_font_size = 70
+bbcode_enabled = true
+text = "Select Mode"
+fit_content = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -193.0
+offset_top = -38.0
+offset_right = 171.0
+offset_bottom = 203.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Campaign" parent="VBoxContainer" instance=ExtResource("4_qbf3o")]
+layout_mode = 2
+disabled = true
+text = "Campaign"
+
+[node name="Multiplayer" parent="VBoxContainer" instance=ExtResource("4_qbf3o")]
+layout_mode = 2
+text = "Multiplayer"
+
+[connection signal="pressed" from="VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]

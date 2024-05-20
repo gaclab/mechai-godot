@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv8oq4py1n2ju"]
+
+[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Scenes/Menu/btn.tres" id="1_32dst"]
+
+[node name="Btn" type="Button"]
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("1_32dst")
+text = "Basic Button"
