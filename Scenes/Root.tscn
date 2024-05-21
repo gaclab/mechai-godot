@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=4 format=3 uid="uid://sksky0mp0hff"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
+[ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
+[ext_resource type="Texture2D" uid="uid://c3mpihe1jnvm1" path="res://icon.svg" id="3_tohdd"]
+
+[node name="2Root" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_ke76w")]
+position = Vector2(683, 384)
+
+[node name="Pergerakan" parent="Map" node_paths=PackedStringArray("target_yang_dipindahkan") instance=ExtResource("2_ccv5b")]
+target_yang_dipindahkan = NodePath("../Unit")
+
+[node name="Unit" type="Sprite2D" parent="Map"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_tohdd")
