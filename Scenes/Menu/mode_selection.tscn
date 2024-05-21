@@ -61,4 +61,9 @@ text = "Campaign"
 layout_mode = 2
 text = "Multiplayer"
 
+[node name="Back" parent="VBoxContainer" instance=ExtResource("4_qbf3o")]
+layout_mode = 2
+text = "Back"
+
 [connection signal="pressed" from="VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back" to="." method="_on_back_pressed"]
