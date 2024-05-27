@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_eqw24")
-mapSize = Vector2(10, 10)
-cellSize = Vector2(64, 64)
+_mapSize = Vector2i(10, 10)
+_cellSize = Vector2i(64, 64)

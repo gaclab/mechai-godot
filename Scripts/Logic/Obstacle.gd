@@ -10,11 +10,10 @@ var hpObstacle : int = 0:
 var is_stand : bool = true;
 var grid = load("res://Assets/Tres/Grid.tres")
 
+@export var cell := Vector2i.ZERO 
 
-
-
-@export var cell := Vector2.ZERO
-#fungsi mengambil nyawa
+func set_cell(newcell : Vector2i)->void:
+	cell = newcell
 #fungsi saat diattack
 func onDamage(value : int)->void:
 	if hpObstacle != 0:  # Check both HP and click state

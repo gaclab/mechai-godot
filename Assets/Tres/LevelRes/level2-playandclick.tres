@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Level_Obstacle" load_steps=2 format=3 uid="uid://uysn6xntuqgc"]
+
+[ext_resource type="Script" path="res://Scripts/Logic/LevelTemplate.gd" id="1_eeso2"]
+
+[resource]
+script = ExtResource("1_eeso2")
+_level_location = PackedVector2Array()
