@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bfgxshary5mvx"]
 
-[ext_resource type="Script" path="res://Scripts/Logic/Pergerakan.gd" id="1_otruo"]
+[ext_resource type="Script" path="res://Scripts/Logic/Pergerakan.gd" id="1_oao5c"]
 
 [sub_resource type="Curve2D" id="Curve2D_qtbu1"]
 
@@ -14,10 +14,16 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="Pergerakan" type="Path2D"]
 curve = SubResource("Curve2D_qtbu1")
-script = ExtResource("1_otruo")
+script = ExtResource("1_oao5c")
 
 [node name="Jejak" type="PathFollow2D" parent="."]
 loop = false
+
+[node name="Pathline" type="Line2D" parent="."]
+default_color = Color(0, 1, 1, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2
 
 [node name="Indikator" type="Node2D" parent="."]
 

@@ -2,8 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
-[ext_resource type="Texture2D" uid="uid://c3mpihe1jnvm1" path="res://icon.svg" id="3_tohdd"]
-[ext_resource type="PackedScene" uid="uid://cka87ttlt57vc" path="res://Scenes/Main scenes/obstacles.tscn" id="4_2oynf"]
+[ext_resource type="Texture2D" uid="uid://cflkepeomywil" path="res://Assets/Sprites/Mechsample.png" id="3_0xg8j"]
 
 [node name="2Root" type="Node2D"]
 
@@ -14,12 +13,12 @@ position = Vector2(683, 384)
 target_yang_dipindahkan = NodePath("../Unit")
 
 [node name="Unit" type="Sprite2D" parent="Map"]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("3_tohdd")
+texture = ExtResource("3_0xg8j")
 
-[node name="Obstacles2" parent="Map" instance=ExtResource("4_2oynf")]
-position = Vector2(-320, -320)
+[node name="Unit2" type="Sprite2D" parent="Map"]
+texture = ExtResource("3_0xg8j")
 
-[node name="Obstacles" parent="Map" instance=ExtResource("4_2oynf")]
-position = Vector2(256, -192)
-cell = Vector2(9, 2)
+[node name="Unit3" type="Sprite2D" parent="Map"]
+texture = ExtResource("3_0xg8j")
+
+[connection signal="move_finished" from="Map/Pergerakan" to="Map" method="_on_pergerakan_move_finished"]
