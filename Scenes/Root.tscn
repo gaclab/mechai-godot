@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=5 format=3 uid="uid://sksky0mp0hff"]
 
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
 [ext_resource type="Texture2D" uid="uid://c3mpihe1jnvm1" path="res://icon.svg" id="3_tohdd"]
+[ext_resource type="PackedScene" uid="uid://cka87ttlt57vc" path="res://Scenes/Main scenes/obstacles.tscn" id="4_2oynf"]
 
 [node name="2Root" type="Node2D"]
 
@@ -15,3 +16,10 @@ target_yang_dipindahkan = NodePath("../Unit")
 [node name="Unit" type="Sprite2D" parent="Map"]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_tohdd")
+
+[node name="Obstacles2" parent="Map" instance=ExtResource("4_2oynf")]
+position = Vector2(-320, -320)
+
+[node name="Obstacles" parent="Map" instance=ExtResource("4_2oynf")]
+position = Vector2(256, -192)
+cell = Vector2(9, 2)

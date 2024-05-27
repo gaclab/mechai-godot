@@ -16,6 +16,9 @@ func HitungPosisi(posisigrid : Vector2) ->Vector2:
 func HitungPosisiMap(mapposition : Vector2) ->Vector2:
 	return (mapposition / cellSize).floor()
 
+func HitungPosisiGrid(posisigrid : Vector2)->Vector2:
+	return (posisigrid*cellSize)-Vector2(320,320)
+
 ##kondisi true jika posisi cel berada dalam grid(Map)
 func is_inside_Map(posisisel : Vector2)->bool:
 	var out : bool = posisisel.x >= 0 and posisisel.x < mapSize.x
