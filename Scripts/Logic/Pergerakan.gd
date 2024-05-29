@@ -12,6 +12,7 @@ func repath(path_trails : PackedVector2Array):
 	for k in path_trails:
 		curve.add_point(k)
 	$Pathline.points = path_trails
+	
 
 # Called when the node enters the scene tree for the first time.
 func stand_still(pos:Vector2i):
