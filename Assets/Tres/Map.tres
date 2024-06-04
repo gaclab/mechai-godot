@@ -1,5 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://d1hcr4b3rylhq"]
+[gd_resource type="TileSet" script_class="Mapcontrol" load_steps=4 format=3 uid="uid://d1hcr4b3rylhq"]
 
+[ext_resource type="Script" path="res://Scripts/Logic/map_control.gd" id="1_rafh1"]
 [ext_resource type="Texture2D" uid="uid://ck4njanm8qws3" path="res://Assets/Sprites/tileset x2.png" id="1_tw2ax"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_emtkh"]
@@ -240,3 +241,6 @@ texture_region_size = Vector2i(64, 64)
 [resource]
 tile_size = Vector2i(64, 64)
 sources/1 = SubResource("TileSetAtlasSource_emtkh")
+script = ExtResource("1_rafh1")
+_mapSize = Vector2i(10, 10)
+_cellSize = Vector2i(64, 64)

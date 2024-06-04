@@ -25,6 +25,10 @@ window/size/viewport_height=768
 window/stretch/mode="viewport"
 window/vsync/vsync_mode=0
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/kanban_tasks/plugin.cfg")
+
 [gui]
 
 common/snap_controls_to_pixels=false

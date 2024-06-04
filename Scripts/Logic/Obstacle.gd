@@ -8,12 +8,7 @@ var hpObstacle : int = 0:
 		return hpObstacle
 
 var is_stand : bool = true;
-var grid = load("res://Assets/Tres/Grid.tres")
 
-@export var cell := Vector2i.ZERO 
-
-func set_cell(newcell : Vector2i)->void:
-	cell = newcell
 #fungsi saat diattack
 func onDamage(value : int)->void:
 	if hpObstacle != 0:  # Check both HP and click state
@@ -31,16 +26,12 @@ func _input(event : InputEvent)->void:
 
 func _ready():
 	hpObstacle = 5;
-	position = grid.HitungPosisiGrid(cell)
 	$Lifebar.max_value = hpObstacle
 	$Lifebar.value = hpObstacle
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if grid.is_inside_Map(cell):
-		position = grid.HitungPosisiGrid(cell)
-	
 	check_destroy()
 	if is_stand :
 		$Obstacle.texture = ResourceLoader.load("res://Assets/Sprites/Batu-sementara.png")

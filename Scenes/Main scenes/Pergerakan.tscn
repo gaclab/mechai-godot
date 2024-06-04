@@ -29,6 +29,8 @@ end_cap_mode = 2
 [node name="Indikator" type="Node2D" parent="."]
 
 [node name="Square" type="PanelContainer" parent="Indikator"]
-offset_right = 64.0
-offset_bottom = 64.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r77n8")

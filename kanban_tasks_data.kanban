@@ -1,0 +1,116 @@
+{
+	"categories": [
+		{
+			"uuid": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"title": "Task",
+			"color": "70bafa"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "cecc5601-4ce9-4629-8492-2435999f84b9",
+			"title": "Todo",
+			"tasks": [
+				"419d93bd-3753-487b-8f6c-9f16930e22b6",
+				"ea5eb206-ab02-4ff1-b573-d7cdf86aeb31",
+				"1eade55f-e99e-4efc-8b75-6a19962d29da",
+				"1f1f63c0-1d76-4f44-a442-93961ae40979",
+				"209382dc-8a53-41bf-9a9a-59cc520410e5",
+				"8fd2e09d-7ee0-4894-83f1-746cef5b769e"
+			]
+		},
+		{
+			"uuid": "8a8ff6a6-7aaa-410a-a3b7-3433ba44b8af",
+			"title": "Doing",
+			"tasks": [
+				"db657cb3-8e74-49e0-927c-81a088dc1773"
+			]
+		},
+		{
+			"uuid": "b67652d5-1041-4e56-bed4-c0272a21da08",
+			"title": "Done",
+			"tasks": [
+				"a6415e0a-fc33-485a-88f9-b9c488e4f9ef",
+				"8e104752-33fd-481f-be8b-5a579af67e9e"
+			]
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "a6415e0a-fc33-485a-88f9-b9c488e4f9ef",
+			"title": "Ringkas MultiplayerObstacle.gd",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "8e104752-33fd-481f-be8b-5a579af67e9e",
+			"title": "Make Cursor Stay in Bounds",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "ea5eb206-ab02-4ff1-b573-d7cdf86aeb31",
+			"title": "Fix robot & obstacle stacking",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "db657cb3-8e74-49e0-927c-81a088dc1773",
+			"title": "Process func Optimizer",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "419d93bd-3753-487b-8f6c-9f16930e22b6",
+			"title": "Persingkat script objek obstacle",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "1eade55f-e99e-4efc-8b75-6a19962d29da",
+			"title": "Persingkat dan Sesuaikan Grid.tres",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "1f1f63c0-1d76-4f44-a442-93961ae40979",
+			"title": "Sinkronkan game dengan Grid.tres",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "209382dc-8a53-41bf-9a9a-59cc520410e5",
+			"title": "Recomp scene obstacle",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		},
+		{
+			"uuid": "8fd2e09d-7ee0-4894-83f1-746cef5b769e",
+			"title": "Make auto tiler",
+			"description": "",
+			"category": "0da55155-a55f-486b-a24e-a55a31ab8a44",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"cecc5601-4ce9-4629-8492-2435999f84b9"
+			],
+			[
+				"8a8ff6a6-7aaa-410a-a3b7-3433ba44b8af"
+			],
+			[
+				"b67652d5-1041-4e56-bed4-c0272a21da08"
+			]
+		]
+	}
+}
