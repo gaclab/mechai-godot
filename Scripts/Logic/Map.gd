@@ -9,8 +9,6 @@ var robots = {}
 var packedpoints : PackedVector2Array
 @onready var ukuran_jendela = get_window().size + Vector2i(0,23)
 
-var grid : Resource = load("res://Assets/Tres/Grid.tres")
-
 var Obstacle = load("res://Scenes/Main scenes/obstacles.tscn").instantiate()
 var Multiplayer : Resource = preload("res://Assets/Tres/MultiPlayerObstacle.tres")
 
