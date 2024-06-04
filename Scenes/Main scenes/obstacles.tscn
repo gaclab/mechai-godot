@@ -4,18 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://bl43tj411t2qs" path="res://Assets/Sprites/Batu-sementara.png" id="2_fu5m5"]
 
 [node name="Obstacles" type="Node2D"]
-position = Vector2(-320, -320)
 script = ExtResource("1_8jlcl")
 
 [node name="Obstacle" type="Sprite2D" parent="."]
-position = Vector2(32, 32)
 texture = ExtResource("2_fu5m5")
 
 [node name="Lifebar" type="ProgressBar" parent="."]
-offset_left = 12.0
-offset_top = 2.0
-offset_right = 52.0
-offset_bottom = 11.0
+offset_left = -20.0
+offset_top = -44.0
+offset_right = 20.0
+offset_bottom = -35.0
 max_value = 5.0
 value = 5.0
 show_percentage = false
