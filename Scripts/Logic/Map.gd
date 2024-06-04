@@ -92,7 +92,7 @@ func _process(delta):
 				
 
 func _on_pergerakan_move_finished(last_pos):
-	
 	robots[local_to_map(last_pos) + Vector2i(5,5)] = $Pergerakan.target_yang_dipindahkan
+	print(robots)
 	
 	

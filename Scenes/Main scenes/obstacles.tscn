@@ -6,7 +6,6 @@
 [node name="Obstacles" type="Node2D"]
 position = Vector2(-320, -320)
 script = ExtResource("1_8jlcl")
-cell = Vector2(0, 0)
 
 [node name="Obstacle" type="Sprite2D" parent="."]
 position = Vector2(32, 32)

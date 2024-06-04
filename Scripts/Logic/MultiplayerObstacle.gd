@@ -23,5 +23,3 @@ func _getMultiplayerLocation()->PackedVector2Array:
 			print(random_index)
 	list_cell.clear()
 	return _multiplayer_location
-	
-	
