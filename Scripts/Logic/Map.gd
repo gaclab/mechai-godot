@@ -37,10 +37,11 @@ func generate_ulang_map():
 		lokasi_pojok_snapped.x = tempx
 
 func _ready():
-	prerender()
 	#Ketika script berjalan didalam game
 	if not Engine.is_editor_hint():
 	#
+	
+		prerender()
 	
 	#inisialisasi astar_grid
 		astar_grid.size = tile_set._mapSize # setting ukuran peta
@@ -53,23 +54,11 @@ func _ready():
 		#
 		astar_grid.update() #update astar_grid
 	#
-	
-	#peletakan posisi unit
-		$Testunit.position = map_to_local(gridder)
-		$Testunit2.position = map_to_local(gridder + Vector2i.RIGHT * 1)
-		$Testunit3.position = map_to_local(gridder + Vector2i.RIGHT * 2)
-	#
-	
+
 	#peletakan posisi indikator
 		$Pergerakan.posisikan_indikator(map_to_local(gridder))
 	#
-	
-	#pengumpulan seluruh objek robot menjadi array
-		for child in find_children("*","Sprite2D"):
-			if child.is_in_group("robot"):
-				robots[local_to_map(child.position)] = child
-	#
-	
+
 	#bagian generate obstacle
 		#generate obstacle in multiplayer
 		var obstacleLocation = Multiplayer._getMultiplayerLocation(self) #ambil posisi seluruh obstacle
@@ -77,6 +66,26 @@ func _ready():
 			var stack : Obstacles = Obstacle.duplicate() #duplikasi objek obstacle
 			stack.position = map_to_local(i) #memposisikan setiap obstacle
 			add_child(stack) #menambahkan setiap obstacle kedalam tree
+			astar_grid.set_point_solid(i,true)
+	#
+	
+	#peletakan posisi unit
+		var unitorium = [$Testunit, $Testunit2, $Testunit3]
+		var arena_zone = get_used_cells(0)
+		for u in unitorium:
+			var found = false
+			for p in arena_zone:
+				if !found:
+					if !astar_grid.is_point_solid(p):
+						u.position = map_to_local(p)
+						astar_grid.set_point_solid(p)
+						found = true
+	#
+	
+	#pengumpulan seluruh objek robot menjadi array
+		for child in find_children("*","Sprite2D"):
+			if child.is_in_group("robot"):
+				robots[local_to_map(child.position)] = child
 	#
 
 func _input(event):
@@ -132,6 +141,7 @@ func select_unit():
 			$Pergerakan.initpath() #robot akan bergerak
 			sedang_menggambar = false #stop menggambar
 			robots.erase(start) #robot akan dihapus dari array
+			astar_grid.set_point_solid(start,false)
 		else:
 			#--
 			$Pergerakan.target_yang_dipindahkan = null
@@ -153,4 +163,5 @@ func prerender():
 #ketika selesai bergerak ->
 func _on_pergerakan_move_finished(last_robot : Node2D):
 	robots[local_to_map(last_robot.position)] = last_robot #lokasi terakhir robot akan ditambahkan ke array
+	astar_grid.set_point_solid(local_to_map(last_robot.position))
 #
