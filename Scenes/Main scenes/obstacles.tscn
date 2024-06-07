@@ -11,9 +11,9 @@ texture = ExtResource("2_fu5m5")
 
 [node name="Lifebar" type="ProgressBar" parent="."]
 offset_left = -20.0
-offset_top = -44.0
+offset_top = -22.0
 offset_right = 20.0
-offset_bottom = -35.0
+offset_bottom = -13.0
 max_value = 5.0
 value = 5.0
 show_percentage = false

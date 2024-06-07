@@ -6,9 +6,12 @@ signal move_finished(last_pos : Node2D)
 var tween : Tween
 
 func initpath():
+	$Jejak.progress_ratio = 1
+	var max = $Jejak.progress
+	$Jejak.progress_ratio = 0
 	tween = create_tween()
 	tween.connect("finished",Callable(self,"done"))
-	tween.tween_property($Jejak,"progress_ratio",1,1.0/kecepatan)
+	tween.tween_property($Jejak,"progress_ratio",1,max/kecepatan)
 	tween.play()
 
 func repath(path_trails : PackedVector2Array):
@@ -29,6 +32,8 @@ func done():
 	curve.clear_points()
 	$Pathline.clear_points()
 	move_finished.emit(target_yang_dipindahkan)
+	target_yang_dipindahkan.position = $Jejak.position
+	target_yang_dipindahkan.rotation_degrees = $Jejak.rotation_degrees + 90
 	target_yang_dipindahkan = null
 	$Jejak.progress = 0
 
