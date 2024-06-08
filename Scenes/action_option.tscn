@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://2nb28l2sgpv3"]
+[gd_scene load_steps=2 format=3 uid="uid://2nb28l2sgpv3"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/action_option.gd" id="2_pn676"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0m3wk"]
-size = Vector2(4.04078, 4.4983)
 
 [node name="action-option" type="Node2D"]
 position = Vector2(23.1697, 96.3828)
@@ -53,16 +50,6 @@ z_index = 100
 [node name="Polygon2D5" type="CollisionPolygon2D" parent="skill/Area2D"]
 polygon = PackedVector2Array(0, 0, 1, -1, 3, -2, 2.62715, -1.04789, 2.62715, -0.855979, 1.31358, -0.427989, 0.774804, -0.252446)
 
-[node name="Area2D" type="Area2D" parent="."]
-scale = Vector2(20, 20)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(1.62762, -1.20406)
-rotation = -0.217289
-shape = SubResource("RectangleShape2D_0m3wk")
-one_way_collision_margin = 0.0
-debug_color = Color(0.746187, 0.461273, 0.0733302, 0.42)
-
 [connection signal="input_event" from="move/Area2D" to="." method="_on_move_input_option"]
 [connection signal="input_event" from="move/Area2D" to="move/Area2D" method="_on_input_event"]
 [connection signal="mouse_entered" from="move/Area2D" to="." method="_on_mouse_enter_move"]
@@ -73,5 +60,3 @@ debug_color = Color(0.746187, 0.461273, 0.0733302, 0.42)
 [connection signal="input_event" from="skill/Area2D" to="." method="_on_skill_input_option"]
 [connection signal="mouse_entered" from="skill/Area2D" to="." method="_on_mouse_enter_skill"]
 [connection signal="mouse_exited" from="skill/Area2D" to="." method="_on_mouse_exit_skill"]
-[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
-[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]

@@ -47,18 +47,53 @@ func generate_ulang_map():
 		lokasi_pojok_snapped.y += 1
 		lokasi_pojok_snapped.x = tempx
 
+var vesorus = [Vector2i(5,5)]
+var maxrnge = 3
+func highlight():
+	var maxrray = []
+	for i in maxrnge:
+		maxrray += [Vector2(maxrnge-i, i)]
+	print(maxrray)
+	
+	for i in vesorus:
+		if !vesorus.has(i+Vector2i.UP):
+			if astar_grid.is_in_boundsv(i+Vector2i.UP):
+				if !astar_grid.is_point_solid(i+Vector2i.UP):
+					set_cell(1,i+Vector2i.UP,1,Vector2i(35,3))
+					vesorus += [i+Vector2i.UP]
+			
+		if !vesorus.has(i+Vector2i.DOWN):
+			if astar_grid.is_in_boundsv(i+Vector2i.DOWN):
+				if !astar_grid.is_point_solid(i+Vector2i.DOWN):
+					set_cell(1,i+Vector2i.DOWN,1,Vector2i(35,3))
+					vesorus += [i+Vector2i.DOWN]
+		
+		if !vesorus.has(i+Vector2i.LEFT):
+			if astar_grid.is_in_boundsv(i+Vector2i.LEFT):
+				if !astar_grid.is_point_solid(i+Vector2i.LEFT):
+					set_cell(1,i+Vector2i.LEFT,1,Vector2i(35,3))
+					vesorus += [i+Vector2i.LEFT]
+
+		if !vesorus.has(i+Vector2i.RIGHT):
+			if astar_grid.is_in_boundsv(i+Vector2i.RIGHT):
+				if !astar_grid.is_point_solid(i+Vector2i.RIGHT):
+					set_cell(1,i+Vector2i.RIGHT,1,Vector2i(35,3))
+					vesorus += [i+Vector2i.RIGHT]
+		
+
 func _ready():
 	#Ketika script berjalan didalam game
 	if not Engine.is_editor_hint():
+		#set_cell(1,vesorus[0],1,Vector2i(35,3))
 	#
+	
+		prerender()
 		#sembunyikan action option
 		actionoption.visible = false
-		prerender()
-	
 	#inisialisasi astar_grid
-		astar_grid.size = tile_set._mapSize # setting ukuran peta
-		astar_grid.cell_size = tile_set._cellSize # setting ukuran kolom
-		astar_grid.offset = tile_set._cellSize/2 # setting offset astar_grid
+		astar_grid.size = tile_set.mapSize # setting ukuran peta
+		astar_grid.cell_size = tile_set.cellSize # setting ukuran kolom
+		astar_grid.offset = tile_set.cellSize/2 # setting offset astar_grid
 		#setting algoritma astar_grid
 		astar_grid.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 		astar_grid.default_compute_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
@@ -104,7 +139,7 @@ func _ready():
 func _input(event):
 	#ketika script berjalan didalam game
 	if not Engine.is_editor_hint():
-	#	#jika input(event) adalah sebuah tombol mouse
+		#	#jika input(event) adalah sebuah tombol mouse
 		if event is InputEventMouseButton:
 			if event.is_action_pressed("left-click"):
 				if !_helper_hover and !_helpper_is_play:
@@ -116,28 +151,33 @@ func _input(event):
 				if _helper_selected_action == "move" and _is_action_selected:
 					prerender()
 				$Pergerakan.posisikan_indikator(map_to_local(gridder))
-			
-			
+				
 	#jika input(event) adalah sebuah tombol keyboard
-		#if event is InputEventKey:
-	##kalkulasi arah gridder berdasarkan input
-			#if event.is_action_pressed("ui_up"):
-					#gridder += Vector2i.UP
-			#elif event.is_action_pressed("ui_right"):
-					#gridder += Vector2i.RIGHT
-			#elif event.is_action_pressed("ui_left"):
-					#gridder += Vector2i.LEFT
-			#elif event.is_action_pressed("ui_down"):
-					#gridder += Vector2i.DOWN
-	##pencegahan agar indikator tidak keluar arena
-			#if astar_grid.is_in_boundsv(gridder):
-				#$Pergerakan.posisikan_indikator(map_to_local(gridder))
-			#else:
-				#gridder = local_to_map($Pergerakan.get_posisi_indikator())
-	##input ketika indikator memilih robot
-			#if event.is_action_pressed("ui_home"):
-				#select_unit()
-	##refresh ulang tampilan
+		if event is InputEventKey:
+	#kalkulasi arah gridder berdasarkan input
+			if event.is_action_pressed("ui_up"):
+					gridder += Vector2i.UP
+			elif event.is_action_pressed("ui_right"):
+					gridder += Vector2i.RIGHT
+			elif event.is_action_pressed("ui_left"):
+					gridder += Vector2i.LEFT
+			elif event.is_action_pressed("ui_down"):
+					gridder += Vector2i.DOWN
+	#
+	#pencegahan agar indikator tidak keluar arena
+			if astar_grid.is_in_boundsv(gridder):
+				$Pergerakan.posisikan_indikator(map_to_local(gridder))
+			else:
+				gridder = local_to_map($Pergerakan.get_posisi_indikator())
+	#
+	#input ketika indikator memilih robot
+			if event.is_action_pressed("ui_home"):
+				if !_helper_hover and !_helpper_is_play:
+					lets_select_unit()
+				highlight()
+	#
+	
+	#refresh ulang tampilan
 			#prerender()
 	#
 func lets_select_unit():
@@ -172,15 +212,16 @@ func move_unit():
 		actionoption.visible = false
 		_is_action_selected = false
 		actionoption.visible = false
-	
+
 #alur =
-#-jika lebih dari 1 akan menggambar dengan syarat sudah memilih input
+#-jika lebih dari 1 akan menggambar
 func prerender():
-	if _is_action_selected :
-		if astar_grid.is_in_boundsv(gridder):
-			packedpoints = astar_grid.get_point_path(start, gridder)
-			$Pergerakan.repath(packedpoints)
-			
+		if _is_action_selected:
+			if astar_grid.is_in_boundsv(gridder):
+				packedpoints = astar_grid.get_point_path(start, gridder)
+				$Pergerakan.repath(packedpoints)
+				
+
 #ketika selesai bergerak ->
 func _on_pergerakan_move_finished(last_robot : Node2D):
 	robots[local_to_map(last_robot.position)] = last_robot #lokasi terakhir robot akan ditambahkan ke array
@@ -211,11 +252,13 @@ func _on_actionoption_selected_action(value):
 		_helper_selected_action = "skill"
 		
 
-func _on_button_end_turn_pressed():
+func _on_actionoption_mouse_entered_each_option(condition):
+	_helper_hover = condition
+
+
+func _on_button_end_turn_button_down():
+	
 	for child in find_children("*","Sprite2D"):
 			if child.is_in_group("robot"):
 				$battle_manager.mechAction[child] = [1,1,1]
-
-
-func _on_actionoption_mouse_entered_each_option(condition):
-	_helper_hover = condition
+	

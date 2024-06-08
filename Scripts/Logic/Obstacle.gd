@@ -21,9 +21,9 @@ func check_destroy()->void:
 		is_stand = false
 		
 func _input(event : InputEvent)->void:
-	pass
-	#if event.is_action("left-click") and event.is_pressed() and not event.is_echo():
+	#if event.is_action("u") and event.is_pressed() and not event.is_echo():
 		#onDamage(1)
+	pass
 
 func _ready():
 	hpObstacle = 5;
