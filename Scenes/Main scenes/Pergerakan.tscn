@@ -15,6 +15,7 @@ border_color = Color(1, 1, 1, 1)
 [node name="Pergerakan" type="Path2D"]
 curve = SubResource("Curve2D_qtbu1")
 script = ExtResource("1_oao5c")
+kecepatan = 2.0
 
 [node name="Jejak" type="PathFollow2D" parent="."]
 loop = false

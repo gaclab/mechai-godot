@@ -1,8 +1,19 @@
 @tool
 extends TileMap
+
+signal managed_action(robot : Node2D, value :Array) # nanti diganti ketika sudah ada robot
+
+@onready var actionoption = $"action-option"
+@onready var action_option_move = $"action-option/move"
+@onready var action_option_attack = $"action-option/attack"
+@onready var action_option_skill = $"action-option/skill"
+var _is_action_selected : bool # untuk kondisi ketika action dipilih
+var _helpper_is_play : bool = false # indikator untuk mencegah aksi ketika robot digerakkan
+var _helper_hover:bool=false # indikator supaya selama crusor diatas menu action maka tidak bisa select 
+var _temp_action_point : Array = [1,1,1]
+var _helper_selected_action : String; # indikator untuk menyimpan action terakhir yang dipilih guna menyesuaikan kebutuhan
 var gridder = Vector2i(0,0)
 var points : Curve2D
-var sedang_menggambar = false
 var astar_grid = AStarGrid2D.new()
 var start = Vector2i(0,0)
 var robots = {}
@@ -40,7 +51,8 @@ func _ready():
 	#Ketika script berjalan didalam game
 	if not Engine.is_editor_hint():
 	#
-	
+		#sembunyikan action option
+		actionoption.visible = false
 		prerender()
 	
 	#inisialisasi astar_grid
@@ -86,82 +98,124 @@ func _ready():
 		for child in find_children("*","Sprite2D"):
 			if child.is_in_group("robot"):
 				robots[local_to_map(child.position)] = child
+				$battle_manager.mechAction[child] = [1,1,1] # set mechAction in battle manager 
 	#
 
 func _input(event):
 	#ketika script berjalan didalam game
 	if not Engine.is_editor_hint():
-	#
-	
-	#jika input(event) adalah sebuah tombol keyboard
-		if event is InputEventKey:
-	#
-	
-	#kalkulasi arah gridder berdasarkan input
-			if event.is_action_pressed("ui_up"):
-					gridder += Vector2i.UP
-			elif event.is_action_pressed("ui_right"):
-					gridder += Vector2i.RIGHT
-			elif event.is_action_pressed("ui_left"):
-					gridder += Vector2i.LEFT
-			elif event.is_action_pressed("ui_down"):
-					gridder += Vector2i.DOWN
-	#
-	
-	#pencegahan agar indikator tidak keluar arena
-			if astar_grid.is_in_boundsv(gridder):
+	#	#jika input(event) adalah sebuah tombol mouse
+		if event is InputEventMouseButton:
+			if event.is_action_pressed("left-click"):
+				if !_helper_hover and !_helpper_is_play:
+					lets_select_unit()
+				#tambahan kondisi tombol diatas
+		if event is InputEventMouseMotion:
+			if astar_grid.is_in_boundsv(local_to_map(event.position-position)):
+				gridder = local_to_map(event.position-position)
+				if _helper_selected_action == "move" and _is_action_selected:
+					prerender()
 				$Pergerakan.posisikan_indikator(map_to_local(gridder))
-			else:
-				gridder = local_to_map($Pergerakan.get_posisi_indikator())
+			
+			
+	#jika input(event) adalah sebuah tombol keyboard
+		#if event is InputEventKey:
+	##kalkulasi arah gridder berdasarkan input
+			#if event.is_action_pressed("ui_up"):
+					#gridder += Vector2i.UP
+			#elif event.is_action_pressed("ui_right"):
+					#gridder += Vector2i.RIGHT
+			#elif event.is_action_pressed("ui_left"):
+					#gridder += Vector2i.LEFT
+			#elif event.is_action_pressed("ui_down"):
+					#gridder += Vector2i.DOWN
+	##pencegahan agar indikator tidak keluar arena
+			#if astar_grid.is_in_boundsv(gridder):
+				#$Pergerakan.posisikan_indikator(map_to_local(gridder))
+			#else:
+				#gridder = local_to_map($Pergerakan.get_posisi_indikator())
+	##input ketika indikator memilih robot
+			#if event.is_action_pressed("ui_home"):
+				#select_unit()
+	##refresh ulang tampilan
+			#prerender()
 	#
+func lets_select_unit():
 	
-	#input ketika indikator memilih robot
-			if event.is_action_pressed("ui_home"):
-				select_unit()
-	#
-	
-	#refresh ulang tampilan
-			prerender()
-	#
+	if robots.has(gridder):
+		pass
+		actionoption.position = map_to_local(gridder)+Vector2(32,0)
+		actionoption.visible = true
+		$Pergerakan.target_yang_dipindahkan = robots[gridder]
+		_temp_action_point = $battle_manager.mechAction[robots[gridder]]
+		action_option_move.visible = false if _temp_action_point[0] == 0 else true
+		action_option_attack.visible = false if _temp_action_point[1] == 0 else true
+		action_option_skill.visible = false if _temp_action_point[2] == 0 else true
+		if $Pergerakan.target_yang_dipindahkan != null:
+				start = gridder
+	else :
+		
+		if !_is_action_selected : # akan tereksekusi saat memilih set saat menu terlihat 
+			actionoption.visible = false
+		if _is_action_selected and _helper_selected_action == "move" :
+			move_unit()
+	if _is_action_selected:
+		_helper_selected_action = ""
 
-func select_unit():
-	#ketika select ->
-	if !sedang_menggambar:
-		if $Pergerakan.target_yang_dipindahkan == null: #cek apakah pergerakan sudah selesai
-			if robots.has(gridder): #cek apakah array memiliki robot dari lokasi yang sama
-				
-				#set selected robot
-				sedang_menggambar = true
-				$Pergerakan.target_yang_dipindahkan = robots[gridder]
-				#
+func move_unit():
+	if packedpoints.size() > 1: #cek apakah pergerakan lebih dari 1
+		$Pergerakan.initpath() #robot akan bergerak
+		_helpper_is_play = true
+		robots.erase(start) #robot akan dihapus dari array  
+		astar_grid.set_point_solid(start,false)
+			#popup action option =====================
+		actionoption.visible = false
+		_is_action_selected = false
+		actionoption.visible = false
 	
-	#-ketika unselect ->
-	elif sedang_menggambar:
-		if packedpoints.size() > 1: #cek apakah pergerakan lebih dari 1
-			$Pergerakan.initpath() #robot akan bergerak
-			sedang_menggambar = false #stop menggambar
-			robots.erase(start) #robot akan dihapus dari array
-			astar_grid.set_point_solid(start,false)
-		else:
-			#--
-			$Pergerakan.target_yang_dipindahkan = null
-			sedang_menggambar = false #stop menggambar
-	#
-
 #alur =
-#-jika lebih dari 1 akan menggambar
+#-jika lebih dari 1 akan menggambar dengan syarat sudah memilih input
 func prerender():
-	if !sedang_menggambar:
-		start = gridder
-	else:
-		if sedang_menggambar:
-			if astar_grid.is_in_boundsv(gridder):
-				packedpoints = astar_grid.get_point_path(start, gridder)
-				$Pergerakan.repath(packedpoints)
-				
-
+	if _is_action_selected :
+		if astar_grid.is_in_boundsv(gridder):
+			packedpoints = astar_grid.get_point_path(start, gridder)
+			$Pergerakan.repath(packedpoints)
+			
 #ketika selesai bergerak ->
 func _on_pergerakan_move_finished(last_robot : Node2D):
 	robots[local_to_map(last_robot.position)] = last_robot #lokasi terakhir robot akan ditambahkan ke array
 	astar_grid.set_point_solid(local_to_map(last_robot.position))
-#
+	if _helper_selected_action == "move" :
+		_temp_action_point[0] = 0
+		managed_action.emit(last_robot,_temp_action_point)
+	elif _helper_selected_action == "attack" :
+		_temp_action_point[1] = 0
+		managed_action.emit(last_robot,_temp_action_point)
+	elif _helper_selected_action == "skill" :
+		_temp_action_point[2] = 0
+		managed_action.emit(last_robot,_temp_action_point)
+	_helpper_is_play = false # bisa coba ganti sendiri , cuma mencegah select ketika sedang execut robot
+	_helper_selected_action = ""
+	
+
+func _on_actionoption_selected_action(value):
+	if actionoption.is_visible_in_tree():
+		_is_action_selected = true
+	if value == "move" :
+		_helper_selected_action = "move"
+	elif value == "attack" :
+		pass
+		_helper_selected_action = "attack"
+	elif value == "skill" :
+		pass
+		_helper_selected_action = "skill"
+		
+
+func _on_button_end_turn_pressed():
+	for child in find_children("*","Sprite2D"):
+			if child.is_in_group("robot"):
+				$battle_manager.mechAction[child] = [1,1,1]
+
+
+func _on_actionoption_mouse_entered_each_option(condition):
+	_helper_hover = condition
