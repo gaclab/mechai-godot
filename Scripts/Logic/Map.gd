@@ -1,5 +1,8 @@
 @tool
 extends TileMap
+
+@onready 
+
 var gridder = Vector2i(0,0)
 var points : Curve2D
 var sedang_menggambar = false
@@ -193,7 +196,7 @@ func _input(event):
 	
 	#input ketika indikator memilih robot
 			if event.is_action_pressed("ui_home"):
-				select_unit()
+				#select_unit()
 				highlight()
 	#
 	
