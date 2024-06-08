@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=7 format=3 uid="uid://sksky0mp0hff"]
 
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
 [ext_resource type="PackedScene" uid="uid://b4k32i3bhpdr4" path="res://Scenes/Main scenes/testunit.tscn" id="3_0nune"]
+[ext_resource type="PackedScene" uid="uid://degm4nv5tbnm6" path="res://Scenes/action_option.tscn" id="4_ahopy"]
+[ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="6_gk1ba"]
+[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Assets/Tres/Button.tres" id="7_4ksfw"]
 
 [node name="2Root" type="Node2D"]
 
@@ -14,6 +17,30 @@ layer_1/tile_data = PackedInt32Array(393210, 2293761, 3, 458746, 2293761, 3, 393
 [node name="Pergerakan" parent="Map" instance=ExtResource("2_ccv5b")]
 kecepatan = 500.0
 
+[node name="Square" parent="Map/Pergerakan/Indikator" index="0"]
+mouse_filter = 1
+
+[node name="action-option" parent="Map" instance=ExtResource("4_ahopy")]
+z_index = 100
+position = Vector2(72, 32)
+scale = Vector2(1, 1.047)
+
+[node name="move" parent="Map/action-option" index="0"]
+scale = Vector2(20, 24.48)
+antialiased = true
+
+[node name="attack" parent="Map/action-option" index="1"]
+scale = Vector2(20, 24.48)
+antialiased = true
+
+[node name="skill" parent="Map/action-option" index="2"]
+scale = Vector2(20, 24.48)
+antialiased = true
+
+[node name="CollisionShape2D" parent="Map/action-option/Area2D" index="0"]
+position = Vector2(1.69272, -1.19481)
+scale = Vector2(1, 1)
+
 [node name="Testunit" parent="Map" groups=["robot"] instance=ExtResource("3_0nune")]
 position = Vector2(-32, 32)
 
@@ -23,4 +50,24 @@ position = Vector2(-32, 32)
 [node name="Testunit3" parent="Map" groups=["robot"] instance=ExtResource("3_0nune")]
 position = Vector2(-32, 32)
 
+[node name="battle_manager" type="Node" parent="Map"]
+script = ExtResource("6_gk1ba")
+
+[node name="button_end_turn" type="Button" parent="."]
+offset_left = 129.0
+offset_top = 605.0
+offset_right = 344.0
+offset_bottom = 679.0
+mouse_default_cursor_shape = 2
+theme = ExtResource("7_4ksfw")
+text = "End turn"
+
+[connection signal="managed_action" from="Map" to="Map/battle_manager" method="_on_map_managed_action"]
 [connection signal="move_finished" from="Map/Pergerakan" to="Map" method="_on_pergerakan_move_finished"]
+[connection signal="mouse_entered_each_option" from="Map/action-option" to="Map" method="_on_actionoption_mouse_entered_each_option"]
+[connection signal="selected_action" from="Map/action-option" to="Map" method="_on_actionoption_selected_action"]
+[connection signal="mouse_exited" from="Map/action-option/move/Area2D" to="Map/action-option" method="_on_move_mouse_exit"]
+[connection signal="pressed" from="button_end_turn" to="Map" method="_on_button_end_turn_pressed"]
+
+[editable path="Map/Pergerakan"]
+[editable path="Map/action-option"]
