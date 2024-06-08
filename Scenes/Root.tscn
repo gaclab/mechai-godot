@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
 [ext_resource type="PackedScene" uid="uid://b4k32i3bhpdr4" path="res://Scenes/Main scenes/testunit.tscn" id="3_0nune"]
-[ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="4_ahopy"]
+[ext_resource type="PackedScene" uid="uid://degm4nv5tbnm6" path="res://Scenes/action_option.tscn" id="4_ahopy"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="6_gk1ba"]
 [ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Assets/Tres/Button.tres" id="7_4ksfw"]
 
@@ -39,6 +39,7 @@ antialiased = true
 
 [node name="CollisionShape2D" parent="Map/action-option/Area2D" index="0"]
 position = Vector2(1.69272, -1.19481)
+scale = Vector2(1, 1)
 
 [node name="Testunit" parent="Map" groups=["robot"] instance=ExtResource("3_0nune")]
 position = Vector2(-32, 32)
