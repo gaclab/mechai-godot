@@ -3,6 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="1_ke76w"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="2_ccv5b"]
 [ext_resource type="PackedScene" uid="uid://b4k32i3bhpdr4" path="res://Scenes/Main scenes/testunit.tscn" id="3_0nune"]
+[ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="3_ux8dl"]
+[ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="5_t2e2b"]
+[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Assets/Tres/Button.tres" id="6_kp5r2"]
 
 [node name="2Root" type="Node2D"]
 
@@ -14,6 +17,9 @@ layer_1/tile_data = PackedInt32Array(393210, 2293761, 3, 458746, 2293761, 3, 393
 [node name="Pergerakan" parent="Map" instance=ExtResource("2_ccv5b")]
 kecepatan = 500.0
 
+[node name="action-option" parent="Map" instance=ExtResource("3_ux8dl")]
+z_index = 100
+
 [node name="Testunit" parent="Map" groups=["robot"] instance=ExtResource("3_0nune")]
 position = Vector2(-32, 32)
 
@@ -23,4 +29,20 @@ position = Vector2(-32, 32)
 [node name="Testunit3" parent="Map" groups=["robot"] instance=ExtResource("3_0nune")]
 position = Vector2(-32, 32)
 
+[node name="battle_manager" type="Node" parent="Map"]
+script = ExtResource("5_t2e2b")
+
+[node name="button_end_turn" type="Button" parent="Map"]
+offset_left = -237.631
+offset_top = 551.498
+offset_right = -22.631
+offset_bottom = 627.498
+theme = ExtResource("6_kp5r2")
+theme_override_colors/icon_focus_color = Color(0.955963, 0.955963, 0.955963, 1)
+action_mode = 0
+text = "End turn"
+
 [connection signal="move_finished" from="Map/Pergerakan" to="Map" method="_on_pergerakan_move_finished"]
+[connection signal="mouse_entered_each_option" from="Map/action-option" to="Map" method="_on_actionoption_mouse_entered_each_option"]
+[connection signal="selected_action" from="Map/action-option" to="Map" method="_on_actionoption_selected_action"]
+[connection signal="button_down" from="Map/button_end_turn" to="Map" method="_on_button_end_turn_button_down"]

@@ -86,12 +86,3 @@ func _on_mouse_exit_skill():
 	#if event is InputEventMouseMotion:
 		#mouse_entered.emit(true)
 
-
-
-
-func _on_area_2d_mouse_shape_entered(shape_idx):
-	mouse_entered.emit(true)
-
-
-func _on_area_2d_mouse_shape_exited(shape_idx):
-	mouse_entered.emit(false)
