@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatSheet" load_steps=2 format=3 uid="uid://clhbd7at0kqe3"]
+
+[ext_resource type="Script" path="res://Scripts/Logic/Stat_Sheet.gd" id="1_jqhmf"]
+
+[resource]
+script = ExtResource("1_jqhmf")
+health = 3
+armor = 2
+energy = 3
+damage = 1
