@@ -10,8 +10,8 @@ var totalHp:Array = [4,2,5,7,2,3] #red | blue
 var winner := ""
 
 func _ready():
-	print(_get_winner_on_time_out(totalHp))
-	
+	#print(_get_winner_on_time_out(totalHp))
+	pass
 
 
 
@@ -23,7 +23,7 @@ func _input(event):
 		if event.is_action_pressed("ui_right"):
 			pass
 			_calculate_turn_point("blue")
-		print(turnPoint)
+		#print(turnPoint)
 
 
 func _calculate_turn_point(value : String)->Array:
@@ -38,7 +38,7 @@ func check_match_ended():
 	if turnPoint[0] == 0 and turnPoint[1] == 0 :
 		#kondisi battle end
 		winner = _get_winner_on_time_out(totalHp)
-		print(winner)
+		#print(winner)
 
 func _get_winner_on_time_out(totalHp : Array)->String:
 	var switch := totalHp.size()/2
