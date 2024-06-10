@@ -18,6 +18,7 @@ var start = Vector2i(0,0)
 var robots = {}
 var packedpoints : PackedVector2Array
 @onready var ukuran_jendela = get_window().size + Vector2i(0,23)
+var highlight_zone = []
 
 var Obstacle = load("res://Scenes/Main scenes/obstacles.tscn").instantiate()
 var Multiplayer : Resource = preload("res://Assets/Tres/MultiPlayerObstacle.tres")
@@ -26,17 +27,17 @@ var Multiplayer : Resource = preload("res://Assets/Tres/MultiPlayerObstacle.tres
 	set(val) : generate_ulang_map()
 func generate_ulang_map():
 	clear()
-	position = ((ukuran_jendela) - (tile_set.tile_size*tile_set._mapSize))/2
-	var lokasi_pojok = (-(ukuran_jendela) + (tile_set.tile_size*tile_set._mapSize))/2
+	position = ((ukuran_jendela) - (tile_set.tile_size*tile_set.mapSize))/2
+	var lokasi_pojok = (-(ukuran_jendela) + (tile_set.tile_size*tile_set.mapSize))/2
 	var lokasi_pojok_snapped = local_to_map(lokasi_pojok)
 	while lokasi_pojok_snapped.y <= local_to_map(ukuran_jendela+lokasi_pojok).y:
 		var tempx = lokasi_pojok_snapped.x
 		while lokasi_pojok_snapped.x <= local_to_map(ukuran_jendela+lokasi_pojok).x:
 			
 			if	(
-				lokasi_pojok_snapped.y >= 0 and lokasi_pojok_snapped.y < tile_set._mapSize.y
+				lokasi_pojok_snapped.y >= 0 and lokasi_pojok_snapped.y < tile_set.mapSize.y
 				and 
-				lokasi_pojok_snapped.x >= 0 and lokasi_pojok_snapped.x < tile_set._mapSize.x
+				lokasi_pojok_snapped.x >= 0 and lokasi_pojok_snapped.x < tile_set.mapSize.x
 				):
 				set_cell(0,lokasi_pojok_snapped,1,Vector2i(34,1))
 			else:
@@ -46,39 +47,65 @@ func generate_ulang_map():
 		lokasi_pojok_snapped.y += 1
 		lokasi_pojok_snapped.x = tempx
 
-var vesorus = [Vector2i(5,5)]
-var maxrnge = 3
-func highlight():
-	var maxrray = []
-	for i in maxrnge:
-		maxrray += [Vector2(maxrnge-i, i)]
-	print(maxrray)
-	
-	for i in vesorus:
-		if !vesorus.has(i+Vector2i.UP):
-			if astar_grid.is_in_boundsv(i+Vector2i.UP):
-				if !astar_grid.is_point_solid(i+Vector2i.UP):
-					set_cell(1,i+Vector2i.UP,1,Vector2i(35,3))
-					vesorus += [i+Vector2i.UP]
-			
-		if !vesorus.has(i+Vector2i.DOWN):
-			if astar_grid.is_in_boundsv(i+Vector2i.DOWN):
-				if !astar_grid.is_point_solid(i+Vector2i.DOWN):
-					set_cell(1,i+Vector2i.DOWN,1,Vector2i(35,3))
-					vesorus += [i+Vector2i.DOWN]
-		
-		if !vesorus.has(i+Vector2i.LEFT):
-			if astar_grid.is_in_boundsv(i+Vector2i.LEFT):
-				if !astar_grid.is_point_solid(i+Vector2i.LEFT):
-					set_cell(1,i+Vector2i.LEFT,1,Vector2i(35,3))
-					vesorus += [i+Vector2i.LEFT]
 
-		if !vesorus.has(i+Vector2i.RIGHT):
-			if astar_grid.is_in_boundsv(i+Vector2i.RIGHT):
-				if !astar_grid.is_point_solid(i+Vector2i.RIGHT):
-					set_cell(1,i+Vector2i.RIGHT,1,Vector2i(35,3))
-					vesorus += [i+Vector2i.RIGHT]
+
+func highlight(robot_pos:Vector2i, type:String):
+	if not Engine.is_editor_hint():
+		highlight_zone.clear()
+		$Highlight.clear()
+		var layer_type
+		if type == "move" :
+			layer_type = 0
+		elif type == "attack" :
+			layer_type = 1
+		elif type == "skill" :
+			layer_type = 2
 		
+		highlight_zone = [robot_pos]
+		var outsider = [Vector2i(1,1),Vector2i(-1,-1),Vector2i(-1,1),Vector2i(1,-1)]
+		var highlight_range = 4
+		
+		var change_cache = []
+		while change_cache != highlight_zone:
+			change_cache = highlight_zone
+			var highlight_border = []
+			for k in outsider:
+				for i in highlight_range+1:
+					highlight_border += [(Vector2i(highlight_range-i, i)*k)+robot_pos]
+					#$Highlight.set_cell(1,highlight_zone[0],0,Vector2i(0,0))
+			
+			$Highlight.set_cell(layer_type,highlight_zone[0],0,Vector2i(0,0))
+			
+			for i in highlight_zone:
+				if !highlight_border.has(i):
+					if !highlight_zone.has(i+Vector2i.UP):
+						if astar_grid.is_in_boundsv(i+Vector2i.UP):
+							if !astar_grid.is_point_solid(i+Vector2i.UP):
+								$Highlight.set_cell(layer_type,i+Vector2i.UP,0,Vector2i(0,0))
+								highlight_zone += [i+Vector2i.UP]
+						
+					if !highlight_zone.has(i+Vector2i.DOWN):
+						if astar_grid.is_in_boundsv(i+Vector2i.DOWN):
+							if !astar_grid.is_point_solid(i+Vector2i.DOWN):
+								$Highlight.set_cell(layer_type,i+Vector2i.DOWN,0,Vector2i(0,0))
+								highlight_zone += [i+Vector2i.DOWN]
+					
+					if !highlight_zone.has(i+Vector2i.LEFT):
+						if astar_grid.is_in_boundsv(i+Vector2i.LEFT):
+							if !astar_grid.is_point_solid(i+Vector2i.LEFT):
+								$Highlight.set_cell(layer_type,i+Vector2i.LEFT,0,Vector2i(0,0))
+								highlight_zone += [i+Vector2i.LEFT]
+
+					if !highlight_zone.has(i+Vector2i.RIGHT):
+						if astar_grid.is_in_boundsv(i+Vector2i.RIGHT):
+							if !astar_grid.is_point_solid(i+Vector2i.RIGHT):
+								$Highlight.set_cell(layer_type,i+Vector2i.RIGHT,0,Vector2i(0,0))
+								highlight_zone += [i+Vector2i.RIGHT]
+			
+		#for g in highlight_zone:
+			#if highlight_border.has(g):
+				#highlight_zone.erase(g)
+				#$Highlight.erase_cell(layer_type,g)
 
 func _ready():
 	#Ketika script berjalan didalam game
@@ -148,8 +175,11 @@ func _input(event):
 			if astar_grid.is_in_boundsv(local_to_map(event.position-position)):
 				gridder = local_to_map(event.position-position)
 				if _helper_selected_action == "move" and _is_action_selected:
-					prerender()
-				$Pergerakan.posisikan_indikator(map_to_local(gridder))
+					if highlight_zone.has(gridder):
+						prerender()
+						$Pergerakan.posisikan_indikator(map_to_local(gridder))
+				else:
+					$Pergerakan.posisikan_indikator(map_to_local(gridder))
 				
 	#jika input(event) adalah sebuah tombol keyboard
 		if event is InputEventKey:
@@ -173,7 +203,7 @@ func _input(event):
 			if event.is_action_pressed("ui_home"):
 				if !_helper_hover and !_helpper_is_play:
 					lets_select_unit()
-				highlight()
+				#highlight()
 	#
 	
 	#refresh ulang tampilan
@@ -183,7 +213,11 @@ func lets_select_unit():
 	if robots.has(gridder):
 		pass
 		actionoption.position = map_to_local(gridder)+Vector2(32,0)
+		highlight_zone.clear()
+		$Highlight.clear()
+		_is_action_selected = false
 		actionoption.visible = true
+		_is_action_selected
 		$Pergerakan.target_yang_dipindahkan = robots[gridder]
 		_temp_action_point = $battle_manager.mechAction[robots[gridder]]
 		action_option_move.visible = false if _temp_action_point[0] == 0 else true
@@ -196,6 +230,8 @@ func lets_select_unit():
 		if !_is_action_selected : # akan tereksekusi saat memilih set saat menu terlihat 
 			actionoption.visible = false
 		if _is_action_selected and _helper_selected_action == "move" :
+			highlight_zone.clear()
+			$Highlight.clear()
 			move_unit()
 	if _is_action_selected:
 		_helper_selected_action = ""
@@ -214,6 +250,7 @@ func move_unit():
 #alur =
 #-jika lebih dari 1 akan menggambar
 func prerender():
+		
 		if _is_action_selected:
 			if astar_grid.is_in_boundsv(gridder):
 				packedpoints = astar_grid.get_point_path(start, gridder)
@@ -238,8 +275,6 @@ func _on_pergerakan_move_finished(last_robot : Node2D):
 	
 
 func _on_actionoption_selected_action(value):
-	if actionoption.is_visible_in_tree():
-		_is_action_selected = true
 	if value == "move" :
 		_helper_selected_action = "move"
 	elif value == "attack" :
@@ -249,6 +284,10 @@ func _on_actionoption_selected_action(value):
 		pass
 		_helper_selected_action = "skill"
 		
+	if actionoption.is_visible_in_tree():
+		_is_action_selected = true
+		actionoption.visible = false
+		highlight(local_to_map($Pergerakan.target_yang_dipindahkan.position), _helper_selected_action)
 
 func _on_actionoption_mouse_entered_each_option(condition):
 	_helper_hover = condition

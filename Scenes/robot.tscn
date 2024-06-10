@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bceds718lcs4v"]
+
+[ext_resource type="Script" path="res://Scripts/Logic/robot.gd" id="1_g1klt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pqdq"]
+load_path = "res://.godot/imported/Mechsample.png-5ecbe99e4e78e0fbe8ee887ee1574d14.ctex"
+
+[node name="Robot" type="CharacterBody2D"]
+script = ExtResource("1_g1klt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(29, 19)
+texture = SubResource("CompressedTexture2D_8pqdq")
