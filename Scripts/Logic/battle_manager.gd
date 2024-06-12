@@ -1,34 +1,45 @@
 extends Node
+class_name Battle_Manager
 
-
+signal changedState()
+signal battleended()
+signal switched()
+enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,FIRSTTURN,BATTLE,BATTLEEND,RESULTBATTLE}
+var battleState:int
 var battleLog :Array = []
-var mechEnergy :Dictionary = {}
-var mechStats : Array = []
-var mechAction : Dictionary = {}
 var turnPoint: Array = [30,30] # red | blue 
 var totalHp:Array = [4,2,5,7,2,3] #red | blue
 var winner := ""
 
-func _ready():
-	#print(_get_winner_on_time_out(totalHp))
-	pass
+func get_battle_state()->int:
+	return battleState
 
+func set_battle_state(stateName : BattleState):
+	match stateName:
+		BattleState.PREPARATION :
+			battleState = 0
+		BattleState.ENTERARENA :
+			battleState = 1
+		BattleState.OBSTACLECREATE :
+			battleState = 2
+		BattleState.DEPLOYING :
+			battleState = 3
+		BattleState.FIRSTTURN :
+			battleState = 4
+		BattleState.BATTLE :
+			battleState = 5
+		BattleState.BATTLEEND :
+			battleState = 6
+		_:
+			battleState = 7
+	changedState.emit()
+	if turnPoint[0] == 0 and turnPoint[1] == 0 :
+		battleended.emit()
+		print("battleend")
 
-
-func _input(event):
-	if event is InputEventKey:
-		if event.is_action_pressed("ui_left"):
-			pass
-			_calculate_turn_point("red")
-		if event.is_action_pressed("ui_right"):
-			pass
-			_calculate_turn_point("blue")
-		#print(turnPoint)
-
-
-func _calculate_turn_point(value : String)->Array:
+func calculate_turn_point(value : String)->Array:
 	if turnPoint[0] != 0 or turnPoint[1] != 0 :
-		if value == "red" :
+		if value == "redTeam" :
 			turnPoint[0] -= 1
 		else :
 			turnPoint[1] -= 1
@@ -38,7 +49,7 @@ func check_match_ended():
 	if turnPoint[0] == 0 and turnPoint[1] == 0 :
 		#kondisi battle end
 		winner = _get_winner_on_time_out(totalHp)
-		#print(winner)
+		print(winner)
 
 func _get_winner_on_time_out(totalHp : Array)->String:
 	var switch := totalHp.size()/2
@@ -52,10 +63,18 @@ func _get_winner_on_time_out(totalHp : Array)->String:
 	var result = "red" if redTeam>BlueTeam  else "blue"
 	return result
 
-# ubah 
-func _on_map_managed_action(robot, value): 
-	mechAction[robot] = value
-	
 
+func _on_preparation_next_state():
+	set_battle_state(BattleState.ENTERARENA)
+
+
+func _on_turntime_timeout():
+	if battleState == 3 :
+		set_battle_state(BattleState.FIRSTTURN)
+		switched.emit()
+	else :
+		if battleState == 4 :
+			set_battle_state(BattleState.BATTLE)
+		switched.emit()
 
 

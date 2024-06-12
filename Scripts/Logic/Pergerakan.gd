@@ -26,14 +26,14 @@ func _process(delta):
 	if tween != null:
 		if tween.is_running():
 			target_yang_dipindahkan.position = $Jejak.position
-			target_yang_dipindahkan.rotation_degrees = $Jejak.rotation_degrees + 90
+			target_yang_dipindahkan.get_node('robot_sprite').rotation_degrees = $Jejak.rotation_degrees + 90
 
 func done():
 	curve.clear_points()
 	$Pathline.clear_points()
 	move_finished.emit(target_yang_dipindahkan)
 	target_yang_dipindahkan.position = $Jejak.position
-	target_yang_dipindahkan.rotation_degrees = $Jejak.rotation_degrees + 90
+	target_yang_dipindahkan.get_node('robot_sprite').rotation_degrees = $Jejak.rotation_degrees + 90
 	target_yang_dipindahkan = null
 	$Jejak.progress = 0
 

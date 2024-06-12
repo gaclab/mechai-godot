@@ -13,7 +13,7 @@ var is_stand : bool = true;
 func onDamage(value : int)->void:
 	if hpObstacle != 0:  # Check both HP and click state
 		hpObstacle = hpObstacle - value;
-	$Lifebar.value = hpObstacle
+	$solidbar.value = hpObstacle
 	
 #fungsi cek obstacle hancur
 func check_destroy()->void:
@@ -26,9 +26,10 @@ func _input(event : InputEvent)->void:
 	pass
 
 func _ready():
-	hpObstacle = 5;
-	$Lifebar.max_value = hpObstacle
-	$Lifebar.value = hpObstacle
+	hpObstacle = 2;
+	$solidbar.max_value = hpObstacle
+	$solidbar.value = hpObstacle
+	$solidbar.visible = false
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,3 +39,11 @@ func _process(delta):
 		$Obstacle.texture = ResourceLoader.load("res://Assets/Sprites/Batu-sementara.png")
 	else :
 		$Obstacle.texture = ResourceLoader.load("res://Assets/Sprites/Batu-hancur-sementara.png")
+
+func playanimatedspawn():
+	$AnimationPlayer.play("DROPED")
+func showdata(condition:bool):
+	$solidbar.visible = true
+	await get_tree().create_timer(1.5).timeout
+	$solidbar.visible = false if condition else true
+	
