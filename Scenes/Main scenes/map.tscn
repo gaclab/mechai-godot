@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Logic/Map.gd" id="2_uugyp"]
 
 [node name="Map" type="TileMap"]
+visible = false
 tile_set = ExtResource("1_xy5oi")
 format = 2
 layer_0/name = "Arena"
