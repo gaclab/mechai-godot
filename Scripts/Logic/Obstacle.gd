@@ -42,8 +42,15 @@ func _process(delta):
 
 func playanimatedspawn():
 	$AnimationPlayer.play("DROPED")
-func showdata(condition:bool):
-	$solidbar.visible = true
-	await get_tree().create_timer(1.5).timeout
-	$solidbar.visible = false if condition else true
 	
+
+
+func _on_area_2d_mouse_entered():
+	if hpObstacle != 0 :
+		$solidbar.visible = true
+
+
+
+func _on_area_2d_mouse_exited():
+	if $solidbar.visible :
+		$solidbar.visible = false

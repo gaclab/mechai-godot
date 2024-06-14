@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cka87ttlt57vc"]
+[gd_scene load_steps=9 format=3 uid="uid://cka87ttlt57vc"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/Obstacle.gd" id="1_8jlcl"]
 [ext_resource type="Texture2D" uid="uid://bl43tj411t2qs" path="res://Assets/Sprites/Batu-sementara.png" id="2_fu5m5"]
@@ -64,24 +64,42 @@ _data = {
 "RESET": SubResource("Animation_8q0fb")
 }
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rm71t"]
+polygon = PackedVector2Array(0.219116, -30.5906, 7.11399, -29.419, 12.6202, -22.0226, 14.1605, -19.7824, 16.6048, -19.0936, 18.3267, -11.9517, 19.605, -5.03631, 21.1454, -2.79605, 22.1524, 9.90816, 22.1112, 14.8079, 20.9434, 21.2574, 12.4204, 28.3132, 1.26956, 30.0015, -11.867, 29.4457, -18.0694, 25.3845, -22.2318, 17.1084, -22.5389, 0.623661, -18.7022, -5.3579, -17.54, -11.1392, -14.6092, -15.3465, -12.981, -23.5739, -8.28525, -25.7618, -5.58648, -28.8574)
+
 [node name="Obstacles" type="Node2D"]
-z_index = 10
+z_index = 1
 script = ExtResource("1_8jlcl")
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-13.3054, -23.7442, -8.11406, -25.8679, -5.87236, -28.6995, -0.209114, -30.5873, 6.98793, -29.2895, 13.949, -19.9687, 16.5447, -19.2608, 19.7302, -4.51275, 21.146, -2.50702, 22.3259, 14.8367, 21.146, 21.0898, 12.4152, 28.6408, 1.56065, 29.9387, -12.0075, 29.8207, -18.1427, 25.5732, -22.0362, 16.9604, -22.6261, 0.796543, -18.9686, -4.63074, -17.6708, -11.7098, -14.4852, -15.3673)
+
 [node name="Obstacle" type="Sprite2D" parent="."]
-position = Vector2(0, -0.108475)
+position = Vector2(0, -1000)
 texture = ExtResource("2_fu5m5")
 
 [node name="solidbar" type="ProgressBar" parent="."]
+visible = false
 offset_left = -20.0
 offset_top = -38.326
 offset_right = 20.0
 offset_bottom = -29.326
 theme_override_styles/background = SubResource("StyleBoxLine_7im43")
 theme_override_styles/fill = SubResource("StyleBoxLine_23nrc")
+max_value = 2.0
+value = 2.0
 show_percentage = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_l7tv3")
 }
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+rotation = -0.00839501
+occluder = SubResource("OccluderPolygon2D_rm71t")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

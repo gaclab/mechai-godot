@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=14 format=3 uid="uid://sksky0mp0hff"]
 
 [ext_resource type="PackedScene" uid="uid://dug3wrg4yt1it" path="res://Scenes/preparation.tscn" id="1_clode"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="1_qhorj"]
@@ -7,8 +7,16 @@
 [ext_resource type="Script" path="res://Scripts/Logic/obstacle_manager.gd" id="4_j6xsb"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="4_t8qkj"]
 [ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="5_o3vag"]
+[ext_resource type="Script" path="res://Scripts/Logic/robot_information.gd" id="5_wjxfy"]
 [ext_resource type="Texture2D" uid="uid://b3l1i1lraex81" path="res://Assets/Tres/Highlight.tres" id="6_eutyx"]
 [ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Assets/Tres/Button.tres" id="7_mfj8s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xta4"]
+bg_color = Color(0.826905, 0.768301, 0.717503, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 15
+corner_radius_bottom_right = 110
+corner_radius_bottom_left = 10
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mfxd6"]
 resource_name = "Highlight"
@@ -33,6 +41,343 @@ script = ExtResource("2_l6a6d")
 [node name="obstacle_manager" type="Node" parent="."]
 script = ExtResource("4_j6xsb")
 
+[node name="Container" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="Panel" parent="Container"]
+z_index = 1
+layout_mode = 2
+offset_left = 1047.0
+offset_top = 98.225
+offset_right = 1330.0
+offset_bottom = 481.945
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1xta4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+offset_left = 1067.15
+offset_top = 97.4138
+offset_right = 1317.15
+offset_bottom = 473.414
+size_flags_horizontal = 3
+script = ExtResource("5_wjxfy")
+
+[node name="Robot" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Robot Information
+"
+
+[node name="health_container" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="health" type="Label" parent="Container/VBoxContainer/health_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "health		:
+"
+
+[node name="health_value" type="Label" parent="Container/VBoxContainer/health_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="armor_container" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="armor" type="Label" parent="Container/VBoxContainer/armor_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "armor		:
+"
+
+[node name="armor_value" type="Label" parent="Container/VBoxContainer/armor_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="energy_container" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="energy" type="Label" parent="Container/VBoxContainer/energy_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "energy	:
+"
+
+[node name="energy_value" type="Label" parent="Container/VBoxContainer/energy_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="attackDmg_container" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="atk" type="Label" parent="Container/VBoxContainer/attackDmg_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "attack :
+"
+
+[node name="atk_value" type="Label" parent="Container/VBoxContainer/attackDmg_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="skillDmg_container" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="skill" type="Label" parent="Container/VBoxContainer/skillDmg_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "skill	 :
+"
+
+[node name="skill_value" type="Label" parent="Container/VBoxContainer/skillDmg_container"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="moveRange" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="mrange" type="Label" parent="Container/VBoxContainer/moveRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "move Range :
+"
+
+[node name="mrangeval" type="Label" parent="Container/VBoxContainer/moveRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="attackRange" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="atkrange" type="Label" parent="Container/VBoxContainer/attackRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "attack Range :
+"
+
+[node name="atkrangeval" type="Label" parent="Container/VBoxContainer/attackRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="skillRange" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="skillrange" type="Label" parent="Container/VBoxContainer/skillRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "skill Range :
+"
+
+[node name="skillrangeval" type="Label" parent="Container/VBoxContainer/skillRange"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="skill_energy" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="skillenergy" type="Label" parent="Container/VBoxContainer/skill_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Move Energy :
+"
+
+[node name="skillenergyval" type="Label" parent="Container/VBoxContainer/skill_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="attack_energy" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="atkenergy" type="Label" parent="Container/VBoxContainer/attack_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Attack Energy :
+"
+
+[node name="atkenergyval" type="Label" parent="Container/VBoxContainer/attack_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="move_energy" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="moveenergy" type="Label" parent="Container/VBoxContainer/move_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "skill Energy :
+"
+
+[node name="moveenergyval" type="Label" parent="Container/VBoxContainer/move_energy"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
+[node name="robot_state" type="HBoxContainer" parent="Container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 2
+
+[node name="state" type="Label" parent="Container/VBoxContainer/robot_state"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "skill Energy :
+"
+
+[node name="stateval" type="Label" parent="Container/VBoxContainer/robot_state"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "
+"
+
 [node name="Map" parent="." instance=ExtResource("3_4e0xx")]
 position = Vector2(363, 64)
 layer_0/tile_data = PackedInt32Array(0, 2228225, 1, 65536, 2228225, 1, 131072, 2228225, 1, 196608, 2228225, 1, 262144, 2228225, 1, 1, 2228225, 1, 65537, 2228225, 1, 131073, 2228225, 1, 196609, 2228225, 1, 262145, 2228225, 1, 2, 2228225, 1, 65538, 2228225, 1, 131074, 2228225, 1, 196610, 2228225, 1, 262146, 2228225, 1, 3, 2228225, 1, 65539, 2228225, 1, 131075, 2228225, 1, 196611, 2228225, 1, 262147, 2228225, 1, 4, 2228225, 1, 65540, 2228225, 1, 131076, 2228225, 1, 196612, 2228225, 1, 262148, 2228225, 1, 5, 2228225, 1, 6, 2228225, 1, 7, 2228225, 1, 8, 2228225, 1, 9, 2228225, 1, 65541, 2228225, 1, 65542, 2228225, 1, 65543, 2228225, 1, 65544, 2228225, 1, 65545, 2228225, 1, 131077, 2228225, 1, 131078, 2228225, 1, 131079, 2228225, 1, 131080, 2228225, 1, 131081, 2228225, 1, 196613, 2228225, 1, 196614, 2228225, 1, 196615, 2228225, 1, 196616, 2228225, 1, 196617, 2228225, 1, 262149, 2228225, 1, 262150, 2228225, 1, 262151, 2228225, 1, 262152, 2228225, 1, 262153, 2228225, 1, 327680, 2228225, 1, 327681, 2228225, 1, 327682, 2228225, 1, 327683, 2228225, 1, 327684, 2228225, 1, 327685, 2228225, 1, 327686, 2228225, 1, 327687, 2228225, 1, 327688, 2228225, 1, 327689, 2228225, 1, 393216, 2228225, 1, 393217, 2228225, 1, 393218, 2228225, 1, 393219, 2228225, 1, 393220, 2228225, 1, 393221, 2228225, 1, 393222, 2228225, 1, 393223, 2228225, 1, 393224, 2228225, 1, 393225, 2228225, 1, 458752, 2228225, 1, 458753, 2228225, 1, 458754, 2228225, 1, 458755, 2228225, 1, 458756, 2228225, 1, 458757, 2228225, 1, 458758, 2228225, 1, 458759, 2228225, 1, 458760, 2228225, 1, 458761, 2228225, 1, 524288, 2228225, 1, 524289, 2228225, 1, 524290, 2228225, 1, 524291, 2228225, 1, 524292, 2228225, 1, 524293, 2228225, 1, 524294, 2228225, 1, 524295, 2228225, 1, 524296, 2228225, 1, 524297, 2228225, 1, 589824, 2228225, 1, 589825, 2228225, 1, 589826, 2228225, 1, 589827, 2228225, 1, 589828, 2228225, 1, 589829, 2228225, 1, 589830, 2228225, 1, 589831, 2228225, 1, 589832, 2228225, 1, 589833, 2228225, 1)
@@ -45,7 +390,6 @@ kecepatan = 500.0
 z_index = 1
 
 [node name="action-option" parent="Map" instance=ExtResource("5_o3vag")]
-z_index = 20
 
 [node name="Highlight" type="TileMap" parent="Map"]
 tile_set = SubResource("TileSet_uwaoh")
@@ -113,11 +457,31 @@ theme_override_font_sizes/font_size = 30
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Map"]
+visible = false
+rotation = -1.01753
+color = Color(0.537011, 0.537011, 0.537011, 1)
+energy = 0.35
+range_z_min = -139
+range_z_max = 304
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 0.3
+height = 0.88
+max_distance = 885.0
+
+[node name="PointLight2D" type="PointLight2D" parent="Map"]
+visible = false
+position = Vector2(-0.176787, -0.618713)
+scale = Vector2(28.9307, 27.6933)
+energy = 2.03
+
 [connection signal="nextState" from="preparation" to="battle_manager" method="_on_preparation_next_state"]
 [connection signal="battleended" from="battle_manager" to="Map" method="_on_battle_manager_battleended"]
 [connection signal="changedState" from="battle_manager" to="Map" method="_on_battle_manager_changed_state"]
 [connection signal="switched" from="battle_manager" to="Map" method="_on_battle_manager_switched"]
 [connection signal="managed_action" from="Map" to="robots_manager" method="_on_map_managed_action"]
+[connection signal="turned" from="Map" to="battle_manager" method="_on_map_turned"]
 [connection signal="move_finished" from="Map/Pergerakan" to="Map" method="_on_pergerakan_move_finished"]
 [connection signal="mouse_entered_each_option" from="Map/action-option" to="Map" method="_on_actionoption_mouse_entered_each_option"]
 [connection signal="selected_action" from="Map/action-option" to="Map" method="_on_actionoption_selected_action"]

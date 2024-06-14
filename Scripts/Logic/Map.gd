@@ -34,6 +34,7 @@ var highlight_zone = []
 var Obstacle = load("res://Scenes/Main scenes/obstacles.tscn").instantiate()
 var robots = load("res://Scenes/robot.tscn").instantiate()
 var Multiplayer : Resource = preload("res://Assets/Tres/MultiPlayerObstacle.tres")
+@onready var robot_information = get_parent().get_node("Container/VBoxContainer")
 
 @export var Bake = false :
 	set(val) : generate_ulang_map()
@@ -287,6 +288,7 @@ func create_robot():
 						var unit : robot = robots.duplicate()
 						add_child(unit)
 						unit.position = map_to_local(p)
+						unit.get_node("robot_sprite").modulate = "#b1003e"
 						robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)] =  unit
 						robots_manager.robots["redTeam"]["data"][local_to_map(unit.position)] = (
 							robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -298,6 +300,7 @@ func create_robot():
 						var unit : robot = robots.duplicate()
 						add_child(unit)
 						unit.position = map_to_local(p)
+						unit.get_node("robot_sprite").modulate = "#4c2aed"
 						robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)] =  unit
 						robots_manager.robots["blueTeam"]["data"][local_to_map(unit.position)] = (
 							robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -341,6 +344,10 @@ func _attack_target(action:String,attacker :robot, target):
 			target.on_damaged(attacker.skillDamage)
 	elif is_instance_of(target,Obstacles):
 		target.onDamage(1)
+		if target.hpObstacle == 0 :
+			var tempClearSolid = obstacle_manager.obstacles.find_key(target)
+			astar_grid.set_point_solid(tempClearSolid,false)
+			obstacle_manager.obstacles.erase(tempClearSolid)
 	actionoption.visible = false
 	_is_action_selected = false
 	_helpper_is_play = false
@@ -369,14 +376,23 @@ func _input(event):
 				):
 					if highlight_zone.has(gridder):
 						$Pergerakan.posisikan_indikator(map_to_local(gridder))
-				elif obstacle_manager.obstacles.has(gridder):
-					$Pergerakan.posisikan_indikator(map_to_local(gridder))
-					obstacle_manager.obstacles[gridder].showdata(true)
 				else :
 					$Pergerakan.posisikan_indikator(map_to_local(gridder))
-					if obstacle_manager.obstacles.has(gridder):
-						obstacle_manager.obstacles[gridder].showdata(false)
-					
+				
+				#robot information
+				if robots_manager.robots["redTeam"]["object"].has(gridder):
+					var _temp_robot_info = robots_manager.robots["redTeam"]["object"][gridder].get_robot_datas()
+					robot_information.set_info(_temp_robot_info)
+					if get_parent().get_node("Container").visible == false :
+						get_parent().get_node("Container").visible = true
+				elif robots_manager.robots["blueTeam"]["object"].has(gridder) :
+					var _temp_robot_info = robots_manager.robots["blueTeam"]["object"][gridder].get_robot_datas()
+					robot_information.set_info(_temp_robot_info)
+					if get_parent().get_node("Container").visible == false :
+						get_parent().get_node("Container").visible = true
+				else :
+					if get_parent().get_node("Container").visible == true :
+						get_parent().get_node("Container").visible = false
 				
 	#jika input(event) adalah sebuah tombol keyboard
 		if event is InputEventKey:
@@ -434,12 +450,37 @@ func lets_select_unit():
 		if !_is_action_selected : # akan tereksekusi saat memilih set saat menu terlihat 
 			actionoption.visible = false
 		if _is_action_selected and _helper_selected_action == "move" and gridder != start:
-			highlight_zone.clear()
-			$Highlight.clear()
-			_helper_multiple = packedpoints.size() - 1
-			robots_manager.robots[team]["object"][start].consume_energy(robots_manager.robots[team]["object"][start].moveEnergy,_helper_multiple)
-			move_unit()
-			_helper_multiple = 1
+			_helpper_is_play = true
+			var _helper_is_robot_in_target_loc = (
+				robots_manager.robots["blueTeam"]["object"].has(gridder) or
+				robots_manager.robots["redTeam"]["object"].has(gridder) or 
+				obstacle_manager.obstacles.has(gridder)
+			)
+			if !_helper_is_robot_in_target_loc and highlight_zone.has(gridder):
+				highlight_zone.clear()
+				$Highlight.clear()
+				_helper_multiple = packedpoints.size() - 1
+				robots_manager.robots[team]["object"][start].consume_energy(robots_manager.robots[team]["object"][start].moveEnergy,_helper_multiple)
+				move_unit()
+				_helper_multiple = 1
+				print('phe red')
+			elif _helper_is_robot_in_target_loc:
+				_is_action_selected = false
+				_helper_selected_action = ""
+				_helpper_is_play = false
+				highlight_zone.clear()
+				$Highlight.clear()
+				$Pergerakan.curve.clear_points()
+				$Pergerakan.get_node("Pathline").clear_points()
+			elif !highlight_zone.has(gridder):
+				_is_action_selected = false
+				_helper_selected_action = ""
+				_helpper_is_play = false
+				highlight_zone.clear()
+				$Highlight.clear()
+				$Pergerakan.curve.clear_points()
+				$Pergerakan.get_node("Pathline").clear_points()
+				
 		elif _is_action_selected and (_helper_selected_action == "attack" or _helper_selected_action == "skill"):
 			_helpper_is_play = true
 			if team == "redTeam" and gridder != start:
@@ -563,15 +604,6 @@ func _on_actionoption_mouse_entered_each_option(condition):
 	_helper_hover = condition
 
 
-func _on_button_end_turn_button_down():
-	_helper_endturn = true
-	$turntime.stop()
-	$turntime.timeout.emit()
-	$turntime.start()
-	
-	
-
-
 
 func _on_obstacle_timer_timeout():
 	battle_manager.set_battle_state(battle_manager.BattleState.DEPLOYING)
@@ -600,18 +632,23 @@ func _on_battle_manager_battleended():
 
 
 func _on_battle_manager_switched():
-	redpoint.text = str(battle_manager.turnPoint[0])
-	bluepoint.text = str(battle_manager.turnPoint[1])
+	$Pergerakan.curve.clear_points()
+	$Pergerakan.get_node("Pathline").clear_points()
+	highlight_zone.clear()
+	$Highlight.clear()
+	_is_action_selected = false
+	_helper_selected_action = ""
+	_helpper_is_play = false
 	if _helper_endturn:
 		_helper_endturn = false
-	if team == "redTeam":
+	if team == "redTeam" and battle_manager.get_battle_state() == 4:
 		team = "blueTeam"
 		battle_manager.calculate_turn_point("redTeam")
 		#if $Pergerakan.target_yang_dipindahkan != null :
 			#$Pergerakan.target_yang_dipindahkan = null
 		if actionoption.is_visible_in_tree():
 			actionoption.visible = false
-	elif team == "blueTeam":
+	elif team == "blueTeam" and battle_manager.get_battle_state() == 4:
 		team = "redTeam"
 		battle_manager.calculate_turn_point("blueTeam")
 		#if $Pergerakan.target_yang_dipindahkan != null :
@@ -630,4 +667,19 @@ func _on_battle_manager_switched():
 				robots_manager.robots["blueTeam"]["object"][child].set_robot_state(robots_manager.robots["blueTeam"]["object"][child].RobotState.IDLE)
 			robots_manager.robots["blueTeam"]["object"][child].restore_energy()
 			robots_manager.mechAction[robots_manager.robots["blueTeam"]["object"][child]] = [1,1,1]
+	redpoint.text = str(battle_manager.turnPoint[0])
+	bluepoint.text = str(battle_manager.turnPoint[1])
 	turned.emit(team)
+
+
+func _on_button_end_turn_button_down():
+	print(battle_manager.get_battle_state())
+	if battle_manager.get_battle_state() == 4 :
+		_helper_endturn = true
+		$turntime.stop()
+		$turntime.timeout.emit()
+		$turntime.start()
+	if battle_manager.get_battle_state() == 3 :
+		$turntime.stop()
+		$turntime.timeout.emit()
+		$turntime.start()

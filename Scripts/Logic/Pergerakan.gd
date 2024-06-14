@@ -7,11 +7,11 @@ var tween : Tween
 
 func initpath():
 	$Jejak.progress_ratio = 1
-	var max = $Jejak.progress
+	var maxPath = $Jejak.progress
 	$Jejak.progress_ratio = 0
 	tween = create_tween()
 	tween.connect("finished",Callable(self,"done"))
-	tween.tween_property($Jejak,"progress_ratio",1,max/kecepatan)
+	tween.tween_property($Jejak,"progress_ratio",1,maxPath/kecepatan)
 	tween.play()
 
 func repath(path_trails : PackedVector2Array):

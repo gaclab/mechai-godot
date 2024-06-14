@@ -4,7 +4,7 @@ class_name Battle_Manager
 signal changedState()
 signal battleended()
 signal switched()
-enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,FIRSTTURN,BATTLE,BATTLEEND,RESULTBATTLE}
+enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,BATTLE,BATTLEEND,RESULTBATTLE}
 var battleState:int
 var battleLog :Array = []
 var turnPoint: Array = [30,30] # red | blue 
@@ -24,14 +24,12 @@ func set_battle_state(stateName : BattleState):
 			battleState = 2
 		BattleState.DEPLOYING :
 			battleState = 3
-		BattleState.FIRSTTURN :
-			battleState = 4
 		BattleState.BATTLE :
-			battleState = 5
+			battleState = 4
 		BattleState.BATTLEEND :
-			battleState = 6
+			battleState = 5
 		_:
-			battleState = 7
+			battleState = 6
 	changedState.emit()
 	if turnPoint[0] == 0 and turnPoint[1] == 0 :
 		battleended.emit()
@@ -70,11 +68,8 @@ func _on_preparation_next_state():
 
 func _on_turntime_timeout():
 	if battleState == 3 :
-		set_battle_state(BattleState.FIRSTTURN)
+		set_battle_state(BattleState.BATTLE)
 		switched.emit()
-	else :
-		if battleState == 4 :
-			set_battle_state(BattleState.BATTLE)
+	elif battleState == 4 :
 		switched.emit()
-
 
