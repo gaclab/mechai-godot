@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=15 format=3 uid="uid://sksky0mp0hff"]
 
 [ext_resource type="PackedScene" uid="uid://dug3wrg4yt1it" path="res://Scenes/preparation.tscn" id="1_clode"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="1_qhorj"]
@@ -27,6 +27,14 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_uwaoh"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_mfxd6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arg6u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
 
 [node name="Battle" type="Node"]
 
@@ -407,11 +415,6 @@ layer_3/modulate = Color(0.835294, 0, 0.027451, 1)
 layer_3/tile_data = PackedInt32Array()
 
 [node name="enterarena" type="Timer" parent="Map"]
-wait_time = 5.0
-one_shot = true
-
-[node name="obstacleTimer" type="Timer" parent="Map"]
-wait_time = 4.0
 one_shot = true
 
 [node name="button_end_turn" type="Button" parent="Map"]
@@ -476,6 +479,13 @@ position = Vector2(-0.176787, -0.618713)
 scale = Vector2(28.9307, 27.6933)
 energy = 2.03
 
+[node name="Deployzone" type="PanelContainer" parent="Map"]
+visible = false
+offset_right = 4.0
+offset_bottom = 4.0
+mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_arg6u")
+
 [connection signal="nextState" from="preparation" to="battle_manager" method="_on_preparation_next_state"]
 [connection signal="battleended" from="battle_manager" to="Map" method="_on_battle_manager_battleended"]
 [connection signal="changedState" from="battle_manager" to="Map" method="_on_battle_manager_changed_state"]
@@ -486,7 +496,6 @@ energy = 2.03
 [connection signal="mouse_entered_each_option" from="Map/action-option" to="Map" method="_on_actionoption_mouse_entered_each_option"]
 [connection signal="selected_action" from="Map/action-option" to="Map" method="_on_actionoption_selected_action"]
 [connection signal="timeout" from="Map/enterarena" to="Map" method="_on_enterarena_timeout"]
-[connection signal="timeout" from="Map/obstacleTimer" to="Map" method="_on_obstacle_timer_timeout"]
 [connection signal="button_down" from="Map/button_end_turn" to="Map" method="_on_button_end_turn_button_down"]
 [connection signal="timeout" from="Map/turntime" to="battle_manager" method="_on_turntime_timeout"]
 
