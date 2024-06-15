@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Logic/action_option.gd" id="2_pn676"]
 
 [node name="action-option" type="Node2D"]
+z_index = 20
 position = Vector2(23.1697, 96.3828)
 rotation = 0.220475
 scale = Vector2(23.64, 24.76)

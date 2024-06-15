@@ -1,6 +1,6 @@
 class_name robot
 extends Node2D
-
+signal death()
 signal enemy_attacked(damage:int)
 
 enum RobotState {UNDEPLOYED,DEPLOYED,TURN,WAITTURN,ENDTURN,ATTACK,SKILL,MOVE,IDLE,DEATH}
@@ -82,7 +82,7 @@ func on_damaged(damageEnemy : int):
 	if health > 0 :
 		health -= damageEnemy
 		$hp_bar.value = health
-
+		
 func attack_enemy():
 	enemy_attacked.emit(attackDamage)
 func skill_enemy():

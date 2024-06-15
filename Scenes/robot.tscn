@@ -30,6 +30,7 @@ grow_end = 0.0
 thickness = 8
 
 [node name="Robot" type="Node2D"]
+z_index = 10
 script = ExtResource("1_g1klt")
 
 [node name="robot_sprite" type="Sprite2D" parent="."]
