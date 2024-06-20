@@ -1,6 +1,8 @@
 extends Node
 class_name Battle_Manager
 
+# todo : nggak perlu animasi awal
+
 signal changedState()
 signal battleended()
 signal switched()
@@ -67,9 +69,6 @@ func _on_preparation_next_state():
 
 
 func _on_turntime_timeout():
-	if battleState == 3 :
-		set_battle_state(BattleState.BATTLE)
-		switched.emit()
-	elif battleState == 4 :
+	if battleState == 4 :
 		switched.emit()
 
