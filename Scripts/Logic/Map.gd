@@ -298,6 +298,7 @@ func create_robot(robotpos : Vector2i):
 				)
 				robots_manager.mechAction[unit] = [1,1,1]
 				astar_grid.set_point_solid(robotpos)
+				unit.connect("death",_on_robot_death)
 			else :
 				var unit : robot = robots.duplicate()
 				add_child(unit)
@@ -309,6 +310,7 @@ func create_robot(robotpos : Vector2i):
 				)
 				robots_manager.mechAction[unit] = [1,1,1] # set mechAction in battle manager 
 				astar_grid.set_point_solid(robotpos)
+				unit.connect("death",_on_robot_death)
 			robot_count += 1
 			if robot_count < 3 :
 				$Deployzone.position = Vector2i(map_to_local(redTeam_deploy_zone.min())) - (tile_set.cellSize/2)
@@ -718,3 +720,14 @@ func _on_button_end_turn_button_down():
 		$turntime.timeout.emit()
 		$turntime.start()
 		
+func _on_robot_death(value):
+	print("d")
+	if team == "redTeam":
+		var key = local_to_map(value.position)
+		robots_manager.robots["blueTeam"]["object"].erase(key)
+		value.queue_free()
+	elif team == "blueTeam":
+		var key = local_to_map(value.position)
+		robots_manager.robots["redTeam"]["object"].erase(key)
+		value.queue_free()
+	print(robots_manager.robots)
