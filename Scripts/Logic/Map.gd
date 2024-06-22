@@ -298,7 +298,6 @@ func create_robot(robotpos : Vector2i):
 				)
 				robots_manager.mechAction[unit] = [1,1,1]
 				astar_grid.set_point_solid(robotpos)
-				unit.connect("death",_on_robot_death)
 			else :
 				var unit : robot = robots.duplicate()
 				add_child(unit)
@@ -310,7 +309,6 @@ func create_robot(robotpos : Vector2i):
 				)
 				robots_manager.mechAction[unit] = [1,1,1] # set mechAction in battle manager 
 				astar_grid.set_point_solid(robotpos)
-				unit.connect("death",_on_robot_death)
 			robot_count += 1
 			if robot_count < 3 :
 				$Deployzone.position = Vector2i(map_to_local(redTeam_deploy_zone.min())) - (tile_set.cellSize/2)
@@ -325,11 +323,28 @@ func create_robot(robotpos : Vector2i):
 		$Deployzone.visible = false
 		$turntime.start()
 
+var preobs = []
+func dev_obstacle_editor(robotpos : Vector2i):
+	if !astar_grid.is_point_solid(robotpos): #memposisikan setiap obstacle
+		var unit : Obstacles = Obstacle.duplicate()
+		var sb = unit.get_node("solidbar")
+		sb.visible = false
+		unit.position = map_to_local(robotpos) #memposisikan setiap obstacle
+		add_child(unit) #menambahkan setiap obstacle kedalam tree
+		preobs = preobs + [robotpos]
+		unit.playanimatedspawn()
+		astar_grid.set_point_solid(robotpos)
+		await get_tree().create_timer(0.1).timeout
+
 #Fixme obstacle timer is in here
 func create_obstacles_multiplayer():
 	#bagian generate obstacle
 		#generate obstacle in multiplayer
-		var obstacleLocation = Multiplayer._getMultiplayerLocation(self) #ambil posisi seluruh obstacle
+		var obstacleLocation = PackedVector2Array()
+		if Global.maptype == 2:
+			obstacleLocation = Multiplayer._getMultiplayerLocation(self) #ambil posisi seluruh obstacle
+		elif Global.maptype == 1:
+			obstacleLocation = Global.premaps[Global.selected_premap]
 		Obstacle.get_node("solidbar").visible = false
 		for i in obstacleLocation:
 			var stack : Obstacles = Obstacle.duplicate() #duplikasi objek obstacle
@@ -664,7 +679,10 @@ func _on_battle_manager_changed_state():
 
 func _on_enterarena_timeout():
 	battle_manager.set_battle_state(battle_manager.BattleState.OBSTACLECREATE)
-	create_obstacles_multiplayer()
+	if Global.maptype == 2 or Global.maptype == 1:
+		create_obstacles_multiplayer()
+	elif Global.maptype == 0:
+		_on_obstacle_timer_timeout()
 
 
 func _on_battle_manager_battleended():
@@ -720,14 +738,3 @@ func _on_button_end_turn_button_down():
 		$turntime.timeout.emit()
 		$turntime.start()
 		
-func _on_robot_death(value):
-	print("d")
-	if team == "redTeam":
-		var key = local_to_map(value.position)
-		robots_manager.robots["blueTeam"]["object"].erase(key)
-		value.queue_free()
-	elif team == "blueTeam":
-		var key = local_to_map(value.position)
-		robots_manager.robots["redTeam"]["object"].erase(key)
-		value.queue_free()
-	print(robots_manager.robots)

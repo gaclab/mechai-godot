@@ -35,7 +35,7 @@ func set_battle_state(stateName : BattleState):
 	changedState.emit()
 	if turnPoint[0] == 0 and turnPoint[1] == 0 :
 		battleended.emit()
-		print("battleend")
+		#print("battleend")
 
 func calculate_turn_point(value : String)->Array:
 	if turnPoint[0] != 0 or turnPoint[1] != 0 :

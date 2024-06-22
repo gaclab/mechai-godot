@@ -1,7 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://dug3wrg4yt1it"]
+[gd_scene load_steps=6 format=3 uid="uid://dug3wrg4yt1it"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/preparation.gd" id="1_njfec"]
 [ext_resource type="Texture2D" uid="uid://pho58p3jq7aq" path="res://Assets/Sprites/bg.png" id="2_dir3v"]
+[ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="3_arfmy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lv6l7"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j7wrj"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 12
+border_color = Color(0, 1, 1, 1)
 
 [node name="preparation" type="Control"]
 layout_mode = 3
@@ -27,5 +44,51 @@ offset_bottom = 739.568
 theme_override_font_sizes/font_size = 40
 text = "READY
 "
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 1366.0
+offset_bottom = 768.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Panel2" type="PanelContainer" parent="CenterContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(384, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_lv6l7")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer2/Panel2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer2/Panel2/CenterContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_arfmy")
+theme_override_font_sizes/font_size = 25
+text = "Mech.AI"
+
+[node name="Panel" type="PanelContainer" parent="CenterContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(256, 256)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_j7wrj")
+
+[node name="CenterContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer2/Panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer2/Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="CenterContainer/VBoxContainer2/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="Button2" type="Button" parent="CenterContainer/VBoxContainer2/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+
+[node name="Button3" type="Button" parent="CenterContainer/VBoxContainer2/Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
 
 [connection signal="button_down" from="Ready" to="." method="_on_ready_button_down"]

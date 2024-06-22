@@ -1,11 +1,11 @@
 [gd_scene load_steps=15 format=3 uid="uid://sksky0mp0hff"]
 
-[ext_resource type="PackedScene" uid="uid://dug3wrg4yt1it" path="res://Scenes/preparation.tscn" id="1_clode"]
+[ext_resource type="PackedScene" uid="uid://myk330gicjjl" path="res://Scenes/Main scenes/MainMenu.tscn" id="1_ead4a"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="1_qhorj"]
 [ext_resource type="Script" path="res://Scripts/Logic/robots_manager.gd" id="2_l6a6d"]
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="3_4e0xx"]
 [ext_resource type="Script" path="res://Scripts/Logic/obstacle_manager.gd" id="4_j6xsb"]
-[ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="4_t8qkj"]
+[ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Scenes/Main scenes/Pergerakan.tscn" id="4_t8qkj"]
 [ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="5_o3vag"]
 [ext_resource type="Script" path="res://Scripts/Logic/robot_information.gd" id="5_wjxfy"]
 [ext_resource type="Texture2D" uid="uid://b3l1i1lraex81" path="res://Assets/Tres/Highlight.tres" id="6_eutyx"]
@@ -38,7 +38,7 @@ border_color = Color(1, 1, 1, 1)
 
 [node name="Battle" type="Node"]
 
-[node name="preparation" parent="." instance=ExtResource("1_clode")]
+[node name="MainMenu" parent="." instance=ExtResource("1_ead4a")]
 
 [node name="battle_manager" type="Node" parent="."]
 script = ExtResource("1_qhorj")
@@ -486,7 +486,7 @@ offset_bottom = 4.0
 mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_arg6u")
 
-[connection signal="nextState" from="preparation" to="battle_manager" method="_on_preparation_next_state"]
+[connection signal="nextState" from="MainMenu" to="battle_manager" method="_on_preparation_next_state"]
 [connection signal="battleended" from="battle_manager" to="Map" method="_on_battle_manager_battleended"]
 [connection signal="changedState" from="battle_manager" to="Map" method="_on_battle_manager_changed_state"]
 [connection signal="switched" from="battle_manager" to="Map" method="_on_battle_manager_switched"]
@@ -499,5 +499,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_arg6u")
 [connection signal="button_down" from="Map/button_end_turn" to="Map" method="_on_button_end_turn_button_down"]
 [connection signal="timeout" from="Map/turntime" to="battle_manager" method="_on_turntime_timeout"]
 
-[editable path="preparation"]
 [editable path="Map/Pergerakan"]
