@@ -12,3 +12,4 @@ class_name robot_stats
 @export var moveEnergy : int = 0
 @export var attackEnergy : int = 0
 @export var skillEnergy : int = 0
+@export var solidBar : int = 0
