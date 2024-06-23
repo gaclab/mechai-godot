@@ -17,5 +17,4 @@ func _getMultiplayerLocation(tilegrid : TileMap):
 			temp.append(random_index)
 			_multiplayer_location.append(zona_arena[random_index])
 			count+=1
-	
 	return _multiplayer_location

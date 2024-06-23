@@ -113,6 +113,7 @@ func on_damaged(damageEnemy : int):
 			health = -damageEnemy
 			$hp_bar.value = health
 		if health <= 0:
+			$death.play()
 			set_robot_state(RobotState.DEATH)
 			# kasih animasi
 			death.emit(self)
@@ -128,6 +129,7 @@ func on_damaged(damageEnemy : int):
 			solidHp -= 1
 			$solid_bar.value = solidHp
 		if solidHp <=0:
+			$destroy.play()
 			$AnimatedSprite2D.position = Vector2.ZERO
 			$AnimatedSprite2D.play("Explosion")
 			_helper_prize = randi_range(0,3)

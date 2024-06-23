@@ -1,9 +1,11 @@
-[gd_scene load_steps=48 format=3 uid="uid://myk330gicjjl"]
+[gd_scene load_steps=52 format=3 uid="uid://0wulxmarddx2"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/MainMenu/MainMenu.gd" id="1_s5weh"]
 [ext_resource type="Texture2D" uid="uid://pho58p3jq7aq" path="res://Assets/Sprites/bg.png" id="2_ro5sw"]
 [ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="3_38xp8"]
+[ext_resource type="AudioStream" uid="uid://qobmffjatj2h" path="res://Assets/Sounds/click-b.ogg" id="3_bfeka"]
 [ext_resource type="Script" path="res://Scripts/Logic/MainMenu/Tabs.gd" id="4_7lq0v"]
+[ext_resource type="AudioStream" uid="uid://bcur5453sqiay" path="res://Assets/Sounds/switch-a.ogg" id="4_gqkan"]
 [ext_resource type="Script" path="res://Scripts/Logic/MainMenu/ModeSelect.gd" id="5_jkukx"]
 [ext_resource type="Script" path="res://Scripts/Logic/MainMenu/ControlSelect.gd" id="6_kg5jr"]
 [ext_resource type="Script" path="res://Scripts/Logic/MainMenu/MapSelect.gd" id="7_aiodw"]
@@ -12,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://mdr75pf3js6f" path="res://Assets/Images/Pre2.PNG" id="9_lk3bx"]
 [ext_resource type="Texture2D" uid="uid://bmvfj52o3nelx" path="res://Assets/Images/Pre1.PNG" id="10_ms07k"]
 [ext_resource type="Texture2D" uid="uid://cq0a13mfe5jg" path="res://Assets/Images/Pre3.PNG" id="11_lqqtg"]
+[ext_resource type="AudioStream" uid="uid://ceif4k3ksuqx5" path="res://Assets/Sounds/click-a.ogg" id="13_1ge43"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dji3b"]
 bg_color = Color(0.588235, 0, 1, 1)
@@ -261,6 +264,9 @@ border_color = Color(0, 0, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_gmni1"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_44stq"]
+bg_color = Color(0.603062, 0.505239, 1, 1)
+
 [node name="MainMenu" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -282,6 +288,15 @@ theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
+
+[node name="clickb" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("3_bfeka")
+
+[node name="switch" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("4_gqkan")
+
+[node name="clicka" type="AudioStreamPlayer" parent="MarginContainer"]
+stream = ExtResource("13_1ge43")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -947,6 +962,15 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_dyv24")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_p252h")
 text = "Go!"
 
+[node name="clickb" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/MainTab/BattleSetup"]
+stream = ExtResource("3_bfeka")
+
+[node name="switch" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/MainTab/BattleSetup"]
+stream = ExtResource("4_gqkan")
+
+[node name="clicka" type="AudioStreamPlayer" parent="MarginContainer/VBoxContainer/MainTab/BattleSetup"]
+stream = ExtResource("13_1ge43")
+
 [node name="Options" type="PanelContainer" parent="MarginContainer/VBoxContainer/MainTab"]
 visible = false
 layout_mode = 2
@@ -976,6 +1000,17 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_bdmbg")
 text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="attribution_assets_sementara" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MainTab/Options/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.960351, 0.960351, 0.960351, 1)
+theme_override_font_sizes/normal_font_size = 20
+theme_override_styles/normal = SubResource("StyleBoxFlat_44stq")
+text = "attribution mecha sound by 
+Discord: heltonyan#8219
+Email: fierydzn@gmail.com
+Twitter: @HeltonYan"
 
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/Header/PanelContainer/HBoxContainer/MarginContainer" to="." method="_on_margin_container_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Header/PanelContainer/HBoxContainer/PanelContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]

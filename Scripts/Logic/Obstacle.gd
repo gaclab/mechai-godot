@@ -26,6 +26,7 @@ func onDamage(value : int)->void:
 #fungsi cek obstacle hancur
 func check_destroy()->void:
 	if hpObstacle == 0 :
+		$AudioStreamPlayer.play()
 		$AnimatedSprite2D.visible = true
 		$AnimatedSprite2D.play("destroy")
 		_helper_prize = randi_range(0,3)

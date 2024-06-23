@@ -9,7 +9,7 @@ signal switched()
 enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,BATTLE,BATTLEEND,RESULTBATTLE}
 var battleState:int
 var battleLog :Array = []
-var turnPoint: Array = [15,15] # red | blue 
+var turnPoint: Array = [30,30] # red | blue 
 var winner := ""
 @onready var robot_manager = get_parent().get_node("robots_manager")
 func get_battle_state()->int:
@@ -59,8 +59,7 @@ func _get_winner_on_time_out(totalHp : Array,totalRobot : Array)->String:
 		result = "red" if totalRobot[0]>totalRobot[1] else "blue"
 	return result
 
-
-func _on_preparation_next_state():
+func _ready():
 	set_battle_state(BattleState.ENTERARENA)
 
 

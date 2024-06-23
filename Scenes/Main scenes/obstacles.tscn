@@ -1,7 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://cka87ttlt57vc"]
+[gd_scene load_steps=20 format=3 uid="uid://cka87ttlt57vc"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/Obstacle.gd" id="1_8jlcl"]
-[ext_resource type="Texture2D" uid="uid://ie7i3rg4pqju" path="res://Assets/Sprites/Obstacles/Rock2_1.png" id="2_e75gi"]
+[ext_resource type="Texture2D" uid="uid://ql0vdeasl6y2" path="res://Assets/Sprites/Obstacles/Rock5_1.png" id="2_drami"]
 [ext_resource type="Texture2D" uid="uid://dottut37olcds" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle1.png" id="3_c5egm"]
 [ext_resource type="Texture2D" uid="uid://bfliwawmd0736" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle2.png" id="4_s434d"]
 [ext_resource type="Texture2D" uid="uid://cd478j5jnhyh8" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle3.png" id="5_mt4m3"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://fcyaj8kohap8" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle8.png" id="10_ajjs7"]
 [ext_resource type="Texture2D" uid="uid://bia6r2w3e68im" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle9.png" id="11_3n3cu"]
 [ext_resource type="Texture2D" uid="uid://csndtu5jfeoe" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle10.png" id="12_gwc6w"]
+[ext_resource type="AudioStream" uid="uid://c1vgy7jvjibhy" path="res://Assets/Sounds/Battle/Mecha DAMAGED 10.wav" id="13_s1d8h"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7im43"]
 color = Color(0.165656, 0.165656, 0.165656, 1)
@@ -123,7 +124,7 @@ polygon = PackedVector2Array(-13.3054, -23.7442, -8.11406, -25.8679, -5.87236, -
 
 [node name="Obstacle" type="Sprite2D" parent="."]
 position = Vector2(0, -1000)
-texture = ExtResource("2_e75gi")
+texture = ExtResource("2_drami")
 
 [node name="solidbar" type="ProgressBar" parent="."]
 visible = false
@@ -148,6 +149,9 @@ sprite_frames = SubResource("SpriteFrames_gkcva")
 animation = &"destroy"
 frame = 9
 frame_progress = 1.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_s1d8h")
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
