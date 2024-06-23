@@ -4,15 +4,14 @@ class_name Battle_Manager
 # todo : nggak perlu animasi awal
 
 signal changedState()
-signal battleended()
+signal battleended(value:String)
 signal switched()
 enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,BATTLE,BATTLEEND,RESULTBATTLE}
 var battleState:int
 var battleLog :Array = []
-var turnPoint: Array = [30,30] # red | blue 
-var totalHp:Array = [4,2,5,7,2,3] #red | blue
+var turnPoint: Array = [15,15] # red | blue 
 var winner := ""
-
+@onready var robot_manager = get_parent().get_node("robots_manager")
 func get_battle_state()->int:
 	return battleState
 
@@ -33,9 +32,6 @@ func set_battle_state(stateName : BattleState):
 		_:
 			battleState = 6
 	changedState.emit()
-	if turnPoint[0] == 0 and turnPoint[1] == 0 :
-		battleended.emit()
-		print("battleend")
 
 func calculate_turn_point(value : String)->Array:
 	if turnPoint[0] != 0 or turnPoint[1] != 0 :
@@ -45,22 +41,22 @@ func calculate_turn_point(value : String)->Array:
 			turnPoint[1] -= 1
 	return turnPoint
 
-func check_match_ended():
-	if turnPoint[0] == 0 and turnPoint[1] == 0 :
-		#kondisi battle end
-		winner = _get_winner_on_time_out(totalHp)
-		print(winner)
 
-func _get_winner_on_time_out(totalHp : Array)->String:
-	var switch := totalHp.size()/2
+func _get_winner_on_time_out(totalHp : Array,totalRobot : Array)->String:
 	var redTeam:int = 0;
 	var BlueTeam:int = 0; 
-	for i in totalHp.size() :
-		if i < switch :
-			redTeam += totalHp[i]
-		else:
-			BlueTeam += totalHp[i]
-	var result = "red" if redTeam>BlueTeam  else "blue"
+	var result : String
+	if totalRobot[0] == totalRobot[1] :
+		var switch := totalHp.size()/2
+		for i in totalHp.size() :
+			if i < switch :
+				redTeam += totalHp[i]
+			else:
+				BlueTeam += totalHp[i]
+		result = "red" if redTeam>BlueTeam else "draw" if redTeam == BlueTeam else "blue" 
+	else :
+		print(totalRobot)
+		result = "red" if totalRobot[0]>totalRobot[1] else "blue"
 	return result
 
 
@@ -72,3 +68,25 @@ func _on_turntime_timeout():
 	if battleState == 4 :
 		switched.emit()
 
+
+
+func _on_map_ended():
+	var totalHp :Array
+	var totalRobot : Array = [0,0]
+	for i in robot_manager.robots["redTeam"]["object"]:
+		if (robot_manager.robots["redTeam"]["object"][i].robotState == 9 or 
+			robot_manager.robots["redTeam"]["object"][i].robotState == 10
+		):
+			pass
+		else :
+			totalRobot[0] += 1
+		totalHp += [robot_manager.robots["redTeam"]["object"][i].get_health()]
+	for i in robot_manager.robots["blueTeam"]["object"]:
+		if (robot_manager.robots["blueTeam"]["object"][i].robotState == 9 or 
+			robot_manager.robots["blueTeam"]["object"][i].robotState == 10
+		):
+			pass
+		else :
+			totalRobot[1] += 1
+		totalHp += [robot_manager.robots["blueTeam"]["object"][i].get_health()]
+	battleended.emit(_get_winner_on_time_out(totalHp,totalRobot))

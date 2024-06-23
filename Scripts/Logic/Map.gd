@@ -3,6 +3,7 @@ extends TileMap
 
 signal managed_action(robot : Node2D, value :Array) # nanti diganti ketika sudah ada robot
 signal turned(value:String)
+signal ended
 @onready var actionoption = $"action-option"
 @onready var action_option_move = $"action-option/move"
 @onready var action_option_attack = $"action-option/attack"
@@ -21,7 +22,6 @@ var _is_action_selected : bool # untuk kondisi ketika action dipilih
 var _helpper_is_play : bool = false # indikator untuk mencegah aksi ketika robot digerakkan
 var _helper_hover:bool = false # indikator supaya selama crusor diatas menu action maka tidak bisa select 
 var _temp_action_point : Array = [1,1,1]
-var _temp_solid_astargrid : Array = []
 var _helper_selected_action : String; # indikator untuk menyimpan action terakhir yang dipilih guna menyesuaikan kebutuhan
 var gridder = Vector2i(0,0)
 var points : Curve2D
@@ -101,27 +101,29 @@ func highlight(robot_pos:Vector2i, type:String ,range:int):
 							elif astar_grid.is_point_solid(i+Vector2i.UP) and layer_type == 1 :
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.UP):
 									$Highlight.set_cell(1,i+Vector2i.UP,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.UP):
 									$Highlight.set_cell(1,i+Vector2i.UP,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.UP,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
-									_temp_solid_astargrid.append(i+Vector2i.UP)
 							elif astar_grid.is_point_solid(i+Vector2i.UP) and layer_type == 2 :
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.UP):
 									$Highlight.set_cell(2,i+Vector2i.UP,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.UP):
 									$Highlight.set_cell(2,i+Vector2i.UP,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.UP,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.UP]
 									astar_grid.set_point_solid(i+Vector2i.UP,true)
-									_temp_solid_astargrid.append(i+Vector2i.UP)
 							elif !astar_grid.is_point_solid(i+Vector2i.UP) :
 								$Highlight.set_cell(1,i+Vector2i.UP,0,Vector2i(0,0))
 								highlight_zone += [i+Vector2i.UP]
@@ -134,27 +136,29 @@ func highlight(robot_pos:Vector2i, type:String ,range:int):
 							elif astar_grid.is_point_solid(i+Vector2i.DOWN) and layer_type == 1:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.DOWN):
 									$Highlight.set_cell(1,i+Vector2i.DOWN,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.DOWN):
 									$Highlight.set_cell(1,i+Vector2i.DOWN,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.DOWN,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
-									_temp_solid_astargrid.append(i+Vector2i.DOWN)
 							elif astar_grid.is_point_solid(i+Vector2i.DOWN) and layer_type == 2:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.DOWN):
 									$Highlight.set_cell(2,i+Vector2i.DOWN,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.DOWN):
 									$Highlight.set_cell(2,i+Vector2i.DOWN,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.DOWN,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.DOWN]
 									astar_grid.set_point_solid(i+Vector2i.DOWN,true)
-									_temp_solid_astargrid.append(i+Vector2i.DOWN)
 							elif !astar_grid.is_point_solid(i+Vector2i.DOWN) :
 								$Highlight.set_cell(1,i+Vector2i.DOWN,0,Vector2i(0,0))
 								highlight_zone += [i+Vector2i.DOWN]
@@ -167,27 +171,29 @@ func highlight(robot_pos:Vector2i, type:String ,range:int):
 							elif astar_grid.is_point_solid(i+Vector2i.LEFT) and layer_type == 1:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.LEFT):
 									$Highlight.set_cell(1,i+Vector2i.LEFT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.LEFT):
 									$Highlight.set_cell(1,i+Vector2i.LEFT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.LEFT,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
-									_temp_solid_astargrid.append(i+Vector2i.LEFT)
 							elif astar_grid.is_point_solid(i+Vector2i.LEFT) and layer_type == 2:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.LEFT):
 									$Highlight.set_cell(2,i+Vector2i.LEFT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.LEFT):
 									$Highlight.set_cell(2,i+Vector2i.LEFT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.LEFT,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.LEFT]
 									astar_grid.set_point_solid(i+Vector2i.LEFT,true)
-									_temp_solid_astargrid.append(i+Vector2i.LEFT)
 							elif !astar_grid.is_point_solid(i+Vector2i.LEFT) :
 								$Highlight.set_cell(1,i+Vector2i.LEFT,0,Vector2i(0,0))
 								highlight_zone += [i+Vector2i.LEFT]
@@ -200,27 +206,29 @@ func highlight(robot_pos:Vector2i, type:String ,range:int):
 							elif astar_grid.is_point_solid(i+Vector2i.RIGHT) and layer_type == 1:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.RIGHT):
 									$Highlight.set_cell(1,i+Vector2i.RIGHT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.RIGHT):
 									$Highlight.set_cell(1,i+Vector2i.RIGHT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.RIGHT,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
-									_temp_solid_astargrid.append(i+Vector2i.RIGHT)
 							elif astar_grid.is_point_solid(i+Vector2i.RIGHT) and layer_type == 2:
 								if team == "redTeam" and robots_manager.robots["redTeam"]["object"].has(i+Vector2i.RIGHT):
 									$Highlight.set_cell(2,i+Vector2i.RIGHT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
 								elif team =="blueTeam" and robots_manager.robots["blueTeam"]["object"].has(i+Vector2i.RIGHT):
 									$Highlight.set_cell(2,i+Vector2i.RIGHT,0,Vector2i(0,0))
+									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
-								else :
+								else:
 									$Highlight.set_cell(3,i+Vector2i.RIGHT,0,Vector2i(0,0))
 									highlight_zone += [i+Vector2i.RIGHT]
 									astar_grid.set_point_solid(i+Vector2i.RIGHT,true)
-									_temp_solid_astargrid.append(i+Vector2i.RIGHT)
 							elif !astar_grid.is_point_solid(i+Vector2i.RIGHT):
 								$Highlight.set_cell(1,i+Vector2i.RIGHT,0,Vector2i(0,0))
 								highlight_zone += [i+Vector2i.RIGHT]
@@ -229,11 +237,6 @@ func highlight(robot_pos:Vector2i, type:String ,range:int):
 			#if highlight_border.has(g):
 				#highlight_zone.erase(g)
 				#$Highlight.erase_cell(layer_type,g)
-
-#func _set_to_normal_astarsolid():
-	#for i in _temp_solid_astargrid :
-		#astar_grid.set_point_solid(i,true)
-
 # Todo : Gridder set on ready
 func _ready():
 	#Ketika script berjalan didalam game
@@ -268,6 +271,7 @@ func _ready():
 	
 	
 	visible = false
+	$Effect.visible = false
 
 # Todo : show is robot deploying
 func _process(delta):
@@ -291,7 +295,7 @@ func create_robot(robotpos : Vector2i):
 				var unit : robot = robots.duplicate()
 				add_child(unit)
 				unit.position = map_to_local(robotpos)
-				unit.get_node("robot_sprite").modulate = "#b1003e"
+				unit.get_node("robot_sprite").modulate = "#fc8070"
 				robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)] =  unit
 				robots_manager.robots["redTeam"]["data"][local_to_map(unit.position)] = (
 					robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -299,11 +303,12 @@ func create_robot(robotpos : Vector2i):
 				robots_manager.mechAction[unit] = [1,1,1]
 				astar_grid.set_point_solid(robotpos)
 				unit.connect("death",_on_robot_death)
+				unit.connect("destroy",_on_robot_destroy)
 			else :
 				var unit : robot = robots.duplicate()
 				add_child(unit)
 				unit.position = map_to_local(robotpos)
-				unit.get_node("robot_sprite").modulate = "#4c2aed"
+				unit.get_node("robot_sprite").modulate = "#86c2ff"
 				robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)] =  unit
 				robots_manager.robots["blueTeam"]["data"][local_to_map(unit.position)] = (
 					robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -311,6 +316,7 @@ func create_robot(robotpos : Vector2i):
 				robots_manager.mechAction[unit] = [1,1,1] # set mechAction in battle manager 
 				astar_grid.set_point_solid(robotpos)
 				unit.connect("death",_on_robot_death)
+				unit.connect("destroy",_on_robot_destroy)
 			robot_count += 1
 			if robot_count < 3 :
 				$Deployzone.position = Vector2i(map_to_local(redTeam_deploy_zone.min())) - (tile_set.cellSize/2)
@@ -355,14 +361,49 @@ func _attack_target(action:String,attacker :robot, target):
 	if is_instance_of(target,robot):
 		if _helper_selected_action == "attack":
 			target.on_damaged(attacker.attackDamage)
+			$Effect.position.x = target.position.x
+			$Effect.position.y = target.position.y - 20
+			$Effect.visible = true
+			$Effect/AnimatedSprite2D.play("Explosion2")
+			$turntime.paused = true
+			await get_tree().create_timer(0.5).timeout
+			$turntime.paused = false
+			$Effect.visible = false
+			if target.robotState == 10 :
+				attacker.health = target.prizeHealth
+				attacker.energy = target.prizeEnergy
+				attacker.get_new_value_attribute()
 		elif _helper_selected_action == "skill":
 			target.on_damaged(attacker.skillDamage)
+			$Effect.position.x = target.position.x
+			$Effect.position.y = target.position.y - 20
+			$Effect.visible = true
+			$Effect/AnimatedSprite2D.play("Explosion5")
+			$turntime.paused = true
+			await get_tree().create_timer(0.5).timeout
+			$turntime.paused = false
+			$Effect.visible = false
+			if target.robotState == 10 :
+				attacker.health = target.prizeHealth
+				attacker.energy = target.prizeEnergy
+				attacker.get_new_value_attribute()
 	elif is_instance_of(target,Obstacles):
 		target.onDamage(1)
+		$Effect.position.x = target.position.x
+		$Effect.position.y = target.position.y - 20
+		$Effect.visible = true
+		$Effect/AnimatedSprite2D.play("Explosion1")
+		$turntime.paused = true
+		await get_tree().create_timer(0.5).timeout
+		$turntime.paused = false
+		$Effect.visible = false
 		if target.hpObstacle == 0 :
 			var tempClearSolid = obstacle_manager.obstacles.find_key(target)
 			astar_grid.set_point_solid(tempClearSolid,false)
 			obstacle_manager.obstacles.erase(tempClearSolid)
+			attacker.health = target.prizeHealth
+			attacker.energy = target.prizeEnergy
+			attacker.get_new_value_attribute()
 	actionoption.visible = false
 	_is_action_selected = false
 	_helpper_is_play = false
@@ -424,6 +465,13 @@ func _input(event):
 					else :
 						if get_parent().get_node("Container").visible == true :
 							get_parent().get_node("Container").visible = false
+			else :
+				if _helper_hover and _is_action_selected:
+					gridder = local_to_map(event.position-position)
+					if _helper_selected_action == "move" and _is_action_selected:
+						if highlight_zone.has(gridder):
+							prerender()
+							$Pergerakan.posisikan_indikator(map_to_local(gridder)) # fix may be causing error in next progress
 	#jika input(event) adalah sebuah tombol keyboard
 		if event is InputEventKey:
 	#kalkulasi arah gridder berdasarkan input
@@ -453,7 +501,7 @@ func _input(event):
 			#prerender()
 	#
 func lets_select_unit():
-	if robots_manager.robots[team]["object"].has(gridder) and !_is_action_selected:
+	if robots_manager.robots[team]["object"].has(gridder) and !_is_action_selected and robots_manager.robots[team]["object"][gridder].robotState != 9:
 		#print(robots_manager.robots[team]["object"][gridder].get_robot_datas()) penting!!!
 		actionoption.position = map_to_local(gridder)+Vector2(32,0)
 		highlight_zone.clear()
@@ -493,7 +541,6 @@ func lets_select_unit():
 				robots_manager.robots[team]["object"][start].consume_energy(robots_manager.robots[team]["object"][start].moveEnergy,_helper_multiple)
 				move_unit()
 				_helper_multiple = 1
-				print('phe red')
 			elif _helper_is_robot_in_target_loc:
 				_is_action_selected = false
 				_helper_selected_action = ""
@@ -667,8 +714,8 @@ func _on_enterarena_timeout():
 	create_obstacles_multiplayer()
 
 
-func _on_battle_manager_battleended():
-	battle_manager.set_battle_state(battle_manager.Battlestate.BATTLEEND)
+func _on_battle_manager_battleended(value):
+	battle_manager.set_battle_state(battle_manager.BattleState.BATTLEEND)
 	$turntime.stop()
 
 
@@ -698,19 +745,21 @@ func _on_battle_manager_switched():
 			actionoption.visible = false
 	if team == "redTeam":
 		for child in robots_manager.robots["redTeam"]["object"]:
-			if robots_manager.mechAction[robots_manager.robots["redTeam"]["object"][child]] == [1,1,1]:
+			if robots_manager.mechAction[robots_manager.robots["redTeam"]["object"][child]] == [1,1,1] and robots_manager.robots["redTeam"]["object"][child].robotState != 9:
 				robots_manager.robots["redTeam"]["object"][child].set_robot_state(robots_manager.robots["redTeam"]["object"][child].RobotState.IDLE)
 			robots_manager.robots["redTeam"]["object"][child].restore_energy()
 			robots_manager.mechAction[robots_manager.robots["redTeam"]["object"][child]] = [1,1,1]
 	if team == "blueTeam" :
 		for child in robots_manager.robots["blueTeam"]["object"]:
-			if robots_manager.mechAction[robots_manager.robots["blueTeam"]["object"][child]] == [1,1,1]:
+			if robots_manager.mechAction[robots_manager.robots["blueTeam"]["object"][child]] == [1,1,1] and robots_manager.robots["blueTeam"]["object"][child].robotState != 9:
 				robots_manager.robots["blueTeam"]["object"][child].set_robot_state(robots_manager.robots["blueTeam"]["object"][child].RobotState.IDLE)
 			robots_manager.robots["blueTeam"]["object"][child].restore_energy()
 			robots_manager.mechAction[robots_manager.robots["blueTeam"]["object"][child]] = [1,1,1]
 	redpoint.text = str(battle_manager.turnPoint[0])
 	bluepoint.text = str(battle_manager.turnPoint[1])
 	turned.emit(team)
+	if battle_manager.turnPoint[0] == 0 and battle_manager.turnPoint[1] == 0 :
+		ended.emit()
 
 # FIXME : Deleted battle_manager.get_battle_state() == 3
 func _on_button_end_turn_button_down():
@@ -721,13 +770,13 @@ func _on_button_end_turn_button_down():
 		$turntime.start()
 		
 func _on_robot_death(value):
-	print("d")
+	pass
+
+func _on_robot_destroy(value):
+	astar_grid.set_point_solid(local_to_map(value.position),false)
 	if team == "redTeam":
 		var key = local_to_map(value.position)
 		robots_manager.robots["blueTeam"]["object"].erase(key)
-		value.queue_free()
 	elif team == "blueTeam":
 		var key = local_to_map(value.position)
 		robots_manager.robots["redTeam"]["object"].erase(key)
-		value.queue_free()
-	print(robots_manager.robots)
