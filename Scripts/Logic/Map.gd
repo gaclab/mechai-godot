@@ -800,3 +800,9 @@ func _on_robot_destroy(value):
 	elif team == "blueTeam":
 		var key = local_to_map(value.position)
 		robots_manager.robots["redTeam"]["object"].erase(key)
+
+
+func _on_go_to_menu_button_down():
+	 # Replace with function body.
+	if visible == true :
+		visible = false

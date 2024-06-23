@@ -32,3 +32,9 @@ func _on_battle_init():
 	else:
 		nextState.emit()
 		hide()
+
+
+func _on_go_to_menu_button_down():
+	$MarginContainer/VBoxContainer/MainTab.current_tab = 0
+	$MarginContainer/VBoxContainer/MainTab/BattleSetup.current_tab = 0
+	show()
