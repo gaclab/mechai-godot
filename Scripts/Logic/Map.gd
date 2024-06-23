@@ -331,11 +331,28 @@ func create_robot(robotpos : Vector2i):
 		$Deployzone.visible = false
 		$turntime.start()
 
+var preobs = []
+func dev_obstacle_editor(robotpos : Vector2i):
+	if !astar_grid.is_point_solid(robotpos): #memposisikan setiap obstacle
+		var unit : Obstacles = Obstacle.duplicate()
+		var sb = unit.get_node("solidbar")
+		sb.visible = false
+		unit.position = map_to_local(robotpos) #memposisikan setiap obstacle
+		add_child(unit) #menambahkan setiap obstacle kedalam tree
+		preobs = preobs + [robotpos]
+		unit.playanimatedspawn()
+		astar_grid.set_point_solid(robotpos)
+		await get_tree().create_timer(0.1).timeout
+
 #Fixme obstacle timer is in here
 func create_obstacles_multiplayer():
 	#bagian generate obstacle
 		#generate obstacle in multiplayer
-		var obstacleLocation = Multiplayer._getMultiplayerLocation(self) #ambil posisi seluruh obstacle
+		var obstacleLocation = PackedVector2Array()
+		if Global.maptype == 2:
+			obstacleLocation = Multiplayer._getMultiplayerLocation(self) #ambil posisi seluruh obstacle
+		elif Global.maptype == 1:
+			obstacleLocation = Global.premaps[Global.selected_premap]
 		Obstacle.get_node("solidbar").visible = false
 		for i in obstacleLocation:
 			var stack : Obstacles = Obstacle.duplicate() #duplikasi objek obstacle
@@ -711,7 +728,10 @@ func _on_battle_manager_changed_state():
 
 func _on_enterarena_timeout():
 	battle_manager.set_battle_state(battle_manager.BattleState.OBSTACLECREATE)
-	create_obstacles_multiplayer()
+	if Global.maptype == 2 or Global.maptype == 1:
+		create_obstacles_multiplayer()
+	elif Global.maptype == 0:
+		_on_obstacle_timer_timeout()
 
 
 func _on_battle_manager_battleended(value):

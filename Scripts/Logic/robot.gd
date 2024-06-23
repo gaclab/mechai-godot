@@ -83,7 +83,7 @@ func set_robot_state(stateName : RobotState):
 			robotState = 7
 		RobotState.IDLE:
 			robotState = 8
-		RobotState.DEATH:
+		_:
 			robotState = 9
 		_:
 			robotState = 10
