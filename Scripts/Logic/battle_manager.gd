@@ -59,8 +59,7 @@ func _get_winner_on_time_out(totalHp : Array,totalRobot : Array)->String:
 		result = "red" if totalRobot[0]>totalRobot[1] else "blue"
 	return result
 
-
-func _on_preparation_next_state():
+func _ready():
 	set_battle_state(BattleState.ENTERARENA)
 
 

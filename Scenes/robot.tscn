@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bceds718lcs4v"]
+[gd_scene load_steps=29 format=3 uid="uid://bceds718lcs4v"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/robot.gd" id="1_g1klt"]
 [ext_resource type="Texture2D" uid="uid://dottut37olcds" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle1.png" id="2_3c61q"]
@@ -17,6 +17,10 @@
 [ext_resource type="Texture2D" uid="uid://fcyaj8kohap8" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle8.png" id="9_xfpgx"]
 [ext_resource type="Texture2D" uid="uid://bia6r2w3e68im" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle9.png" id="10_8bb8q"]
 [ext_resource type="Texture2D" uid="uid://csndtu5jfeoe" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle10.png" id="11_dngb0"]
+[ext_resource type="AudioStream" uid="uid://e7cthdhsbqnp" path="res://Assets/Sounds/Battle/Mecha DAMAGED 9.wav" id="18_y0ftm"]
+[ext_resource type="AudioStream" uid="uid://c1doe5udyrhgu" path="res://Assets/Sounds/Battle/Mecha MALFUNCTION 2.wav" id="19_d7jyn"]
+[ext_resource type="AudioStream" uid="uid://dusmv825ufcq4" path="res://Assets/Sounds/Battle/Mecha LASER BEAM SHORT 10.wav" id="20_amkg4"]
+[ext_resource type="AudioStream" uid="uid://b4ligewdhj2pd" path="res://Assets/Sounds/Battle/Mecha LASER BEAM SHORT 7.wav" id="21_dj0kc"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8pqdq"]
 load_path = "res://.godot/imported/Mechsample.png-5ecbe99e4e78e0fbe8ee887ee1574d14.ctex"
@@ -164,3 +168,15 @@ offset_bottom = -25.086
 theme_override_styles/background = SubResource("StyleBoxLine_utvy0")
 theme_override_styles/fill = SubResource("StyleBoxFlat_o1jnu")
 show_percentage = false
+
+[node name="destroy" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_y0ftm")
+
+[node name="death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("19_d7jyn")
+
+[node name="skill" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_amkg4")
+
+[node name="attack" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("21_dj0kc")

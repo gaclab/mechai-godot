@@ -23,6 +23,7 @@ var _helpper_is_play : bool = false # indikator untuk mencegah aksi ketika robot
 var _helper_hover:bool = false # indikator supaya selama crusor diatas menu action maka tidak bisa select 
 var _temp_action_point : Array = [1,1,1]
 var _helper_selected_action : String; # indikator untuk menyimpan action terakhir yang dipilih guna menyesuaikan kebutuhan
+var _helper_create_once_obstacle : bool = false # sebagai bantuan agar hanya 1x create obstacle
 var gridder = Vector2i(0,0)
 var points : Curve2D
 var astar_grid = AStarGrid2D.new()
@@ -45,29 +46,29 @@ var robots = load("res://Scenes/robot.tscn").instantiate()
 var Multiplayer : Resource = preload("res://Assets/Tres/MultiPlayerObstacle.tres")
 @onready var robot_information = get_parent().get_node("Container/VBoxContainer")
 
-@export var Bake = false :
-	set(val) : generate_ulang_map()
-func generate_ulang_map():
-	clear()
-	position = ((ukuran_jendela) - (tile_set.tile_size*tile_set.mapSize))/2
-	var lokasi_pojok = (-(ukuran_jendela) + (tile_set.tile_size*tile_set.mapSize))/2
-	var lokasi_pojok_snapped = local_to_map(lokasi_pojok)
-	while lokasi_pojok_snapped.y <= local_to_map(ukuran_jendela+lokasi_pojok).y:
-		var tempx = lokasi_pojok_snapped.x
-		while lokasi_pojok_snapped.x <= local_to_map(ukuran_jendela+lokasi_pojok).x:
-			
-			if	(
-				lokasi_pojok_snapped.y >= 0 and lokasi_pojok_snapped.y < tile_set.mapSize.y
-				and 
-				lokasi_pojok_snapped.x >= 0 and lokasi_pojok_snapped.x < tile_set.mapSize.x
-				):
-				set_cell(0,lokasi_pojok_snapped,1,Vector2i(34,1))
-			else:
-				set_cell(1,lokasi_pojok_snapped,1,Vector2i(35,3))
-			
-			lokasi_pojok_snapped.x += 1
-		lokasi_pojok_snapped.y += 1
-		lokasi_pojok_snapped.x = tempx
+#@export var Bake = false :
+	#set(val) : generate_ulang_map()
+#func generate_ulang_map():
+	#clear()
+	#position = ((ukuran_jendela) - (tile_set.tile_size*tile_set.mapSize))/2
+	#var lokasi_pojok = (-(ukuran_jendela) + (tile_set.tile_size*tile_set.mapSize))/2
+	#var lokasi_pojok_snapped = local_to_map(lokasi_pojok)
+	#while lokasi_pojok_snapped.y <= local_to_map(ukuran_jendela+lokasi_pojok).y:
+		#var tempx = lokasi_pojok_snapped.x
+		#while lokasi_pojok_snapped.x <= local_to_map(ukuran_jendela+lokasi_pojok).x:
+			#
+			#if	(
+				#lokasi_pojok_snapped.y >= 0 and lokasi_pojok_snapped.y < tile_set.mapSize.y
+				#and 
+				#lokasi_pojok_snapped.x >= 0 and lokasi_pojok_snapped.x < tile_set.mapSize.x
+				#):
+				#set_cell(0,lokasi_pojok_snapped,1,Vector2i(34,1))
+			#else:
+				#set_cell(1,lokasi_pojok_snapped,1,Vector2i(35,3))
+			#
+			#lokasi_pojok_snapped.x += 1
+		#lokasi_pojok_snapped.y += 1
+		#lokasi_pojok_snapped.x = tempx
 
 
 
@@ -270,13 +271,6 @@ func _ready():
 		astar_grid.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
 		#
 		astar_grid.update() #update astar_grid
-	#
-
-	#peletakan posisi indikator
-		#$Pergerakan.posisikan_indikator(map_to_local(gridder))
-	#
-	
-	
 	visible = false
 	$Effect.visible = false
 
@@ -420,6 +414,7 @@ func _attack_target(action:String,attacker :robot, target):
 			$Effect.visible = true
 			$Effect/AnimatedSprite2D.play("Explosion2")
 			$turntime.paused = true
+			attacker.get_node("attack").play()
 			await get_tree().create_timer(0.5).timeout
 			$turntime.paused = false
 			$Effect.visible = false
@@ -434,6 +429,7 @@ func _attack_target(action:String,attacker :robot, target):
 			$Effect.visible = true
 			$Effect/AnimatedSprite2D.play("Explosion5")
 			$turntime.paused = true
+			attacker.get_node("skill").play()
 			await get_tree().create_timer(0.5).timeout
 			$turntime.paused = false
 			$Effect.visible = false
@@ -448,6 +444,7 @@ func _attack_target(action:String,attacker :robot, target):
 		$Effect.visible = true
 		$Effect/AnimatedSprite2D.play("Explosion1")
 		$turntime.paused = true
+		attacker.get_node("attack").play()
 		await get_tree().create_timer(0.5).timeout
 		$turntime.paused = false
 		$Effect.visible = false
@@ -474,6 +471,7 @@ func _input(event):
 					if !_helper_hover and !_helpper_is_play:
 						lets_select_unit()
 				elif battle_manager.get_battle_state() == 3:
+					get_parent().get_node("Deploy_sound").play()
 					create_robot(gridder)
 				#tambahan kondisi tombol diatas
 		if event is InputEventMouseMotion:
@@ -785,9 +783,12 @@ func _on_battle_manager_changed_state():
 
 func _on_enterarena_timeout():
 	battle_manager.set_battle_state(battle_manager.BattleState.OBSTACLECREATE)
-	if Global.maptype == 2 or Global.maptype == 1:
+	if (Global.maptype == 2 or Global.maptype == 1) and !_helper_create_once_obstacle:
+		print("dengan obstacle")
+		_helper_create_once_obstacle = true
 		create_obstacles_multiplayer()
-	elif Global.maptype == 0:
+	elif Global.maptype == 0 :
+		print("tanpa obstacle")
 		_on_obstacle_timer_timeout()
 
 
@@ -848,6 +849,19 @@ func _on_button_end_turn_button_down():
 		
 func _on_robot_death(value):
 	$button_end_turn.recount()
+	var bluer = [9,9,9]
+	var redier = [9,9,9]
+	var blur = []
+	var redir = []
+	for red in redies:
+		redir = redir + [red.robotState]
+	for blue in blues:
+		blur = blur + [blue.robotState]
+	
+	if blur == bluer or redir == redier:
+		ended.emit()
+
+
 
 func _on_robot_destroy(value):
 	astar_grid.set_point_solid(local_to_map(value.position),false)
@@ -860,6 +874,6 @@ func _on_robot_destroy(value):
 
 
 func _on_go_to_menu_button_down():
-	 # Replace with function body.
+	Global.clear_battle()
 	if visible == true :
 		visible = false

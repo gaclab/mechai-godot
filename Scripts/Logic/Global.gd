@@ -9,3 +9,7 @@ var premaps = [
 
 var selected_premap = 0
 var maptype = 0
+var is_battle_end : bool = false
+
+func clear_battle():
+	is_battle_end = true
