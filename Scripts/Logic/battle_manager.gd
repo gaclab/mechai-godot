@@ -9,7 +9,7 @@ signal switched()
 enum BattleState {PREPARATION,ENTERARENA,OBSTACLECREATE,DEPLOYING,BATTLE,BATTLEEND,RESULTBATTLE}
 var battleState:int
 var battleLog :Array = []
-var turnPoint: Array = [15,15] # red | blue 
+var turnPoint: Array = [30,30] # red | blue 
 var winner := ""
 @onready var robot_manager = get_parent().get_node("robots_manager")
 func get_battle_state()->int:

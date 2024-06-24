@@ -1,6 +1,6 @@
-[gd_scene load_steps=99 format=3 uid="uid://sksky0mp0hff"]
+[gd_scene load_steps=121 format=3 uid="uid://sksky0mp0hff"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Main scenes/MainMenu.tscn" id="1_ead4a"]
+[ext_resource type="PackedScene" uid="uid://myk330gicjjl" path="res://Scenes/Main scenes/MainMenu.tscn" id="1_ead4a"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="1_qhorj"]
 [ext_resource type="Script" path="res://Scripts/Logic/robots_manager.gd" id="2_l6a6d"]
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Scenes/Main scenes/map.tscn" id="3_4e0xx"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="5_o3vag"]
 [ext_resource type="Script" path="res://Scripts/Logic/robot_information.gd" id="5_wjxfy"]
 [ext_resource type="Texture2D" uid="uid://b3l1i1lraex81" path="res://Assets/Tres/Highlight.tres" id="6_eutyx"]
-[ext_resource type="Theme" uid="uid://criq2ail4thcd" path="res://Assets/Tres/Button.tres" id="7_mfj8s"]
+[ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="10_ib7h4"]
+[ext_resource type="Script" path="res://Scripts/Logic/informa.gd" id="11_hslhf"]
 [ext_resource type="Script" path="res://Scripts/Logic/end_battle.gd" id="11_q6rer"]
 [ext_resource type="Texture2D" uid="uid://cv7jf2qgud133" path="res://Assets/Sprites/Effects/Explosion/Explosion1.png" id="11_uu87x"]
 [ext_resource type="Texture2D" uid="uid://5bwsybtxqm2r" path="res://Assets/Sprites/Effects/Explosion/Explosion2.png" id="12_7a7js"]
@@ -109,6 +110,174 @@ texture_region_size = Vector2i(64, 64)
 [sub_resource type="TileSet" id="TileSet_uwaoh"]
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_mfxd6")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2nsx"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lawkc"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.588235, 0, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t0y1c"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(1, 1, 1, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.588235, 0, 1, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2caiu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pqco"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ii8gq"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0.988235, 0, 0.298039, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8x5wv"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y614e"]
+bg_color = Color(1, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8scrc"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jmwgp"]
+bg_color = Color(0, 0, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uyjtv"]
+bg_color = Color(0.988235, 0, 0.298039, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r34cy"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dlhp2"]
+bg_color = Color(0.988235, 0, 0.298039, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m5ic7"]
+bg_color = Color(0.988235, 0, 0.298039, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_34odd"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3jmwk"]
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
+bg_color = Color(0, 0, 0.992157, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 0.784314)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cap2v"]
+bg_color = Color(0, 0, 0.992157, 1)
+border_width_left = 4
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtlwf"]
+bg_color = Color(0, 0, 0.992157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2c812"]
+bg_color = Color(0, 0, 0.992157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 4
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mc76u"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y37sy"]
+bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arg6u"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -417,6 +586,7 @@ script = ExtResource("4_j6xsb")
 
 [node name="Container" type="Control" parent="."]
 visible = false
+z_index = 10
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -791,47 +961,267 @@ layer_3/tile_data = PackedInt32Array()
 one_shot = true
 
 [node name="button_end_turn" type="Button" parent="Map"]
-offset_left = -237.631
-offset_top = 551.498
-offset_right = -22.631
-offset_bottom = 627.498
-theme = ExtResource("7_mfj8s")
-theme_override_colors/icon_focus_color = Color(0.955963, 0.955963, 0.955963, 1)
-action_mode = 0
-text = "End turn"
+z_index = 10
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -264.0
+offset_top = 272.5
+offset_right = -20.0
+offset_bottom = 367.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_r2nsx")
+theme_override_styles/hover = SubResource("StyleBoxFlat_lawkc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_t0y1c")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2caiu")
+text = "End Turn"
+script = ExtResource("11_hslhf")
+
+[node name="Red" type="PanelContainer" parent="Map/button_end_turn"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 0
+offset_top = -82.0
+offset_right = 244.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_4pqco")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/button_end_turn/Red"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="redpoint" type="Label" parent="Map/button_end_turn/Red/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_ii8gq")
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/button_end_turn/Red/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Hp" type="MarginContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Hp"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_styles/background = SubResource("StyleBoxFlat_8x5wv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y614e")
+
+[node name="Ep" type="MarginContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ep"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_styles/background = SubResource("StyleBoxFlat_8scrc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jmwgp")
+
+[node name="Ut" type="MarginContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="R1" type="PanelContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_uyjtv")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R1"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
+
+[node name="R2" type="PanelContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_dlhp2")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R2"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
+
+[node name="R3" type="PanelContainer" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_m5ic7")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Red/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R3"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
+
+[node name="Blue" type="PanelContainer" parent="Map/button_end_turn"]
+custom_minimum_size = Vector2(244, 0)
+layout_mode = 0
+offset_top = 95.0
+offset_right = 244.0
+offset_bottom = 177.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_34odd")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/button_end_turn/Blue"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="bluepoint" type="Label" parent="Map/button_end_turn/Blue/HBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_3jmwk")
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Map/button_end_turn/Blue/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="Hp" type="MarginContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Hp"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_styles/background = SubResource("StyleBoxFlat_8x5wv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_y614e")
+
+[node name="Ep" type="MarginContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ep"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_styles/background = SubResource("StyleBoxFlat_8scrc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_jmwgp")
+
+[node name="Ut" type="MarginContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="R1" type="PanelContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_cap2v")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R1"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
+
+[node name="R2" type="PanelContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_vtlwf")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R2"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
+
+[node name="R3" type="PanelContainer" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_2c812")
+
+[node name="Panel" type="Panel" parent="Map/button_end_turn/Blue/HBoxContainer/VBoxContainer/Ut/HBoxContainer/R3"]
+custom_minimum_size = Vector2(4, 4)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_r34cy")
 
 [node name="turntime" type="Timer" parent="Map"]
 wait_time = 31.0
 
-[node name="timeinformation" type="Label" parent="Map"]
-offset_left = -216.0
-offset_top = 51.0
-offset_right = -16.0
-offset_bottom = 141.0
-theme_override_font_sizes/font_size = 53
+[node name="Time" type="PanelContainer" parent="Map"]
+self_modulate = Color(0, 1, 0, 1)
+z_index = 10
+offset_left = 220.0
+offset_top = -64.0
+offset_right = 420.0
+offset_bottom = 26.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mc76u")
+
+[node name="timeinformation" type="Label" parent="Map/Time"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("10_ib7h4")
+theme_override_font_sizes/font_size = 40
 text = "00:00"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="redpoint" type="Label" parent="Map"]
-offset_left = -322.76
-offset_top = 175.934
-offset_right = -238.76
-offset_bottom = 252.934
-theme_override_colors/font_color = Color(0.987397, 0, 0.29816, 1)
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="bluepoint" type="Label" parent="Map"]
-offset_left = -141.112
-offset_top = 168.189
-offset_right = -56.1122
-offset_bottom = 242.189
-theme_override_colors/font_color = Color(0, 0, 0.992157, 1)
-theme_override_font_sizes/font_size = 30
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="Panel" type="Panel" parent="Map/Time"]
+self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_y37sy")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="Map"]
 visible = false

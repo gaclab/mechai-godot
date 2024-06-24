@@ -8,10 +8,10 @@ signal ended
 @onready var action_option_move = $"action-option/move"
 @onready var action_option_attack = $"action-option/attack"
 @onready var action_option_skill = $"action-option/skill"
-@onready var timeinformation = $timeinformation
+@onready var timeinformation = $Time/timeinformation
 @onready var turntime = $turntime
-@onready var redpoint = $redpoint
-@onready var bluepoint = $bluepoint
+@onready var redpoint = $button_end_turn/Red/HBoxContainer/redpoint
+@onready var bluepoint = $button_end_turn/Blue/HBoxContainer/bluepoint
 @onready var robots_manager : Node;
 @onready var battle_manager : Node;
 @onready var obstacle_manager : Node;
@@ -32,6 +32,13 @@ var packedpoints : PackedVector2Array
 var highlight_zone = []
 var redTeam_deploy_zone = []
 var blueTeam_deploy_zone = []
+
+var blues = []
+var redies = []
+var blueEP = 0
+var blueHP = 0
+var redEP = 0
+var redHP = 0
 
 var Obstacle = load("res://Scenes/Main scenes/obstacles.tscn").instantiate()
 var robots = load("res://Scenes/robot.tscn").instantiate()
@@ -275,7 +282,22 @@ func _ready():
 
 # Todo : show is robot deploying
 func _process(delta):
+	#recount()
 	if not Engine.is_editor_hint():
+		if time_to_live()[1] >= 10:
+			$Time.self_modulate = Color.GREEN
+			$Time/Panel.self_modulate = Color.GREEN
+		elif time_to_live()[1] >= 1:
+			if time_to_live()[1] % 2 == 1:
+				$Time.self_modulate = Color.YELLOW
+				$Time/Panel.self_modulate = Color.YELLOW
+			elif time_to_live()[1] % 2 == 0:
+				$Time.self_modulate = Color.BLACK
+				$Time/Panel.self_modulate = Color.BLACK
+
+		else:
+			$Time.self_modulate = Color.RED
+			$Time/Panel.self_modulate = Color.RED
 		timeinformation.text = "%02d:%02d" % time_to_live()
 # Fixme : on Game only run
 		
@@ -296,6 +318,8 @@ func create_robot(robotpos : Vector2i):
 				add_child(unit)
 				unit.position = map_to_local(robotpos)
 				unit.get_node("robot_sprite").modulate = "#fc8070"
+				redies = redies + [unit]
+				$button_end_turn.redies = $button_end_turn.redies + [unit]
 				robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)] =  unit
 				robots_manager.robots["redTeam"]["data"][local_to_map(unit.position)] = (
 					robots_manager.robots["redTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -309,6 +333,8 @@ func create_robot(robotpos : Vector2i):
 				add_child(unit)
 				unit.position = map_to_local(robotpos)
 				unit.get_node("robot_sprite").modulate = "#86c2ff"
+				blues = blues + [unit]
+				$button_end_turn.blues = $button_end_turn.blues + [unit]
 				robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)] =  unit
 				robots_manager.robots["blueTeam"]["data"][local_to_map(unit.position)] = (
 					robots_manager.robots["blueTeam"]["object"][local_to_map(unit.position)].get_robot_datas()
@@ -318,6 +344,7 @@ func create_robot(robotpos : Vector2i):
 				unit.connect("death",_on_robot_death)
 				unit.connect("destroy",_on_robot_destroy)
 			robot_count += 1
+			$button_end_turn.recount()
 			if robot_count < 3 :
 				$Deployzone.position = Vector2i(map_to_local(redTeam_deploy_zone.min())) - (tile_set.cellSize/2)
 				$Deployzone.size = Vector2i(map_to_local(redTeam_deploy_zone.max() - redTeam_deploy_zone.min())) + (tile_set.cellSize/2)
@@ -327,6 +354,16 @@ func create_robot(robotpos : Vector2i):
 				$Deployzone.size = Vector2i(map_to_local(blueTeam_deploy_zone.max() - blueTeam_deploy_zone.min())) + (tile_set.cellSize/2)
 				$Deployzone.modulate = Color.BLUE
 	if robot_count == 6:
+		for red in redies:
+			redHP += red.health
+			redEP += red.energy
+			$button_end_turn/Blue/HBoxContainer/VBoxContainer/Hp/ProgressBar.value = 100
+			$button_end_turn/Blue/HBoxContainer/VBoxContainer/Ep/ProgressBar.value = 100
+		for blue in blues:
+			blueHP += blue.health
+			blueEP += blue.energy
+			$button_end_turn/Red/HBoxContainer/VBoxContainer/Hp/ProgressBar.value = 100
+			$button_end_turn/Red/HBoxContainer/VBoxContainer/Ep/ProgressBar.value = 100
 		battle_manager.set_battle_state(battle_manager.BattleState.BATTLE)
 		$Deployzone.visible = false
 		$turntime.start()
@@ -619,8 +656,28 @@ func lets_select_unit():
 			_helpper_is_play = false
 			highlight_zone.clear()
 			$Highlight.clear()
+		recount()
 	if _is_action_selected:
 		_helper_selected_action = ""
+
+
+
+
+func recount():
+	var redHPnow = 0
+	var redEPnow = 0
+	var blueHPnow = 0
+	var blueEPnow = 0
+	for red in redies:
+		redHPnow += red.health
+		redEPnow += red.energy
+	for blue in blues:
+		blueHPnow += blue.health
+		blueEPnow += blue.energy
+	$button_end_turn/Blue/HBoxContainer/VBoxContainer/Hp/ProgressBar.value = blueHPnow*100/blueHP
+	$button_end_turn/Blue/HBoxContainer/VBoxContainer/Ep/ProgressBar.value = blueEPnow*100/blueEP
+	$button_end_turn/Red/HBoxContainer/VBoxContainer/Hp/ProgressBar.value = redHPnow*100/redHP
+	$button_end_turn/Red/HBoxContainer/VBoxContainer/Ep/ProgressBar.value = redEPnow*100/redEP
 
 func move_unit():
 	if packedpoints.size() > 1: #cek apakah pergerakan lebih dari 1
@@ -790,7 +847,7 @@ func _on_button_end_turn_button_down():
 		$turntime.start()
 		
 func _on_robot_death(value):
-	pass
+	$button_end_turn.recount()
 
 func _on_robot_destroy(value):
 	astar_grid.set_point_solid(local_to_map(value.position),false)
