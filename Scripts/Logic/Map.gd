@@ -793,6 +793,8 @@ func _on_button_end_turn_button_down():
 func _on_robot_death(value):
 	pass
 
+
+
 func _on_robot_destroy(value):
 	astar_grid.set_point_solid(local_to_map(value.position),false)
 	if team == "redTeam":
