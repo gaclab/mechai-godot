@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://cka87ttlt57vc"]
 
 [ext_resource type="Script" path="res://Scripts/Logic/Obstacle.gd" id="1_8jlcl"]
-[ext_resource type="Texture2D" uid="uid://cdmqc2j0rxttw" path="res://Assets/Sprites/Obstacles/Rock6_1.png" id="2_bk4yx"]
+[ext_resource type="Texture2D" uid="uid://ql0vdeasl6y2" path="res://Assets/Sprites/Obstacles/Rock5_1.png" id="2_v3l11"]
 [ext_resource type="Texture2D" uid="uid://dottut37olcds" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle1.png" id="3_c5egm"]
 [ext_resource type="Texture2D" uid="uid://bfliwawmd0736" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle2.png" id="4_s434d"]
 [ext_resource type="Texture2D" uid="uid://cd478j5jnhyh8" path="res://Assets/Sprites/Effects/Explosion_destroy_grey_gas_circle/Explosion_gas_circle3.png" id="5_mt4m3"]
@@ -124,7 +124,7 @@ polygon = PackedVector2Array(-13.3054, -23.7442, -8.11406, -25.8679, -5.87236, -
 
 [node name="Obstacle" type="Sprite2D" parent="."]
 position = Vector2(0, -1000)
-texture = ExtResource("2_bk4yx")
+texture = ExtResource("2_v3l11")
 
 [node name="solidbar" type="ProgressBar" parent="."]
 visible = false

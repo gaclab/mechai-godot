@@ -1,6 +1,5 @@
 [gd_scene load_steps=121 format=3 uid="uid://sksky0mp0hff"]
 
-[ext_resource type="PackedScene" uid="uid://myk330gicjjl" path="res://Scenes/Main scenes/MainMenu.tscn" id="1_ead4a"]
 [ext_resource type="Script" path="res://Scripts/Logic/battle_manager.gd" id="1_qhorj"]
 [ext_resource type="Script" path="res://Scripts/Logic/robots_manager.gd" id="2_l6a6d"]
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="3_4e0xx"]
@@ -95,12 +94,13 @@
 [ext_resource type="Texture2D" uid="uid://b60t42b07axse" path="res://Assets/Sprites/Effects/Nuclear_explosion/Nuclear_explosion10.png" id="91_6p8o4"]
 [ext_resource type="AudioStream" uid="uid://dswq65a8hnx44" path="res://Assets/Sounds/Battle/Mecha TURN ON - OFF 14.wav" id="92_tef3y"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1xta4"]
-bg_color = Color(0.826905, 0.768301, 0.717503, 1)
-corner_radius_top_left = 50
-corner_radius_top_right = 15
-corner_radius_bottom_right = 110
-corner_radius_bottom_left = 10
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3uu8"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mfxd6"]
 resource_name = "Highlight"
@@ -584,7 +584,6 @@ script = ExtResource("2_l6a6d")
 script = ExtResource("4_j6xsb")
 
 [node name="Container" type="Control" parent="."]
-visible = false
 z_index = 10
 layout_mode = 3
 anchors_preset = 0
@@ -600,7 +599,7 @@ offset_right = 1330.0
 offset_bottom = 481.945
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_1xta4")
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3uu8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 2
@@ -617,7 +616,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Robot Information
 "
 
@@ -632,7 +631,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "health		:
 "
 
@@ -642,7 +641,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -657,7 +656,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "armor		:
 "
 
@@ -667,7 +666,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -682,7 +681,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "energy	:
 "
 
@@ -692,7 +691,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -707,7 +706,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "attack :
 "
 
@@ -717,7 +716,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -732,7 +731,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "skill	 :
 "
 
@@ -742,7 +741,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -757,7 +756,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "move Range :
 "
 
@@ -767,7 +766,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -782,7 +781,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "attack Range :
 "
 
@@ -792,7 +791,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -807,7 +806,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "skill Range :
 "
 
@@ -817,7 +816,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -832,7 +831,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Move Energy :
 "
 
@@ -842,7 +841,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -857,7 +856,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "Attack Energy :
 "
 
@@ -867,7 +866,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -882,7 +881,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "skill Energy :
 "
 
@@ -892,7 +891,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
@@ -907,8 +906,8 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "skill Energy :
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+text = "State :
 "
 
 [node name="stateval" type="Label" parent="Container/VBoxContainer/robot_state"]
@@ -917,12 +916,11 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
 text = "
 "
 
 [node name="Map" parent="." instance=ExtResource("3_4e0xx")]
-visible = true
 position = Vector2(328, 64)
 layer_0/tile_data = PackedInt32Array(0, 13, 0, 65536, 13, 0, 131072, 13, 0, 196608, 13, 0, 262144, 13, 0, 1, 13, 0, 65537, 13, 0, 131073, 13, 0, 196609, 13, 0, 262145, 13, 0, 2, 13, 0, 65538, 13, 0, 131074, 13, 0, 196610, 13, 0, 262146, 13, 0, 3, 13, 0, 65539, 13, 0, 131075, 13, 0, 196611, 13, 0, 262147, 13, 0, 4, 13, 0, 65540, 13, 0, 131076, 13, 0, 196612, 13, 0, 262148, 13, 0, 5, 13, 0, 6, 13, 0, 7, 13, 0, 8, 13, 0, 9, 13, 0, 65541, 13, 0, 65542, 13, 0, 65543, 13, 0, 65544, 13, 0, 65545, 13, 0, 131077, 13, 0, 131078, 13, 0, 131079, 13, 0, 131080, 13, 0, 131081, 13, 0, 196613, 13, 0, 196614, 13, 0, 196615, 13, 0, 196616, 13, 0, 196617, 13, 0, 262149, 13, 0, 262150, 13, 0, 262151, 13, 0, 262152, 13, 0, 262153, 13, 0, 327681, 13, 0, 327682, 13, 0, 327683, 13, 0, 327684, 13, 0, 327685, 13, 0, 327686, 13, 0, 327687, 13, 0, 327688, 13, 0, 327689, 13, 0, 393217, 13, 0, 393218, 13, 0, 393219, 13, 0, 393220, 13, 0, 393221, 13, 0, 393222, 13, 0, 393223, 13, 0, 393224, 13, 0, 393225, 13, 0, 458752, 13, 0, 458753, 13, 0, 458754, 13, 0, 458755, 13, 0, 458756, 13, 0, 458757, 13, 0, 458758, 13, 0, 458759, 13, 0, 458760, 13, 0, 458761, 13, 0, 524288, 13, 0, 524289, 13, 0, 524290, 13, 0, 524291, 13, 0, 524292, 13, 0, 524293, 13, 0, 524294, 13, 0, 524295, 13, 0, 524296, 13, 0, 524297, 13, 0, 589824, 13, 0, 589825, 13, 0, 589826, 13, 0, 589827, 13, 0, 589828, 13, 0, 589829, 13, 0, 589830, 13, 0, 589831, 13, 0, 589832, 13, 0, 589833, 13, 0, 327680, 13, 0, 393216, 13, 0)
 layer_1/z_index = -1
@@ -1250,6 +1248,7 @@ mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_arg6u")
 
 [node name="Effect" type="Node2D" parent="Map"]
+visible = false
 z_index = 20
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Map/Effect"]

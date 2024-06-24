@@ -849,6 +849,17 @@ func _on_button_end_turn_button_down():
 		
 func _on_robot_death(value):
 	$button_end_turn.recount()
+	var bluer = [9,9,9]
+	var redier = [9,9,9]
+	var blur = []
+	var redir = []
+	for red in redies:
+		redir = redir + [red.robotState]
+	for blue in blues:
+		blur = blur + [blue.robotState]
+	
+	if blur == bluer or redir == redier:
+		ended.emit()
 
 
 

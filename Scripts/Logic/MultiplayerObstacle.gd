@@ -6,6 +6,7 @@ class_name Obstacle_Summon
 var _multiplayer_location : PackedVector2Array 
 
 func _getMultiplayerLocation(tilegrid : TileMap):
+	_multiplayer_location = []
 	var total_obstacle = randi_range(_min_obstacle,_max_obstacle)
 	var zona_arena : Array[Vector2i] = tilegrid.get_used_cells(0)
 	var temp = []
