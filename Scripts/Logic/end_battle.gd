@@ -5,8 +5,7 @@ func _ready():
 	visible = false
 
 
-
-func _on_battle_manager_battleended(value):
+func _on_battle_manager_battle_ended(value):
 	visible = true
 	$VBoxContainer/the_winner.text = value
 
