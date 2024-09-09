@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bl6xmtn14pqfc" path="res://Scenes/Main scenes/map.tscn" id="3_4e0xx"]
 [ext_resource type="Script" path="res://Scripts/Logic/obstacle_manager.gd" id="4_j6xsb"]
 [ext_resource type="PackedScene" uid="uid://bfgxshary5mvx" path="res://Scenes/Main scenes/Pergerakan.tscn" id="4_t8qkj"]
-[ext_resource type="PackedScene" path="res://Scenes/action_option.tscn" id="5_o3vag"]
+[ext_resource type="PackedScene" uid="uid://2nb28l2sgpv3" path="res://Scenes/action_option.tscn" id="5_o3vag"]
 [ext_resource type="Script" path="res://Scripts/Logic/robot_information.gd" id="5_wjxfy"]
 [ext_resource type="Texture2D" uid="uid://b3l1i1lraex81" path="res://Assets/Tres/Highlight.tres" id="6_eutyx"]
 [ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="10_ib7h4"]
