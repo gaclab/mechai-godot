@@ -1,0 +1,15 @@
+[gd_resource type="TileSet" load_steps=4 format=3 uid="uid://r5sq42525sid"]
+
+[ext_resource type="Script" path="res://Maps/map_manager.gd" id="1_ypugy"]
+[ext_resource type="Texture2D" uid="uid://b6cq5vaygpu1r" path="res://Maps/tile.png" id="2_umrlj"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ecmlh"]
+texture = ExtResource("2_umrlj")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_ecmlh")
+script = ExtResource("1_ypugy")
+grid_size = Vector2i(10, 10)

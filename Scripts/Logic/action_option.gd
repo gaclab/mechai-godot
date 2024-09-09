@@ -85,4 +85,3 @@ func _on_mouse_exit_skill():
 #func _on_input_event(viewport, event, shape_idx):
 	#if event is InputEventMouseMotion:
 		#mouse_entered.emit(true)
-

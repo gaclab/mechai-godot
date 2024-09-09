@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj2k4fa25ny1s"]
+
+[ext_resource type="Script" path="res://Input/control.gd" id="1_pphm0"]
+[ext_resource type="Texture2D" uid="uid://12tkyomhli04" path="res://icon.svg" id="2_g2nri"]
+
+[node name="Control" type="Node2D"]
+script = ExtResource("1_pphm0")
+
+[node name="selector" type="Node2D" parent="."]
+
+[node name="selector_tex" type="Sprite2D" parent="selector"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_g2nri")

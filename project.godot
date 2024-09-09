@@ -14,7 +14,7 @@ config/name="Mech.AI"
 config/description="turn based game yang dikombinasikan dengan strategi dimana 2 player akan bertarung dengan robot robot mereka, pertarungan dalam sebuah papan dengan 10x10 grid , antara kedua player dapat melakukan banyak aksi dengan memainkan robot mereka secara bergiliran, menghancurkan semua robot lawan akan menjadi pemenang "
 config/version="0.0.0.1"
 run/main_scene="res://Scenes/root.tscn"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
@@ -56,3 +56,4 @@ pointing/emulate_touch_from_mouse=true
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+textures/vram_compression/import_etc2_astc=true

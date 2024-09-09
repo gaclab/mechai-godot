@@ -878,6 +878,3 @@ func _on_go_to_menu_button_down():
 	Global.clear_battle()
 	if visible == true :
 		visible = false
-
-
-
