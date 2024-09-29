@@ -255,8 +255,8 @@ func _ready():
 		robots_manager = get_parent().get_node("robots_manager")
 		battle_manager = get_parent().get_node("battle_manager")
 		obstacle_manager = get_parent().get_node("obstacle_manager")
-		redpoint.text = str(battle_manager.turnPoint[0])
-		bluepoint.text = str(battle_manager.turnPoint[1])
+		redpoint.text = str(battle_manager.turn_points[0])
+		bluepoint.text = str(battle_manager.turn_points[1])
 		
 		prerender()
 		#sembunyikan action option
@@ -755,7 +755,7 @@ func _on_actionoption_mouse_entered_each_option(condition):
 # Fixme : Deployzone diatur disini
 # todo : nyampur sama first rounds
 func _on_obstacle_timer_timeout():
-	battle_manager.set_battle_state(battle_manager.BattleState.DEPLOYING)
+	battle_manager.set_battle_state(battle_manager.BattleState.DEPLOYMENT)
 	for x in tile_set.mapSize.x:
 		for y in tile_set.mapSize.y:
 			if y < 4:
@@ -772,9 +772,10 @@ func _on_obstacle_timer_timeout():
 	#DEPLOYYYY
 	#$turntime.start()
 
+
 # todo add battleState == 1 here !!
-func _on_battle_manager_changed_state():
-	if visible == false :
+func _on_battle_manager_state_changed():
+	if visible == false:
 		visible = true
 		$Deployzone.visible = false
 		$enterarena.start()
@@ -782,7 +783,7 @@ func _on_battle_manager_changed_state():
 
 
 func _on_enterarena_timeout():
-	battle_manager.set_battle_state(battle_manager.BattleState.OBSTACLECREATE)
+	battle_manager.set_battle_state(battle_manager.BattleState.OBSTACLE_CREATION)
 	if (Global.maptype == 2 or Global.maptype == 1) and !_helper_create_once_obstacle:
 		print("dengan obstacle")
 		_helper_create_once_obstacle = true
@@ -792,12 +793,12 @@ func _on_enterarena_timeout():
 		_on_obstacle_timer_timeout()
 
 
-func _on_battle_manager_battleended(value):
-	battle_manager.set_battle_state(battle_manager.BattleState.BATTLEEND)
+func _on_battle_manager_battle_ended(value):
+	battle_manager.set_battle_state(battle_manager.BattleState.BATTLE_END)
 	$turntime.stop()
 
 
-func _on_battle_manager_switched():
+func _on_battle_manager_state_switched():
 	$Pergerakan.curve.clear_points()
 	$Pergerakan.get_node("Pathline").clear_points()
 	highlight_zone.clear()
@@ -809,14 +810,14 @@ func _on_battle_manager_switched():
 		_helper_endturn = false
 	if team == "redTeam" and battle_manager.get_battle_state() == 4:
 		team = "blueTeam"
-		battle_manager.calculate_turn_point("redTeam")
+		battle_manager.calculate_turn_points("redTeam")
 		#if $Pergerakan.target_yang_dipindahkan != null :
 			#$Pergerakan.target_yang_dipindahkan = null
 		if actionoption.is_visible_in_tree():
 			actionoption.visible = false
 	elif team == "blueTeam" and battle_manager.get_battle_state() == 4:
 		team = "redTeam"
-		battle_manager.calculate_turn_point("blueTeam")
+		battle_manager.calculate_turn_points("blueTeam")
 		#if $Pergerakan.target_yang_dipindahkan != null :
 			#$Pergerakan.target_yang_dipindahkan = null
 		if actionoption.is_visible_in_tree():
@@ -833,10 +834,10 @@ func _on_battle_manager_switched():
 				robots_manager.robots["blueTeam"]["object"][child].set_robot_state(robots_manager.robots["blueTeam"]["object"][child].RobotState.IDLE)
 			robots_manager.robots["blueTeam"]["object"][child].restore_energy()
 			robots_manager.mechAction[robots_manager.robots["blueTeam"]["object"][child]] = [1,1,1]
-	redpoint.text = str(battle_manager.turnPoint[0])
-	bluepoint.text = str(battle_manager.turnPoint[1])
+	redpoint.text = str(battle_manager.turn_points[0])
+	bluepoint.text = str(battle_manager.turn_points[1])
 	turned.emit(team)
-	if battle_manager.turnPoint[0] == 0 and battle_manager.turnPoint[1] == 0 :
+	if battle_manager.turn_points[0] == 0 and battle_manager.turn_points[1] == 0 :
 		ended.emit()
 
 # FIXME : Deleted battle_manager.get_battle_state() == 3

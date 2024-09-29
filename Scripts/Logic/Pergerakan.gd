@@ -27,6 +27,7 @@ func _process(delta):
 		if tween.is_running():
 			target_yang_dipindahkan.position = $Jejak.position
 			target_yang_dipindahkan.get_node('robot_sprite').rotation_degrees = $Jejak.rotation_degrees + 90
+			print($Jejak.position)
 
 func done():
 	curve.clear_points()

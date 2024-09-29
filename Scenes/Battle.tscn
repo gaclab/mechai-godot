@@ -112,17 +112,7 @@ texture_region_size = Vector2i(64, 64)
 tile_size = Vector2i(64, 64)
 sources/0 = SubResource("TileSetAtlasSource_mfxd6")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2nsx"]
-content_margin_left = 30.0
-content_margin_top = 30.0
-content_margin_right = 30.0
-content_margin_bottom = 30.0
-bg_color = Color(0, 0, 0, 0.784314)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2caiu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lawkc"]
 content_margin_left = 30.0
@@ -148,7 +138,17 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0.588235, 0, 1, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2caiu"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r2nsx"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0, 0, 0, 0.784314)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pqco"]
 bg_color = Color(0, 0, 0, 0.588235)
@@ -832,7 +832,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "Move Energy :
+text = "Skill Energy :
 "
 
 [node name="skillenergyval" type="Label" parent="Container/VBoxContainer/skill_energy"]
@@ -882,7 +882,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_stretch_ratio = 0.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-text = "skill Energy :
+text = "Move Energy :
 "
 
 [node name="moveenergyval" type="Label" parent="Container/VBoxContainer/move_energy"]
@@ -947,13 +947,10 @@ layer_0/name = "Move"
 layer_0/modulate = Color(3.65794e-06, 0.793039, 0.877403, 0.392157)
 layer_1/name = "Attack"
 layer_1/modulate = Color(1, 0, 0, 0.392157)
-layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Skill"
 layer_2/modulate = Color(1, 0, 1, 0.392157)
-layer_2/tile_data = PackedInt32Array()
 layer_3/name = "attackable"
 layer_3/modulate = Color(0.835294, 0, 0.027451, 1)
-layer_3/tile_data = PackedInt32Array()
 
 [node name="enterarena" type="Timer" parent="Map"]
 one_shot = true
@@ -974,10 +971,10 @@ grow_vertical = 2
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("10_ib7h4")
 theme_override_font_sizes/font_size = 30
-theme_override_styles/normal = SubResource("StyleBoxFlat_r2nsx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2caiu")
 theme_override_styles/hover = SubResource("StyleBoxFlat_lawkc")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_t0y1c")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_2caiu")
+theme_override_styles/normal = SubResource("StyleBoxFlat_r2nsx")
 text = "End Turn"
 script = ExtResource("11_hslhf")
 
@@ -1325,10 +1322,10 @@ text = "Back To Menu"
 stream = ExtResource("92_tef3y")
 max_polyphony = 6
 
-[connection signal="battleended" from="battle_manager" to="Map" method="_on_battle_manager_battleended"]
-[connection signal="battleended" from="battle_manager" to="Result" method="_on_battle_manager_battleended"]
-[connection signal="changedState" from="battle_manager" to="Map" method="_on_battle_manager_changed_state"]
-[connection signal="switched" from="battle_manager" to="Map" method="_on_battle_manager_switched"]
+[connection signal="battle_ended" from="battle_manager" to="Map" method="_on_battle_manager_battle_ended"]
+[connection signal="battle_ended" from="battle_manager" to="Result" method="_on_battle_manager_battle_ended"]
+[connection signal="state_changed" from="battle_manager" to="Map" method="_on_battle_manager_state_changed"]
+[connection signal="state_switched" from="battle_manager" to="Map" method="_on_battle_manager_state_switched"]
 [connection signal="ended" from="Map" to="battle_manager" method="_on_map_ended"]
 [connection signal="managed_action" from="Map" to="robots_manager" method="_on_map_managed_action"]
 [connection signal="turned" from="Map" to="battle_manager" method="_on_map_turned"]

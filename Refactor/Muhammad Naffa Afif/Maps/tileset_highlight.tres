@@ -1,0 +1,30 @@
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c06qnl2qh1cdh"]
+
+[ext_resource type="Texture2D" uid="uid://cord5jl8jyfre" path="res://Maps/Highlight.tres" id="1_l876j"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eyit5"]
+resource_name = "Skill"
+texture = ExtResource("1_l876j")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/modulate = Color(0.804656, 0.635983, 0.254092, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jnf0s"]
+resource_name = "Attack"
+texture = ExtResource("1_l876j")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/modulate = Color(0.763799, 0.361913, 0.391784, 1)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_211iw"]
+resource_name = "Move"
+texture = ExtResource("1_l876j")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/modulate = Color(0.457553, 0.80566, 0.990841, 1)
+
+[resource]
+tile_size = Vector2i(64, 64)
+sources/1 = SubResource("TileSetAtlasSource_eyit5")
+sources/2 = SubResource("TileSetAtlasSource_jnf0s")
+sources/3 = SubResource("TileSetAtlasSource_211iw")

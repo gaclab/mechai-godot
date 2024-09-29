@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6gpiwak6rb4x"]
+
+[ext_resource type="Script" path="res://Refactor/Heryawan Eko Saputro/Action/action.gd" id="1_pcvxe"]
+
+[sub_resource type="Curve2D" id="Curve2D_oh26w"]
+
+[node name="action" type="Node2D"]
+script = ExtResource("1_pcvxe")
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_oh26w")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]

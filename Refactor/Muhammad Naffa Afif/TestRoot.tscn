@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3t4jpmy27mex"]
+
+[ext_resource type="PackedScene" uid="uid://cdfd2b3fyy63q" path="res://Maps/Map.tscn" id="1_pgafb"]
+[ext_resource type="PackedScene" uid="uid://dj2k4fa25ny1s" path="res://Input/control.tscn" id="2_7qvlo"]
+
+[node name="TestRoot" type="Node"]
+
+[node name="Map" parent="." instance=ExtResource("1_pgafb")]
+
+[node name="Input" parent="." instance=ExtResource("2_7qvlo")]
+
+[editable path="Map"]
+[editable path="Input"]

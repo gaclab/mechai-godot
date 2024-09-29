@@ -16,4 +16,3 @@ Teams Game Programing :
 - Heryawan Eko Saputro - A11.2022.14237
 - Fajar Gumilang - A11.2022.14832
 - Muhammad Naffa Afif - A11.2022.14249
-
