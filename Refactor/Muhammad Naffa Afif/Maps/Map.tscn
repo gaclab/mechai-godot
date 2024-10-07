@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=4 uid="uid://cdfd2b3fyy63q"]
 
-[ext_resource type="TileSet" uid="uid://r5sq42525sid" path="res://Maps/tileset_default.tres" id="1_is4hw"]
-[ext_resource type="Script" path="res://Maps/map.gd" id="2_vitip"]
-[ext_resource type="PackedScene" uid="uid://qsem5ecxe3q2" path="res://robottest.tscn" id="3_3m8j2"]
-[ext_resource type="Script" path="res://Maps/path.gd" id="4_j5d3i"]
-[ext_resource type="TileSet" uid="uid://c06qnl2qh1cdh" path="res://Maps/tileset_highlight.tres" id="5_gffo0"]
-[ext_resource type="Script" path="res://Maps/highlight.gd" id="6_1yasw"]
+[ext_resource type="TileSet" uid="uid://r5sq42525sid" path="res://Refactor/Muhammad Naffa Afif/Maps/tileset_default.tres" id="1_is4hw"]
+[ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/map.gd" id="2_vitip"]
+[ext_resource type="PackedScene" uid="uid://qsem5ecxe3q2" path="res://Refactor/Muhammad Naffa Afif/robottest.tscn" id="3_3m8j2"]
+[ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/path.gd" id="4_j5d3i"]
+[ext_resource type="TileSet" uid="uid://c06qnl2qh1cdh" path="res://Refactor/Muhammad Naffa Afif/Maps/tileset_highlight.tres" id="5_gffo0"]
+[ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/highlight.gd" id="6_1yasw"]
 
 [sub_resource type="Curve2D" id="Curve2D_ksteg"]
 

@@ -1,5 +1,5 @@
 @tool
-class_name Obstacles
+#class_name Obstacles
 extends Node2D
 
 var _helper_randType : int

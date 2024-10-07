@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://co00ynsbnjbsf"
-path="res://.godot/imported/Rock4_destroy.png-10452a078b85270fb8b09694763775ca.ctex"
+path="res://.godot/imported/Rock4_destroy.png-0a0eb65636142f839737ad1fa5c19ebc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/Rock4_destroy.png"
-dest_files=["res://.godot/imported/Rock4_destroy.png-10452a078b85270fb8b09694763775ca.ctex"]
+source_file="res://Refactor/Irsyad Umar Fakhrizal/Sprite/Obstacles/Rock4_destroy.png"
+dest_files=["res://.godot/imported/Rock4_destroy.png-0a0eb65636142f839737ad1fa5c19ebc.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ql0vdeasl6y2"
-path="res://.godot/imported/Rock3.png-96e38b0c0e9c1578ce06787ec7054c98.ctex"
+path="res://.godot/imported/Rock3.png-e82f6ca3d6cc2d08ad92116032dcedc3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Obstacles/Rock3.png"
-dest_files=["res://.godot/imported/Rock3.png-96e38b0c0e9c1578ce06787ec7054c98.ctex"]
+source_file="res://Refactor/Irsyad Umar Fakhrizal/Sprite/Obstacles/Rock3.png"
+dest_files=["res://.godot/imported/Rock3.png-e82f6ca3d6cc2d08ad92116032dcedc3.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boq0vqdvom3fn"
-path="res://.godot/imported/Rock_brown1.png-63e5ca4f50b1458c338c47afac928b33.ctex"
+path="res://.godot/imported/Rock_brown1.png-b15c4890c7d3eb0a3e22f17be6229800.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Sprites/Env/Rock/Rock_brown1.png"
-dest_files=["res://.godot/imported/Rock_brown1.png-63e5ca4f50b1458c338c47afac928b33.ctex"]
+source_file="res://Refactor/Irsyad Umar Fakhrizal/Sprite/Env/Rock/Rock_brown1.png"
+dest_files=["res://.godot/imported/Rock_brown1.png-b15c4890c7d3eb0a3e22f17be6229800.ctex"]
 
 [params]
 
