@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://r5sq42525sid" path="res://Refactor/Muhammad Naffa Afif/Maps/tileset_default.tres" id="1_is4hw"]
 [ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/map.gd" id="2_vitip"]
-[ext_resource type="PackedScene" uid="uid://qsem5ecxe3q2" path="res://Refactor/Muhammad Naffa Afif/robottest.tscn" id="3_3m8j2"]
+[ext_resource type="PackedScene" uid="uid://cjf1sf3k3keil" path="res://Refactor/Muhammad Naffa Afif/robottest.tscn" id="3_3m8j2"]
 [ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/path.gd" id="4_j5d3i"]
 [ext_resource type="TileSet" uid="uid://c06qnl2qh1cdh" path="res://Refactor/Muhammad Naffa Afif/Maps/tileset_highlight.tres" id="5_gffo0"]
 [ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/Maps/highlight.gd" id="6_1yasw"]
@@ -19,6 +19,7 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAIAAAAAAAA
 tile_set = ExtResource("1_is4hw")
 
 [node name="Robottest" parent="." instance=ExtResource("3_3m8j2")]
+script = null
 
 [node name="path" type="Path2D" parent="."]
 curve = SubResource("Curve2D_ksteg")
