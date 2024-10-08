@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=3 uid="uid://c06qnl2qh1cdh"]
 
-[ext_resource type="Texture2D" uid="uid://cord5jl8jyfre" path="res://Maps/Highlight.tres" id="1_l876j"]
+[ext_resource type="Texture2D" uid="uid://cord5jl8jyfre" path="res://Refactor/Muhammad Naffa Afif/Maps/Highlight.tres" id="1_l876j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eyit5"]
 resource_name = "Skill"

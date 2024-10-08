@@ -24,7 +24,9 @@ func _ready() -> void:
 func _create_map():
 	if tile_map != null :
 		var media = get_viewport().size
+		print(media)
 		var new_mapSize = tile_map.tile_set.tile_size*tile_map.tile_set.grid_size
+		print(new_mapSize)
 		position = (media-new_mapSize)/2
 		#var grid_count = tile_set.grid_size.x*tile_set.grid_size.y
 		

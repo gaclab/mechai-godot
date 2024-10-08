@@ -7,58 +7,6 @@
 
 [node name="MainMenu" parent="." instance=ExtResource("1_ghm5w")]
 
-[node name="MainTab" parent="MainMenu/MarginContainer/VBoxContainer" index="1"]
-current_tab = 0
-
-[node name="Home" parent="MainMenu/MarginContainer/VBoxContainer/MainTab" index="1"]
-metadata/_tab_index = 0
-
-[node name="BattleSetup" parent="MainMenu/MarginContainer/VBoxContainer/MainTab" index="2"]
-current_tab = 0
-metadata/_tab_index = 1
-
-[node name="ModeSelect" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup" index="1"]
-metadata/_tab_index = 0
-
-[node name="OpTab" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/ModeSelect/MarginContainer/VBoxContainer" index="2"]
-current_tab = 0
-
-[node name="Mp" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/ModeSelect/MarginContainer/VBoxContainer/OpTab" index="1"]
-metadata/_tab_index = 0
-
-[node name="Cp" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/ModeSelect/MarginContainer/VBoxContainer/OpTab" index="2"]
-metadata/_tab_index = 1
-
-[node name="ControlSelect" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup" index="2"]
-metadata/_tab_index = 1
-
-[node name="OpTab" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/ControlSelect/MarginContainer/VBoxContainer" index="2"]
-current_tab = 0
-
-[node name="Bt" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/ControlSelect/MarginContainer/VBoxContainer/OpTab" index="1"]
-metadata/_tab_index = 0
-
-[node name="MapSelect" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup" index="3"]
-metadata/_tab_index = 2
-
-[node name="OpTab" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/MapSelect/MarginContainer/VBoxContainer" index="2"]
-current_tab = 0
-
-[node name="Pl" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/MapSelect/MarginContainer/VBoxContainer/OpTab" index="1"]
-metadata/_tab_index = 0
-
-[node name="Pd" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/MapSelect/MarginContainer/VBoxContainer/OpTab" index="2"]
-metadata/_tab_index = 1
-
-[node name="R" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup/MapSelect/MarginContainer/VBoxContainer/OpTab" index="3"]
-metadata/_tab_index = 2
-
-[node name="PredefSelect" parent="MainMenu/MarginContainer/VBoxContainer/MainTab/BattleSetup" index="4"]
-metadata/_tab_index = 3
-
-[node name="Options" parent="MainMenu/MarginContainer/VBoxContainer/MainTab" index="3"]
-metadata/_tab_index = 2
-
 [node name="Intro" parent="." instance=ExtResource("2_c2cs5")]
 
 [connection signal="finished" from="Intro" to="MainMenu" method="_on_video_stream_player_finished"]

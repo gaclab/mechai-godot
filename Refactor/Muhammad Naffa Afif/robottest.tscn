@@ -1,8 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://qsem5ecxe3q2"]
+[gd_scene load_steps=3 format=3 uid="uid://cjf1sf3k3keil"]
 
-[ext_resource type="Texture2D" uid="uid://cna7gws1r4q37" path="res://tile2.png" id="1_bsp70"]
-[ext_resource type="Script" path="res://robottest.gd" id="2_pcgwi"]
+[ext_resource type="Texture2D" uid="uid://cna7gws1r4q37" path="res://Refactor/Muhammad Naffa Afif/tile2.png" id="1_bsp70"]
+[ext_resource type="Script" path="res://Refactor/Muhammad Naffa Afif/robottest.gd" id="2_qrnss"]
 
 [node name="Robottest" type="Sprite2D"]
 texture = ExtResource("1_bsp70")
-script = ExtResource("2_pcgwi")
+script = ExtResource("2_qrnss")
