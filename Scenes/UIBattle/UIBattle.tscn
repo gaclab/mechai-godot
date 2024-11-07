@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://dm655sek7r7u"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/ui_battle.gd" id="1_0y5u7"]
+[ext_resource type="PackedScene" uid="uid://qrhgyckdrf0o" path="res://Scenes/UIBattle/ObjectInfo.tscn" id="2_16ykv"]
+[ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="2_fhl3c"]
+[ext_resource type="FontFile" uid="uid://vk4q5ho1a41d" path="res://Assets/Fonts/Kenney Future Narrow.ttf" id="3_2t40q"]
+[ext_resource type="PackedScene" uid="uid://m0yydum1oxlh" path="res://Scenes/UIBattle/result.tscn" id="5_cqcjh"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kt2ly"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ke5i"]
+bg_color = Color(0.872703, 0.458408, 0.359136, 1)
+corner_radius_top_right = 36
+corner_radius_bottom_left = 36
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_svfoo"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u1q8v"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 0.443137)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.724367, 1, 0.89689, 1)
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 7
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ikt4l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mbo7u"]
+bg_color = Color(0.400113, 0.544635, 0.966207, 1)
+corner_radius_top_left = 36
+corner_radius_bottom_right = 36
+
+[node name="UiBattle" type="Control"]
+z_index = 100
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_0y5u7")
+
+[node name="ObjectInfo" parent="." instance=ExtResource("2_16ykv")]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -315.0
+offset_top = 188.0
+offset_right = -25.0
+offset_bottom = 521.0
+grow_horizontal = 0
+
+[node name="EndTurn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -246.0
+offset_top = -109.0
+offset_right = -36.0
+offset_bottom = -34.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_2t40q")
+theme_override_font_sizes/font_size = 24
+text = "END TURN"
+
+[node name="TOPUI" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -113.5
+offset_right = 113.5
+offset_bottom = 55.0
+grow_horizontal = 2
+
+[node name="Red" type="Panel" parent="TOPUI"]
+custom_minimum_size = Vector2(55, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_kt2ly")
+
+[node name="TurnPoint" type="Label" parent="TOPUI/Red"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fhl3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_5ke5i")
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Time" type="Panel" parent="TOPUI"]
+custom_minimum_size = Vector2(109, 38)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_svfoo")
+
+[node name="Timeleft" type="Label" parent="TOPUI/Time"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fhl3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_u1q8v")
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Blue" type="Panel" parent="TOPUI"]
+custom_minimum_size = Vector2(55, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_ikt4l")
+
+[node name="TurnPoint" type="Label" parent="TOPUI/Blue"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_fhl3c")
+theme_override_styles/normal = SubResource("StyleBoxFlat_mbo7u")
+text = "30"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Result" parent="." instance=ExtResource("5_cqcjh")]
+layout_mode = 1

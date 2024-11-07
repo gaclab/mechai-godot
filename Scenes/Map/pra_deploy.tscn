@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=4 uid="uid://cm1tytldyhpf5"]
+
+[ext_resource type="TileSet" uid="uid://dagvoclrup253" path="res://Assets/Tres/pra_deploy.tres" id="1_hnjyc"]
+
+[node name="PraDeploy" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAD+/woAAgAAAAAAAAD8/woAAgAAAAAAAAD9/woAAgAAAAAAAAALAP//AgAAAAAAAAAMAP//AgAAAAAAAAANAP//AgAAAAAAAAA=")
+tile_set = ExtResource("1_hnjyc")

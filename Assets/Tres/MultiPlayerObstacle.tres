@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="Obstacle_Summon" load_steps=2 format=3 uid="uid://dde5ip46onkhe"]
-
-[ext_resource type="Script" path="res://Scripts/Logic/MultiplayerObstacle.gd" id="1_1ck2j"]
-
-[resource]
-script = ExtResource("1_1ck2j")
-_max_obstacle = 30
-_min_obstacle = 8

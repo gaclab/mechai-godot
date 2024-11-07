@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://betxjb6stnt5j"]
+
+[ext_resource type="Texture2D" uid="uid://b8rmcf5yorq5r" path="res://Assets/Sprites/Map/Enviorement/Env_bundle.png" id="1_btyla"]
+[ext_resource type="Script" path="res://Scripts/Map/env_map.gd" id="1_na6d7"]
+[ext_resource type="Texture2D" uid="uid://dtyqoj360sttw" path="res://Assets/Sprites/Map/Enviorement/Mech-Mars-Map.jpeg" id="3_1142u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdbqg"]
+texture = ExtResource("1_btyla")
+33:31/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8f1eq"]
+sources/1 = SubResource("TileSetAtlasSource_cdbqg")
+
+[node name="envMap" type="TileMapLayer"]
+tile_set = SubResource("TileSet_8f1eq")
+script = ExtResource("1_na6d7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(317, 312)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_1142u")

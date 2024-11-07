@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://icfhsuefexxu"]
+
+[ext_resource type="TileSet" uid="uid://bn62upcpgptxa" path="res://Assets/Tres/tileset_highlight.tres" id="1_cqjme"]
+[ext_resource type="Script" path="res://Scripts/Highlight/highlight.gd" id="2_rtt4a"]
+
+[node name="highlight" type="TileMapLayer"]
+z_index = 3
+tile_set = ExtResource("1_cqjme")
+script = ExtResource("2_rtt4a")

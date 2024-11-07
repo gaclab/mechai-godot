@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="robot_stats" load_steps=2 format=3 uid="uid://bnkkvfh3q0d3e"]
 
-[ext_resource type="Script" path="res://Scripts/Logic/robot_stats.gd" id="1_nlw3d"]
+[ext_resource type="Script" path="res://Scripts/Robot/robot_stats.gd" id="1_nlw3d"]
 
 [resource]
 script = ExtResource("1_nlw3d")
-health = 10
+health = 5
 armor = 3
 energy = 10
 attackDamage = 1

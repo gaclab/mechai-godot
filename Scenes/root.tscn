@@ -1,14 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://sb30kijownjt"]
+[gd_scene load_steps=2 format=3 uid="uid://dpsniewl6jvx1"]
 
-[ext_resource type="PackedScene" uid="uid://0wulxmarddx2" path="res://Scenes/Main scenes/MainMenu.tscn" id="1_ghm5w"]
-[ext_resource type="PackedScene" uid="uid://dcvo5lgdnaqcx" path="res://Scenes/Intro.tscn" id="2_c2cs5"]
+[ext_resource type="PackedScene" uid="uid://0wulxmarddx2" path="res://Scenes/Menu/MainMenu.tscn" id="1_qhvry"]
 
 [node name="Root" type="Node"]
 
-[node name="MainMenu" parent="." instance=ExtResource("1_ghm5w")]
-
-[node name="Intro" parent="." instance=ExtResource("2_c2cs5")]
-
-[connection signal="finished" from="Intro" to="MainMenu" method="_on_video_stream_player_finished"]
-
-[editable path="MainMenu"]
+[node name="MainMenu" parent="." instance=ExtResource("1_qhvry")]

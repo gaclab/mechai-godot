@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://cquimxeh6k7tw"]
-
-[ext_resource type="Script" path="res://Refactor/Heryawan Eko Saputro/Action/Dummy/dummy.gd" id="1_3c6ka"]
-
-[node name="dummy" type="TileMapLayer"]
-script = ExtResource("1_3c6ka")

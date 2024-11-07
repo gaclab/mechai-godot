@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs8axd2nmtkh5"]
+
+[ext_resource type="FontFile" uid="uid://c35x65tepon0w" path="res://Assets/Fonts/Kenney Future.ttf" id="1_jwe6n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mc76u"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+corner_radius_bottom_right = 14
+corner_radius_bottom_left = 14
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y37sy"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_bottom_right = 11
+
+[node name="Time" type="PanelContainer"]
+self_modulate = Color(0, 1, 0, 1)
+z_index = 10
+offset_right = 200.0
+offset_bottom = 90.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_mc76u")
+
+[node name="timeinformation" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_jwe6n")
+theme_override_font_sizes/font_size = 40
+text = "00:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(0, 1, 0, 1)
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxFlat_y37sy")

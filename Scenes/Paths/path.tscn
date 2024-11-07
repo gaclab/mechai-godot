@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://1d05kk376wa3"]
+
+[ext_resource type="Script" path="res://Scripts/Paths/path.gd" id="1_5nah0"]
+
+[sub_resource type="Curve2D" id="Curve2D_ksteg"]
+
+[sub_resource type="Curve" id="Curve_8qqoo"]
+
+[node name="path" type="Path2D"]
+curve = SubResource("Curve2D_ksteg")
+script = ExtResource("1_5nah0")
+
+[node name="path_follow" type="PathFollow2D" parent="."]
+loop = false
+
+[node name="path_line" type="Line2D" parent="."]
+width_curve = SubResource("Curve_8qqoo")
+default_color = Color(0.560784, 0.337255, 1, 1)
+joint_mode = 1
+begin_cap_mode = 2
+end_cap_mode = 2

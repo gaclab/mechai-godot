@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://q87aawv4n8ar"]
+
+[ext_resource type="Script" path="res://Scripts/Astarpath/AstarGrid.gd" id="1_fihw5"]
+
+[node name="AstarGrid" type="Node2D"]
+script = ExtResource("1_fihw5")

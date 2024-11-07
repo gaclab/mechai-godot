@@ -1,0 +1,479 @@
+[gd_scene load_steps=4 format=3 uid="uid://qrhgyckdrf0o"]
+
+[ext_resource type="FontFile" uid="uid://vk4q5ho1a41d" path="res://Assets/Fonts/Kenney Future Narrow.ttf" id="1_ljxsu"]
+[ext_resource type="Script" path="res://Scenes/UIBattle/robot_information.gd" id="1_w0axf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i3uu8"]
+bg_color = Color(0, 0, 0, 0.588235)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 0, 1)
+
+[node name="ObjectInfo" type="Control"]
+z_index = 10
+layout_mode = 3
+anchors_preset = 0
+offset_right = 290.0
+offset_bottom = 333.0
+script = ExtResource("1_w0axf")
+
+[node name="ColorRect" type="Panel" parent="."]
+z_index = 1
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_i3uu8")
+
+[node name="Robot" type="Label" parent="."]
+z_index = 2
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 15.0
+offset_bottom = 38.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Robot Information
+"
+horizontal_alignment = 1
+
+[node name="Container" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -113.0
+offset_top = -122.0
+offset_right = 113.0
+offset_bottom = 144.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="health" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Health
+"
+vertical_alignment = 1
+
+[node name="armor" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Armor
+"
+vertical_alignment = 1
+
+[node name="energy" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Energy
+"
+vertical_alignment = 1
+
+[node name="atk" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Attack Power
+"
+vertical_alignment = 1
+
+[node name="skill" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Skill Power
+"
+vertical_alignment = 1
+
+[node name="mrange" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Move Range
+"
+vertical_alignment = 1
+
+[node name="atkrange" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Attack Range
+"
+vertical_alignment = 1
+
+[node name="skillrange" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Skill Range
+"
+vertical_alignment = 1
+
+[node name="moveenergy" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Move Energy
+"
+vertical_alignment = 1
+
+[node name="atkenergy" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Attack Energy"
+vertical_alignment = 1
+
+[node name="skillenergy" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Skill Energy
+"
+vertical_alignment = 1
+
+[node name="Action" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Action
+"
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Status
+"
+vertical_alignment = 1
+
+[node name="Condition" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Condition
+"
+vertical_alignment = 1
+
+[node name="Team" type="Label" parent="Container/VBoxContainer"]
+z_index = 2
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "Team
+"
+vertical_alignment = 1
+
+[node name="Value" type="VBoxContainer" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="health" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="armor" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="energy" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="atk" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skill" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="mrange" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="atkrange" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skillrange" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="moveenergy" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="atkenergy" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="skillenergy" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Action" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Status" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Condition" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Team" type="Label" parent="Container/Value"]
+z_index = 2
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_stretch_ratio = 0.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("1_ljxsu")
+theme_override_font_sizes/font_size = 12
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1

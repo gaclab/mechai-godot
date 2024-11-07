@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://clgay8q886e17"]
+
+[ext_resource type="Script" path="res://Scripts/Control/control.gd" id="1_pphm0"]
+[ext_resource type="PackedScene" uid="uid://0bxe0sa8wt8c" path="res://Scenes/Control/selector.tscn" id="2_ldl1f"]
+
+[node name="Control" type="Node2D"]
+script = ExtResource("1_pphm0")
+
+[node name="selector" parent="." instance=ExtResource("2_ldl1f")]
