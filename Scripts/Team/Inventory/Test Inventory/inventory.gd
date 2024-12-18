@@ -1,6 +1,6 @@
 extends PanelContainer
 
-@export var itemArray: Array[ItemTest]
+@export var itemArray: Array[Item]
 
 @onready var grid_container = %GridContainer
 

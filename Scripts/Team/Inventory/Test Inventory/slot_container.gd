@@ -1,9 +1,9 @@
 class_name Slot
 extends PanelContainer
 
-@export var slotItemResource: ItemTest = null
+@export var slotItemResource: Item = null
 
-func set_item(item_resource: ItemTest) -> void:
+func set_item(item_resource: Item) -> void:
 	slotItemResource = item_resource
 	%TextureRect.texture = slotItemResource.texture
 	%Label.text = str(slotItemResource.quantity)

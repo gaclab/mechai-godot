@@ -1,0 +1,72 @@
+[gd_scene load_steps=3 format=3 uid="uid://eaw61gpu6dbf"]
+
+[ext_resource type="Script" path="res://Scripts/Team/Inventory/Test Inventory/inventory.gd" id="1_ud6mf"]
+[ext_resource type="PackedScene" uid="uid://b05kfsddiyujn" path="res://Scenes/Team/Inventory/slot_container.tscn" id="2_rlwer"]
+
+[node name="Inventory" type="PanelContainer"]
+offset_right = 536.0
+offset_bottom = 259.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_ud6mf")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(23.945, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "inventory"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+columns = 5
+
+[node name="SlotContainer" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer2" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer3" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer4" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer5" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer6" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer7" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer8" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer9" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2
+
+[node name="SlotContainer10" parent="MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("2_rlwer")]
+layout_mode = 2

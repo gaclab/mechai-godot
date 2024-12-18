@@ -32,17 +32,17 @@ grow_vertical = 2
 
 [node name="Inventory" parent="." instance=ExtResource("1_anls0")]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 1.0
 offset_left = -272.0
-offset_top = -129.5
+offset_top = -259.0
 offset_right = 272.0
-offset_bottom = 129.5
+offset_bottom = 0.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -50,8 +50,8 @@ anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_top = -191.0
-offset_bottom = -127.0
+offset_top = 100.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
@@ -78,12 +78,35 @@ layout_mode = 2
 text = "Clear Item"
 
 [node name="Inventory2" parent="." instance=ExtResource("1_anls0")]
-layout_mode = 2
-offset_left = 1010.0
-offset_top = 601.0
-offset_right = 1546.0
-offset_bottom = 860.0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -129.5
+offset_bottom = 129.5
+grow_vertical = 2
+
+[node name="Inventory3" parent="." instance=ExtResource("1_anls0")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -268.0
+offset_right = 268.0
 grow_horizontal = 2
+
+[node name="Inventory4" parent="." instance=ExtResource("1_anls0")]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -536.0
+offset_top = -129.5
+offset_right = 0.0
+offset_bottom = 129.5
+grow_horizontal = 0
 grow_vertical = 2
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/HBoxContainer/Add" to="MarginContainer/CenterContainer/HBoxContainer/Add" method="_on_pressed"]

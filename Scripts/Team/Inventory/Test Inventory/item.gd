@@ -1,6 +1,6 @@
 @tool
 
-class_name ItemTest
+class_name Item
 extends Resource
 
 var minImgSize: int = 32
