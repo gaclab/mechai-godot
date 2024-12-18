@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://im4mbqjmktck"]
+
+[ext_resource type="PackedScene" uid="uid://eaw61gpu6dbf" path="res://Scenes/Team/Inventory/Inventory.tscn" id="1_anls0"]
+
+[node name="TestInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 540.0
+offset_bottom = 263.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Add" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+text = "Add Item"
+
+[node name="Clear" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+text = "Clear Item"
+
+[node name="Inventory" parent="." instance=ExtResource("1_anls0")]
+min_size = Vector2i(44, 44)
+
+[connection signal="pressed" from="HBoxContainer/Add" to="Inventory" method="add_item_resource"]
+[connection signal="pressed" from="HBoxContainer/Clear" to="Inventory" method="clear_all_inventory_items"]

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dx14nwygdxjoj"]
+
+[ext_resource type="PackedScene" uid="uid://wc811lxvo0yc" path="res://Scripts/Team/Inventory/Items/Equipments/Armor/test_armour.tscn" id="1_6p2hv"]
+
+[node name="TestScene" type="Node2D"]
+
+[node name="Armour" parent="." instance=ExtResource("1_6p2hv")]

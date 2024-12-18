@@ -1,9 +1,6 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dagvoclrup253"]
-
-[ext_resource type="Texture2D" uid="uid://clpamcleq3qsv" path="res://Assets/Sprites/Map/Tiles.png" id="1_7mma1"]
+[gd_resource type="TileSet" load_steps=2 format=3 uid="uid://dagvoclrup253"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2fq8o"]
-texture = ExtResource("1_7mma1")
 texture_region_size = Vector2i(64, 64)
 0:0/0 = 0
 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://b2weg58ooq86h"]
+
+[ext_resource type="Script" path="res://Scripts/Team/Inventory/Items/Equipments/Weapon/weapon.gd" id="1_4sq04"]
+[ext_resource type="Texture2D" uid="uid://d4msgsc5qyou2" path="res://Assets/Sprites/Item/Sniper.webp" id="2_bym4n"]
+
+[resource]
+script = ExtResource("1_4sq04")
+type = "Sniper"
+texture = ExtResource("2_bym4n")
+name = "Sniper"
+description = "Sniper for long range"
+quantity = 1
+isStackable = false
+isConsumable = false
+isEquipable = true

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="DefenseBuff" load_steps=2 format=3 uid="uid://caqpar5717na8"]
+
+[ext_resource type="Script" path="res://Scripts/Team/Inventory/Items/Consumable/Buff/defense_buff.gd" id="1_62gku"]
+
+[resource]
+script = ExtResource("1_62gku")
+extra_defense = 1
+max_turn = 3
+name = "Plasma Barrier"
+description = ""
+quantity = 0
+isStackable = false
+isConsumable = false
+isEquipable = false

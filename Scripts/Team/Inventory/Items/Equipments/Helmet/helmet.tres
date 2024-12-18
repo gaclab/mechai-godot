@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=3 format=3 uid="uid://d23vtymiarw37"]
+
+[ext_resource type="Script" path="res://Scripts/Team/Inventory/Items/Equipments/Helmet/helmet.gd" id="1_mhg7j"]
+[ext_resource type="Texture2D" uid="uid://dtiejv4dewmvn" path="res://Assets/Sprites/Item/helmet.png" id="2_6juhs"]
+
+[resource]
+script = ExtResource("1_mhg7j")
+type = ""
+texture = ExtResource("2_6juhs")
+name = "HeadGear"
+description = ""
+quantity = 1
+isStackable = false
+isConsumable = false
+isEquipable = false

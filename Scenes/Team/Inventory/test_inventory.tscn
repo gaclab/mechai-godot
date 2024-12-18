@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://im4mbqjmktck"]
+
+[ext_resource type="PackedScene" uid="uid://eaw61gpu6dbf" path="res://Scenes/Team/Inventory/Inventory.tscn" id="1_anls0"]
+
+[sub_resource type="GDScript" id="GDScript_5nbht"]
+script/source = "extends Button
+
+@onready var inventory: PanelContainer = $\"../../../../Inventory\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+
+func _on_pressed() -> void:
+	inventory.add_item_resource(null)
+"
+
+[node name="TestInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Inventory" parent="." instance=ExtResource("1_anls0")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -272.0
+offset_top = -129.5
+offset_right = 272.0
+offset_bottom = 129.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -191.0
+offset_bottom = -127.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/CenterContainer"]
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Add" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+text = "Add Random"
+script = SubResource("GDScript_5nbht")
+
+[node name="Clear" type="Button" parent="MarginContainer/CenterContainer/HBoxContainer"]
+custom_minimum_size = Vector2(44, 44)
+layout_mode = 2
+text = "Clear Item"
+
+[node name="Inventory2" parent="." instance=ExtResource("1_anls0")]
+layout_mode = 2
+offset_left = 1010.0
+offset_top = 601.0
+offset_right = 1546.0
+offset_bottom = 860.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MarginContainer/CenterContainer/HBoxContainer/Add" to="MarginContainer/CenterContainer/HBoxContainer/Add" method="_on_pressed"]
+[connection signal="pressed" from="MarginContainer/CenterContainer/HBoxContainer/Clear" to="Inventory" method="clear_all_inventory_items"]
