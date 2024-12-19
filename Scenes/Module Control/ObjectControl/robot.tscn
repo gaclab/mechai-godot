@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://jha3kxb8we41"]
+
+[ext_resource type="Texture2D" uid="uid://b6o3tuidsppxs" path="res://Assets/SpritesDel/Robot/Mechsample.png" id="1_bffbo"]
+[ext_resource type="Script" path="res://Scripts/Module Control/Object Control/robot.gd" id="2_d4w58"]
+[ext_resource type="Script" path="res://Scripts/Module Control/Object Control/nested_robot_state.gd" id="3_dfo1t"]
+
+[node name="Robot" type="Sprite2D" node_paths=PackedStringArray("nested_state")]
+texture = ExtResource("1_bffbo")
+script = ExtResource("2_d4w58")
+hp = 10
+atk = 10
+nested_state = NodePath("NestedRobotState")
+
+[node name="NestedRobotState" type="Node" parent="."]
+script = ExtResource("3_dfo1t")
+
+[node name="Idle" type="Node" parent="NestedRobotState"]
+
+[node name="Busy" type="Node" parent="NestedRobotState"]
+
+[node name="Dead" type="Node" parent="NestedRobotState"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 31.0
+offset_top = -10.0
+offset_right = 71.0
+offset_bottom = 13.0
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+text = "OFF"

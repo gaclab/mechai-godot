@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://1k7ja2vh3hf5"]
+
+[ext_resource type="Script" path="res://Scripts/Module Control/Object Control/object_control.gd" id="1_3bh12"]
+[ext_resource type="PackedScene" uid="uid://jha3kxb8we41" path="res://Scenes/Module Control/ObjectControl/robot.tscn" id="2_6jqme"]
+
+[node name="ObjectControl" type="Node"]
+script = ExtResource("1_3bh12")
+robot_template_scene = ExtResource("2_6jqme")

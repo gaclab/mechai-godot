@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cgwol6pb6pu7c"
+path="res://.godot/imported/Mecha MALFUNCTION 2.wav-c6af8e42f45538a9b453b5bf8fa67748.sample"
+
+[deps]
+
+source_file="res://Assets/SFX/Mecha MALFUNCTION 2.wav"
+dest_files=["res://.godot/imported/Mecha MALFUNCTION 2.wav-c6af8e42f45538a9b453b5bf8fa67748.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

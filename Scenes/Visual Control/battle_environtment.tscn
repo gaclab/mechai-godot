@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://betxjb6stnt5j"]
+
+[ext_resource type="Texture2D" uid="uid://cylyeqnsjqsxx" path="res://Assets/Pictures/Env_bundle.png" id="1_p5v0q"]
+[ext_resource type="Script" path="res://Scripts/Visual Control/env_map.gd" id="2_rbdcb"]
+[ext_resource type="Texture2D" uid="uid://cn0qpi6cr05hl" path="res://Assets/Pictures/Mech-Mars-Map.jpeg" id="3_05pkn"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdbqg"]
+texture = ExtResource("1_p5v0q")
+33:31/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_8f1eq"]
+sources/1 = SubResource("TileSetAtlasSource_cdbqg")
+
+[node name="BattleEnvirontment" type="TileMapLayer"]
+tile_set = SubResource("TileSet_8f1eq")
+script = ExtResource("2_rbdcb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(317, 312)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_05pkn")

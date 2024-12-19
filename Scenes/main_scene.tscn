@@ -1,0 +1,51 @@
+[gd_scene load_steps=16 format=3 uid="uid://0spcpvnqem1i"]
+
+[ext_resource type="Script" path="res://Scripts/control_hub.gd" id="1_jy3d1"]
+[ext_resource type="Script" path="res://Scripts/Visual Control/visual_control.gd" id="2_86iaf"]
+[ext_resource type="Script" path="res://Scripts/game_control.gd" id="2_j5a8q"]
+[ext_resource type="Script" path="res://Scripts/Module Control/module_control.gd" id="3_7khli"]
+[ext_resource type="PackedScene" uid="uid://bum2koegi3dxf" path="res://Scenes/Game Control/nested_state.tscn" id="3_dm72g"]
+[ext_resource type="PackedScene" uid="uid://0wulxmarddx2" path="res://Scenes/Visual Control/main_menu.tscn" id="4_ycbck"]
+[ext_resource type="PackedScene" uid="uid://betxjb6stnt5j" path="res://Scenes/Visual Control/battle_environtment.tscn" id="5_r6neu"]
+[ext_resource type="PackedScene" uid="uid://6u2jmajn5god" path="res://Scenes/Visual Control/tile_grid.tscn" id="6_dnebw"]
+[ext_resource type="PackedScene" uid="uid://dmcglowugo8ax" path="res://Scenes/Visual Control/game_object.tscn" id="8_8vk2q"]
+[ext_resource type="PackedScene" uid="uid://dice30s0wb6hm" path="res://Scenes/Visual Control/selector.tscn" id="9_u4t83"]
+[ext_resource type="PackedScene" uid="uid://bydncolgfuv4a" path="res://Scenes/Module Control/arena_builder.tscn" id="11_eu2wh"]
+[ext_resource type="PackedScene" uid="uid://demp067cxfkyq" path="res://Scenes/Module Control/highlight_builder.tscn" id="12_sq0o1"]
+[ext_resource type="PackedScene" uid="uid://1k7ja2vh3hf5" path="res://Scenes/Module Control/object_control.tscn" id="13_un0c7"]
+[ext_resource type="PackedScene" uid="uid://bqcwpe16dy36j" path="res://Scenes/Module Control/team_manager.tscn" id="14_qfyvc"]
+[ext_resource type="Script" path="res://Scripts/Time Control/time_control.gd" id="17_exuew"]
+
+[node name="ControlHub" type="Node"]
+script = ExtResource("1_jy3d1")
+
+[node name="GameControl" type="Node" parent="."]
+script = ExtResource("2_j5a8q")
+arena_size = Vector2i(10, 10)
+nested_state_scene = ExtResource("3_dm72g")
+
+[node name="VisualControl" type="Node" parent="."]
+script = ExtResource("2_86iaf")
+main_menu_scene = ExtResource("4_ycbck")
+arena_tilemap_scene = ExtResource("6_dnebw")
+base_tilemap_scene = ExtResource("6_dnebw")
+battle_environtment_scene = ExtResource("5_r6neu")
+game_object_scene = ExtResource("8_8vk2q")
+selector_scene = ExtResource("9_u4t83")
+
+[node name="ModuleControl" type="Node" parent="."]
+script = ExtResource("3_7khli")
+arena_builder_scene = ExtResource("11_eu2wh")
+highlight_builder_scene = ExtResource("12_sq0o1")
+object_control_scene = ExtResource("13_un0c7")
+team_manager_scene = ExtResource("14_qfyvc")
+
+[node name="TimeControl" type="Node" parent="." node_paths=PackedStringArray("deploy_timer")]
+script = ExtResource("17_exuew")
+deploy_timer = NodePath("DeployTimer")
+
+[node name="DeployTimer" type="Timer" parent="TimeControl"]
+
+[node name="AudioControl" type="Node" parent="."]
+
+[connection signal="timeout" from="TimeControl/DeployTimer" to="GameControl" method="_on_deploy_timer_timeout"]

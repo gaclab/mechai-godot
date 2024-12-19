@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bydncolgfuv4a"]
+
+[ext_resource type="Script" path="res://Scripts/Module Control/arena_builder.gd" id="1_e5etr"]
+
+[node name="ArenaBuilder" type="Node"]
+script = ExtResource("1_e5etr")

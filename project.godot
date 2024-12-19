@@ -10,17 +10,16 @@ config_version=5
 
 [application]
 
-config/name="Project Game"
-config/tags=PackedStringArray("merging")
-run/main_scene="res://Scenes/Root.tscn"
+config/name="Mech.ai GEN2"
+config/tags=PackedStringArray("bifactor")
+run/main_scene="res://Scenes/main_scene.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scripts/Global.gd"
-Signal_Debugger="*res://addons/SignalVisualizer/Debugger/SignalDebugger.gd"
+Control_Core="*res://Scripts/control_core.gd"
 
 [display]
 
@@ -30,7 +29,11 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/SignalVisualizer/plugin.cfg")
+enabled=PackedStringArray()
+
+[global_group]
+
+ControlHub=""
 
 [input]
 

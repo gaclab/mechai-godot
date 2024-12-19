@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://fencl2auom43"]
+
+[ext_resource type="Script" path="res://Scripts/Visual Control/robot_state.gd" id="1_2bkmk"]
+
+[node name="STATS_ROOT" type="Node" node_paths=PackedStringArray("state")]
+script = ExtResource("1_2bkmk")
+state = NodePath("OFF")
+
+[node name="OFF" type="Node" parent="."]
+
+[node name="ON" type="Node" parent="."]
+
+[node name="DEAD" type="Node" parent="."]

@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dice30s0wb6hm"]
+
+[ext_resource type="Texture2D" uid="uid://bvqbah4sw4y55" path="res://Assets/Sprites/Selector.png" id="1_ta7l0"]
+[ext_resource type="Script" path="res://Scripts/Visual Control/selector.gd" id="2_hmo4a"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yocax"]
+atlas = ExtResource("1_ta7l0")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx7mg"]
+atlas = ExtResource("1_ta7l0")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_px6uy"]
+atlas = ExtResource("1_ta7l0")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70xqr"]
+atlas = ExtResource("1_ta7l0")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fyqxd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yocax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx7mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_px6uy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_70xqr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Selector" type="AnimatedSprite2D"]
+z_index = 10
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_fyqxd")
+autoplay = "default"
+script = ExtResource("2_hmo4a")

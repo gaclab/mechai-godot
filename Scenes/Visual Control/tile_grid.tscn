@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://6u2jmajn5god"]
+
+[ext_resource type="TileSet" uid="uid://db7kp7ba80df4" path="res://Assets/Tres/tileset_default.tres" id="1_5xn7a"]
+[ext_resource type="Script" path="res://Scripts/Visual Control/tile_grid.gd" id="2_sxk2w"]
+
+[node name="TileGrid" type="TileMapLayer"]
+tile_set = ExtResource("1_5xn7a")
+script = ExtResource("2_sxk2w")

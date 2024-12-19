@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqcwpe16dy36j"]
+
+[ext_resource type="Script" path="res://Scripts/Module Control/team_manager.gd" id="1_0s7a5"]
+
+[node name="TeamManager" type="Node"]
+script = ExtResource("1_0s7a5")
