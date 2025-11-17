@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://vjvp0p86yni4"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Slot/Player/player_inventory.gd" id="1_ca3ao"]
+[ext_resource type="PackedScene" uid="uid://dh6dxytskgbuk" path="res://Scenes/Inventory/Player/player_slot.tscn" id="2_ui1xa"]
+
+[sub_resource type="GDScript" id="GDScript_u6ojo"]
+resource_name = "slot_container"
+script/source = "extends GridContainer
+
+func _ready() -> void:
+	var slot = get_children()
+	
+	for i in range(slot.size()):
+		slot[i].slot_position = i
+"
+
+[node name="PlayerInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ca3ao")
+
+[node name="SlotContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+offset_right = 104.0
+offset_bottom = 752.0
+columns = 2
+script = SubResource("GDScript_u6ojo")
+
+[node name="Slot" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot2" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot3" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot4" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot5" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot6" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot7" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot8" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot9" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2
+
+[node name="Slot10" parent="SlotContainer" instance=ExtResource("2_ui1xa")]
+layout_mode = 2

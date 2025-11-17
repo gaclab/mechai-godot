@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Repair" load_steps=3 format=3 uid="uid://blh20q30d1pbn"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Consumable/Repair/repair.gd" id="1_n3s7n"]
+[ext_resource type="Texture2D" uid="uid://qyprmwlacaot" path="res://Assets/Sprites/Item/upgrade.png" id="2_xqiu1"]
+
+[resource]
+script = ExtResource("1_n3s7n")
+repaired_health = 7
+texture = ExtResource("2_xqiu1")
+name = "NanoRegen High"
+description = "Repair robot high"
+quantity = 5
+isStackable = false
+isConsumable = false
+isEquipable = false

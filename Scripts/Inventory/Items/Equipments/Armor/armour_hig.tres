@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Armour" load_steps=3 format=3 uid="uid://jjwo6p87fpo0"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Equipments/Armor/armour.gd" id="1_6ieps"]
+[ext_resource type="Texture2D" uid="uid://cgeyqdd5tba17" path="res://Assets/Sprites/Item/armour.png" id="2_d7x8p"]
+
+[resource]
+script = ExtResource("1_6ieps")
+SHORT = 4
+LAUNCHER = 3
+SNIPER = 2
+texture = ExtResource("2_d7x8p")
+name = "CoreGuard High"
+description = "Body protector high"
+quantity = 2
+isStackable = false
+isConsumable = false
+isEquipable = true

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DamageBuff" load_steps=3 format=3 uid="uid://dqs5lkb5h6g5w"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Consumable/Buff/damage_buff.gd" id="1_odio6"]
+[ext_resource type="Texture2D" uid="uid://cilucnq26o3ur" path="res://Assets/Sprites/Item/attack.png" id="2_gkh6o"]
+
+[resource]
+script = ExtResource("1_odio6")
+extra_damage = 1
+max_turn = 3
+texture = ExtResource("2_gkh6o")
+name = "Plasma Charge High"
+description = "Buff robot's damage high"
+quantity = 1
+isStackable = false
+isConsumable = false
+isEquipable = false

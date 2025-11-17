@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Repair" load_steps=3 format=3 uid="uid://byyq04en32a4m"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Consumable/Repair/repair.gd" id="1_js7bo"]
+[ext_resource type="Texture2D" uid="uid://qyprmwlacaot" path="res://Assets/Sprites/Item/upgrade.png" id="2_amwqb"]
+
+[resource]
+script = ExtResource("1_js7bo")
+repaired_health = 6
+texture = ExtResource("2_amwqb")
+name = "NanoRegen Mid"
+description = "Repair robot mid"
+quantity = 2
+isStackable = false
+isConsumable = false
+isEquipable = false

@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh6dxytskgbuk"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Slot/Player/player_slot.gd" id="1_pnwn6"]
+
+[node name="PlayerSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+script = ExtResource("1_pnwn6")
+slot_position = null
+
+[node name="ItemImage" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

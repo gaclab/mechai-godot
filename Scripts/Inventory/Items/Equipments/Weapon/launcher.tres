@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://bnrstbytibb58"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Equipments/Weapon/weapon.gd" id="1_2sxyk"]
+[ext_resource type="Texture2D" uid="uid://b502euci0e41d" path="res://Assets/Sprites/Item/Launcher.webp" id="2_5ntfs"]
+
+[resource]
+script = ExtResource("1_2sxyk")
+type = "Launcher"
+texture = ExtResource("2_5ntfs")
+name = "Launcher"
+description = "Launcher weapon"
+quantity = 2
+isStackable = false
+isConsumable = false
+isEquipable = true

@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="Armour" load_steps=3 format=3 uid="uid://xiaxd2ejgsqe"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Equipments/Armor/armour.gd" id="1_q2tjt"]
+[ext_resource type="Texture2D" uid="uid://cgeyqdd5tba17" path="res://Assets/Sprites/Item/armour.png" id="2_i25vn"]
+
+[resource]
+script = ExtResource("1_q2tjt")
+SHORT = 3
+LAUNCHER = 2
+SNIPER = 1
+texture = ExtResource("2_i25vn")
+name = "CoreGuard Mid"
+description = "Body protector mid"
+quantity = 3
+isStackable = false
+isConsumable = false
+isEquipable = true

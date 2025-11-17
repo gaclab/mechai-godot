@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Equipment" load_steps=3 format=3 uid="uid://k74ob5yx6lx6"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Equipments/Helmet/helmet.gd" id="1_ghbw8"]
+[ext_resource type="Texture2D" uid="uid://dtiejv4dewmvn" path="res://Assets/Sprites/Item/helmet.png" id="2_fhcuu"]
+
+[resource]
+script = ExtResource("1_ghbw8")
+type = "Balance"
+texture = ExtResource("2_fhcuu")
+name = "HeadGear Mid"
+description = "Head protector mid"
+quantity = 1
+isStackable = false
+isConsumable = false
+isEquipable = true

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DamageBuff" load_steps=3 format=3 uid="uid://20s3ldngikun"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Consumable/Buff/damage_buff.gd" id="1_w3cln"]
+[ext_resource type="Texture2D" uid="uid://cilucnq26o3ur" path="res://Assets/Sprites/Item/attack.png" id="2_3ooam"]
+
+[resource]
+script = ExtResource("1_w3cln")
+extra_damage = 1
+max_turn = 3
+texture = ExtResource("2_3ooam")
+name = "Plasma Charge Mid"
+description = "Buff robot's damage mid"
+quantity = 3
+isStackable = false
+isConsumable = false
+isEquipable = false

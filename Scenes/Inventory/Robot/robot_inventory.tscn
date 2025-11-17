@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://buv0wj4n00mkk"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Slot/Robot/robot_inventory.gd" id="1_0kdd0"]
+[ext_resource type="PackedScene" uid="uid://bn6lt8kh6gtg1" path="res://Scenes/Inventory/Robot/robot_slot.tscn" id="2_67dkw"]
+
+[sub_resource type="GDScript" id="GDScript_kphic"]
+resource_name = "slot_container"
+script/source = "extends GridContainer
+
+func _ready() -> void:
+	var slot = get_children()
+	
+	for i in range(slot.size()):
+		slot[i].slot_position = i
+"
+
+[node name="RobotInventory" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0kdd0")
+
+[node name="SlotContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+script = SubResource("GDScript_kphic")
+
+[node name="RobotSlot" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot2" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot3" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot4" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot5" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot6" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot7" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2
+
+[node name="RobotSlot8" parent="SlotContainer" instance=ExtResource("2_67dkw")]
+layout_mode = 2

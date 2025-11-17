@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://ge8tw738xd4m"]
+
+[ext_resource type="PackedScene" uid="uid://vjvp0p86yni4" path="res://Scenes/Inventory/Player/player_inventory.tscn" id="1_cmrt7"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/item.gd" id="2_41dyn"]
+[ext_resource type="Resource" uid="uid://b31knw15cu5bj" path="res://Scripts/Inventory/Items/Consumable/Buff/damage_buff.tres" id="3_csg14"]
+[ext_resource type="Resource" uid="uid://caqpar5717na8" path="res://Scripts/Inventory/Items/Consumable/Buff/defense_buff.tres" id="4_0anfy"]
+[ext_resource type="PackedScene" uid="uid://buv0wj4n00mkk" path="res://Scenes/Inventory/Robot/robot_inventory.tscn" id="11_irq13"]
+
+[sub_resource type="GDScript" id="GDScript_umx1o"]
+resource_name = "debug_item"
+script/source = "extends Node2D
+#
+#@onready var player_inventory: Inventory = $\"PlayerInventory\" as Inventory
+#@onready var robot_inventory: Inventory = $\"RobotInventory\" as Inventory
+#@onready var robot_inventory2: Inventory = $\"RobotInventory2\" as Inventory
+#@onready var label_p: Label = $LabelP
+#@onready var label_r: Label = $LabelR
+#@onready var label_r2: Label = $LabelR2
+#@onready var robot_inventory_3 = $RobotInventory3
+#
+#func _process(delta: float) -> void:
+	#getInfo(robot_inventory_3, label_p)
+	##getInfo(player_inventory, label_p)
+	##getInfo(robot_inventory, label_r)
+	##getInfo(robot_inventory2, label_r2)
+#
+#func getInfo(inv, label: Label):
+	#label.text = ''
+	#print(typeof(inv))
+	#
+	#var node_inv = inv.get_node_or_null('%SlotContainer')
+	#var slotN = 0
+	#for item in inv.Items:
+		#var text = ''
+		#if item != null:
+			#label.text += 'Slot %d: %s: %s\\n' % [node_inv.get_child(slotN).slot_position, item.name, item.quantity]
+		#else:
+			#label.text += 'Slot %d: null\\n' % [node_inv.get_child(slotN).slot_position]
+		#slotN += 1
+"
+
+[node name="Playground" type="Node2D"]
+script = SubResource("GDScript_umx1o")
+
+[node name="LabelP" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 329.0
+offset_bottom = 55.0
+text = "Label Placeholder"
+
+[node name="LabelR" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 51.0
+offset_right = 1063.0
+offset_bottom = 74.0
+text = "Label Placeholder"
+
+[node name="LabelR2" type="Label" parent="."]
+offset_left = 932.0
+offset_top = 476.0
+offset_right = 1069.0
+offset_bottom = 499.0
+text = "Label Placeholder"
+
+[node name="PlayerInventory" parent="." instance=ExtResource("1_cmrt7")]
+offset_left = 32.0
+offset_top = 23.0
+offset_right = 32.0
+offset_bottom = 23.0
+Items = Array[ExtResource("2_41dyn")]([ExtResource("3_csg14"), ExtResource("4_0anfy")])
+
+[node name="RobotInventory" parent="." instance=ExtResource("11_irq13")]
+offset_left = 1095.0
+offset_top = 53.0
+offset_right = 1095.0
+offset_bottom = 53.0
+
+[node name="RobotInventory2" parent="." instance=ExtResource("11_irq13")]
+offset_left = 1096.0
+offset_top = 477.0
+offset_right = 1096.0
+offset_bottom = 477.0
+
+[node name="RobotInventory3" parent="." instance=ExtResource("11_irq13")]

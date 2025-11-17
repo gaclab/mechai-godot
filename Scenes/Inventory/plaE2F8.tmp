@@ -1,0 +1,102 @@
+[gd_scene load_steps=13 format=3 uid="uid://ge8tw738xd4m"]
+
+[ext_resource type="PackedScene" uid="uid://vjvp0p86yni4" path="res://Scenes/Inventory/Player/player_inventory.tscn" id="1_cmrt7"]
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/item.gd" id="2_41dyn"]
+[ext_resource type="Resource" uid="uid://b31knw15cu5bj" path="res://Scripts/Inventory/Items/Consumable/Buff/damage_buff.tres" id="3_csg14"]
+[ext_resource type="Resource" uid="uid://caqpar5717na8" path="res://Scripts/Inventory/Items/Consumable/Buff/defense_buff.tres" id="4_0anfy"]
+[ext_resource type="Resource" uid="uid://cvk4bbt4a46yh" path="res://Scripts/Inventory/Items/Consumable/Repair/repair.tres" id="5_y11g4"]
+[ext_resource type="Resource" uid="uid://oarj34mn78n8" path="res://Scripts/Inventory/Items/Equipments/Armor/armour.tres" id="6_hqcca"]
+[ext_resource type="Resource" uid="uid://d23vtymiarw37" path="res://Scripts/Inventory/Items/Equipments/Helmet/helmet.tres" id="7_1vibf"]
+[ext_resource type="Resource" uid="uid://bnrstbytibb58" path="res://Scripts/Inventory/Items/Equipments/Weapon/launcher.tres" id="8_8kksa"]
+[ext_resource type="Resource" uid="uid://dvtk12xo3h77x" path="res://Scripts/Inventory/Items/Equipments/Weapon/short.tres" id="9_6iaii"]
+[ext_resource type="Resource" uid="uid://b2weg58ooq86h" path="res://Scripts/Inventory/Items/Equipments/Weapon/sniper.tres" id="10_ci6ay"]
+[ext_resource type="PackedScene" uid="uid://buv0wj4n00mkk" path="res://Scenes/Inventory/Robot/robot_inventory.tscn" id="11_irq13"]
+
+[sub_resource type="GDScript" id="GDScript_umx1o"]
+resource_name = "debug_item"
+script/source = "extends Node2D
+
+@onready var player_inventory: Inventory = $\"PlayerInventory\"
+@onready var robot_inventory: Inventory = $\"RobotInventory\"
+@onready var robot_inventory_2: Inventory = $\"RobotInventory2\"
+@onready var robot_inventory_3: Inventory = $RobotInventory3
+@onready var label_p: Label = $LabelP
+@onready var label_r: Label = $LabelR
+@onready var label_r2: Label = $LabelR2
+@onready var label_r3: Label = $LabelR3
+
+func _process(delta: float) -> void:
+	getInfo(player_inventory, label_p)
+	getInfo(robot_inventory, label_r)
+	getInfo(robot_inventory_2, label_r2)
+	getInfo(robot_inventory_3, label_r3)
+
+func getInfo(inv: Inventory, label: Label):
+	label.text = ''
+	
+	var node_inv = inv.get_node_or_null('%SlotContainer')
+	var slotN = 0
+	for item in inv.Items:
+		var text = ''
+		if item != null:
+			label.text += 'Slot %d: %s: %s\\n' % [node_inv.get_child(slotN).slot_position, item.name, item.quantity]
+		else:
+			label.text += 'Slot %d: null\\n' % [node_inv.get_child(slotN).slot_position]
+		slotN += 1
+"
+
+[node name="Playground" type="Node2D"]
+script = SubResource("GDScript_umx1o")
+
+[node name="LabelP" type="Label" parent="."]
+offset_left = 192.0
+offset_top = 32.0
+offset_right = 329.0
+offset_bottom = 55.0
+text = "Label Placeholder"
+
+[node name="LabelR" type="Label" parent="."]
+offset_left = 926.0
+offset_top = 51.0
+offset_right = 1063.0
+offset_bottom = 74.0
+text = "Label Placeholder"
+
+[node name="LabelR2" type="Label" parent="."]
+offset_left = 924.0
+offset_top = 397.0
+offset_right = 1061.0
+offset_bottom = 420.0
+text = "Label Placeholder"
+
+[node name="LabelR3" type="Label" parent="."]
+offset_left = 920.0
+offset_top = 649.0
+offset_right = 1057.0
+offset_bottom = 672.0
+text = "Label Placeholder"
+
+[node name="PlayerInventory" parent="." instance=ExtResource("1_cmrt7")]
+offset_left = 32.0
+offset_top = 23.0
+offset_right = 32.0
+offset_bottom = 23.0
+Items = Array[ExtResource("2_41dyn")]([ExtResource("3_csg14"), ExtResource("4_0anfy"), ExtResource("5_y11g4"), ExtResource("6_hqcca"), ExtResource("7_1vibf"), ExtResource("8_8kksa"), ExtResource("9_6iaii"), ExtResource("10_ci6ay")])
+
+[node name="RobotInventory" parent="." instance=ExtResource("11_irq13")]
+offset_left = 1095.0
+offset_top = 53.0
+offset_right = 1095.0
+offset_bottom = 53.0
+
+[node name="RobotInventory2" parent="." instance=ExtResource("11_irq13")]
+offset_left = 1103.0
+offset_top = 393.0
+offset_right = 1103.0
+offset_bottom = 393.0
+
+[node name="RobotInventory3" parent="." instance=ExtResource("11_irq13")]
+offset_left = 1097.0
+offset_top = 648.0
+offset_right = 1097.0
+offset_bottom = 648.0

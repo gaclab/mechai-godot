@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bn6lt8kh6gtg1"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Slot/Robot/robot_slot.gd" id="1_6j0iq"]
+
+[node name="RobotSlot" type="PanelContainer"]
+custom_minimum_size = Vector2(50, 50)
+script = ExtResource("1_6j0iq")
+slot_position = null
+
+[node name="ItemImage" type="TextureRect" parent="."]
+layout_mode = 2
+expand_mode = 1
+
+[node name="ItemName" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8

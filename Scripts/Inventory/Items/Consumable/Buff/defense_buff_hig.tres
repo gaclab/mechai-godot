@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DefenseBuff" load_steps=3 format=3 uid="uid://di0egesf272nb"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Consumable/Buff/defense_buff.gd" id="1_3cdm0"]
+[ext_resource type="Texture2D" uid="uid://bl1na3j1pguek" path="res://Assets/Sprites/Item/defense.webp" id="2_k58t3"]
+
+[resource]
+script = ExtResource("1_3cdm0")
+extra_defense = 1
+max_turn = 3
+texture = ExtResource("2_k58t3")
+name = "Plasma Barrier High"
+description = "Buff robot's defense high"
+quantity = 5
+isStackable = false
+isConsumable = false
+isEquipable = false

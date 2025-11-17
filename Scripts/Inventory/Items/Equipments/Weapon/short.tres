@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=3 format=3 uid="uid://dvtk12xo3h77x"]
+
+[ext_resource type="Script" path="res://Scripts/Inventory/Items/Equipments/Weapon/weapon.gd" id="1_galcm"]
+[ext_resource type="Texture2D" uid="uid://bchdk78v05bwy" path="res://Assets/Sprites/Item/shotgun.webp" id="2_5dk88"]
+
+[resource]
+script = ExtResource("1_galcm")
+type = "Short"
+texture = ExtResource("2_5dk88")
+name = "Short"
+description = "Short weapon"
+quantity = 3
+isStackable = false
+isConsumable = false
+isEquipable = true
